@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -9,6 +10,7 @@ public class CanvasController : MonoBehaviour {
 
     [HeaderAttribute("Nothing selected")]
     public Text selectedProvinceTextObject;
+    // public TextMeshProUGUI selectedProvinceTextObject;
 
     [HeaderAttribute("Selection Panel")]
     public Image selectionPanel;
@@ -40,8 +42,8 @@ public class CanvasController : MonoBehaviour {
     /// </summary>
     void Awake() {
 
-        provinceInformationCanvasGroup = provinceInformationPanel.GetComponent<CanvasGroup> ();
-        selectionCanvasGroup = selectionPanel.GetComponent<CanvasGroup> ();
+        provinceInformationCanvasGroup = provinceInformationPanel.GetComponent<CanvasGroup>();
+        selectionCanvasGroup = selectionPanel.GetComponent<CanvasGroup>();
 
     }
 
@@ -95,10 +97,25 @@ public class CanvasController : MonoBehaviour {
 
     public void ResetSelectedProvince() {
 
-        if (!hasSelectedProvince) {
+        if (hasSelectedProvince) {
+            
+            Debug.Log("Resetting selected province");
 
             StopAllCoroutines();
-            selectedProvinceTextObject.text = "Hover over the provinces";
+
+            hasSelectedProvince = false;
+
+            selectedProvince = null;
+
+            if (selectedProvinceGameObject) {
+
+                Debug.Log("De-highlighting selected province: " + selectedProvinceGameObject.name);
+                selectedProvinceGameObject.GetComponent<ProvinceController>().Highlight(false, 0);
+                selectedProvinceGameObject = null;
+
+            }
+
+            selectedProvinceTextObject.text = "Click over the provices to interact with them";
 
         }
 
@@ -148,22 +165,11 @@ public class CanvasController : MonoBehaviour {
 
     public void HideProvinceInformation() {
 
-        StopAllCoroutines();
+        ResetSelectedProvince();
 
-        if (selectedProvinceGameObject) {
-            
-            Debug.Log("De-highlighting selected province: " + selectedProvinceGameObject.name);
-            selectedProvinceGameObject.GetComponent<ProvinceController> ().Highlight(false, 0);
-            selectedProvinceGameObject = null;
+        selectedProvinceTextObject.text = "Click over the provices to interact with them";
 
-        }
-
-        hasSelectedProvince = false;
-        selectedProvince = null;
-
-        selectedProvinceTextObject.text = "Hover over the provinces";
-
-        provinceInformationCanvasGroup.DOFade(0, 0.5f);
+        provinceInformationCanvasGroup.alpha = 0;
         provinceInformationCanvasGroup.blocksRaycasts = false;
 
         EventSystem.current.SetSelectedGameObject(null);
