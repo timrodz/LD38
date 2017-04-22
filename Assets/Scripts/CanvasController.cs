@@ -14,20 +14,17 @@ public class CanvasController : MonoBehaviour {
 
     [HeaderAttribute("Nothing selected")]
     public Text selectedProvinceTextObject;
-    // public TextMeshProUGUI selectedProvinceTextObject;
     private string originalText;
 
     [HeaderAttribute("Selection Panel")]
     public Image selectionPanel;
     private CanvasGroup selectionCanvasGroup;
-    public GameObject selectedProvinceGameObject = null;
+    [HideInInspector] public GameObject selectedProvinceGameObject = null;
 
     [HeaderAttribute("Information Panel")]
     public Image provinceInformationPanel;
     private CanvasGroup provinceInformationCanvasGroup;
-    public Text Name;
     public Text Capital;
-    public Text Type;
     public Text Population;
     public Text Income;
     public Text Production;
