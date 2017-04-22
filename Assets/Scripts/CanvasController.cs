@@ -9,6 +9,8 @@ using UnityEngine.UI;
 public class CanvasController : MonoBehaviour {
 
     private TradeRouteController tc;
+    
+    public Transform provinceHolder;
 
     [HeaderAttribute("Nothing selected")]
     public Text selectedProvinceTextObject;
@@ -78,7 +80,11 @@ public class CanvasController : MonoBehaviour {
             this.hasSelectedProvince = true;
             selectedProvince = p;
 
+            provinceHolder.DOMoveX(3, 0.5f).SetEase(Ease.OutSine);
+
             DisplayProvinceInformation();
+            
+            tc.ShowTradeRoutes();
 
         } else {
 
@@ -121,6 +127,9 @@ public class CanvasController : MonoBehaviour {
                 Debug.Log("De-highlighting selected province: " + selectedProvinceGameObject.name);
                 selectedProvinceGameObject.GetComponent<ProvinceController>().Highlight(false, 0);
                 selectedProvinceGameObject = null;
+                
+                provinceHolder.DOMoveX(0, 0.5f).SetEase(Ease.OutSine);
+                tc.HideTradeRoutes();
 
             }
 
@@ -147,7 +156,7 @@ public class CanvasController : MonoBehaviour {
 
     public void HideSelectionPanel() {
 
-        selectionCanvasGroup.alpha = 0;
+        selectionCanvasGroup.DOFade(0, 0.1f);
         selectionCanvasGroup.blocksRaycasts = false;
 
     }
@@ -167,7 +176,7 @@ public class CanvasController : MonoBehaviour {
 
         CurrentNeed.text = "Needs: " + selectedProvince.currentNeed.ToString();
 
-        provinceInformationCanvasGroup.DOFade(1, 0.2f);
+        provinceInformationCanvasGroup.DOFade(1, 0.5f);
         provinceInformationCanvasGroup.blocksRaycasts = true;
         
         ResetEventSystems();
@@ -176,7 +185,7 @@ public class CanvasController : MonoBehaviour {
 
     public void HideProvinceInformation() {
 
-        provinceInformationCanvasGroup.alpha = 0;
+        provinceInformationCanvasGroup.DOFade(0, 0.1f);
         provinceInformationCanvasGroup.blocksRaycasts = false;
 
     }

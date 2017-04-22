@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class TradeRouteController : MonoBehaviour {
 
@@ -37,6 +38,10 @@ public class TradeRouteController : MonoBehaviour {
         tradeRoutes.Add(GunaYala);
         tradeRoutes.Add(Darien);
         tradeRoutes.Add(EmberaWounaan);
+		
+		foreach (TradeRoute t in tradeRoutes) {
+			t.transform.localScale = Vector3.zero;
+		}
 
     }
 
@@ -47,16 +52,12 @@ public class TradeRouteController : MonoBehaviour {
 
     public void SendTrade(TradeRoute origin) {
 
-        // Determine what the trade route needs
-
-        // origin.Connect(destination);
-
         Debug.Log("Looking for provinces that produce need: " + origin.province.currentNeed);
 
         needList.Clear();
 
         foreach(TradeRoute t in tradeRoutes) {
-
+			
             if (origin.province.currentNeed == t.province.production) {
 
                 Debug.Log("Province that produces need: " + t.province.name);
@@ -87,10 +88,28 @@ public class TradeRouteController : MonoBehaviour {
 
             }
 
-            Debug.Log("Shortest path: " + shortestPath.parent.name);
-
         }
+		
+		// shortestPath.DOShakeRotation(0.5f);
+		// shortestPath.DORotate(shortestPath.eulerAngles, 0.1f).SetDelay(0.5f);
+		Debug.Log("Shortest path: " + shortestPath.parent.name);
 
     }
+
+	public void ShowTradeRoutes() {
+		
+		foreach (TradeRoute t in tradeRoutes) {
+			t.transform.DOScale(1, 0.5f);
+		}
+		
+	}
+	
+	public void HideTradeRoutes() {
+		
+		foreach (TradeRoute t in tradeRoutes) {
+			t.transform.DOScale(0, 0.5f);
+		}
+		
+	}
 
 }
