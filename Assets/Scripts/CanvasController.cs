@@ -151,8 +151,6 @@ public class CanvasController : MonoBehaviour {
 
     public void DisplaySelectionPanel() {
 
-        HideHelpMenu();
-
         selectionCanvasGroup.DOFade(1, 0.5f);
         selectionCanvasGroup.blocksRaycasts = true;
 
@@ -169,9 +167,7 @@ public class CanvasController : MonoBehaviour {
 
     public void DisplayProvinceInformation() {
 
-        HideHelpMenu();
-
-        if (!selectedProvince.gameObject)
+        if (!selectedProvinceGameObject)
             return;
 
         Capital.text = "Capital: " + selectedProvince.capital;
@@ -180,7 +176,7 @@ public class CanvasController : MonoBehaviour {
 
         Income.text = "Income: " + selectedProvince.monthlyIncome.ToString() + "$ USD";
 
-        Production.text = "Production: " + selectedProvince.production.ToString();
+        Production.text = "Produces: " + selectedProvince.production.ToString();
 
         CurrentNeed.text = "Needs: " + selectedProvince.currentNeed.ToString();
 
@@ -215,7 +211,10 @@ public class CanvasController : MonoBehaviour {
 
         canUpdate = false;
         helpButton.gameObject.SetActive(false);
-
+        
+        HideSelectionPanel();
+        HideProvinceInformation();
+        
         if (!selectedProvinceGameObject) {
             selectedProvinceTextObject.text = "";
         }
@@ -230,8 +229,13 @@ public class CanvasController : MonoBehaviour {
         canUpdate = true;
         helpButton.gameObject.SetActive(true);
 
+            
+            
         if (!selectedProvinceGameObject) {
             selectedProvinceTextObject.text = originalText;
+        } else {
+            DisplaySelectionPanel();
+            DisplayProvinceInformation();
         }
 
         helpCanvasGroup.DOFade(0, 0);
