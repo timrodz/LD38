@@ -11,6 +11,7 @@ public class CanvasController : MonoBehaviour {
     [HeaderAttribute("Nothing selected")]
     public Text selectedProvinceTextObject;
     // public TextMeshProUGUI selectedProvinceTextObject;
+    private string originalText;
 
     [HeaderAttribute("Selection Panel")]
     public Image selectionPanel;
@@ -50,11 +51,14 @@ public class CanvasController : MonoBehaviour {
     // Use this for initialization
     void Start() {
 
+        originalText = selectedProvinceTextObject.text;
+
         selectionPanel.gameObject.SetActive(true);
         provinceInformationPanel.gameObject.SetActive(true);
 
         HideSelectionPanel();
         HideProvinceInformation();
+        ResetSelectedProvince();
 
     }
 
@@ -96,16 +100,12 @@ public class CanvasController : MonoBehaviour {
     }
 
     public void ResetSelectedProvince() {
-
+        
+        Debug.Log("Resetting selected province");
+        
+        StopAllCoroutines();
+        
         if (hasSelectedProvince) {
-            
-            Debug.Log("Resetting selected province");
-
-            StopAllCoroutines();
-
-            hasSelectedProvince = false;
-
-            selectedProvince = null;
 
             if (selectedProvinceGameObject) {
 
@@ -114,10 +114,16 @@ public class CanvasController : MonoBehaviour {
                 selectedProvinceGameObject = null;
 
             }
+            
+            hasSelectedProvince = false;
 
-            selectedProvinceTextObject.text = "Click over the provices to interact with them";
+            selectedProvince = null;
+
+            EventSystem.current.SetSelectedGameObject(null);
 
         }
+        
+        selectedProvinceTextObject.text = originalText;
 
     }
 
@@ -150,13 +156,13 @@ public class CanvasController : MonoBehaviour {
 
         Type.text = "Type: " + selectedProvince.type.ToString();
 
-        Population.text = "Population: " + selectedProvince.population.ToString();
+        Population.text = "Population: " + selectedProvince.population.ToString() + " habitants";
 
-        Income.text = "Income: " + selectedProvince.monthlyIncome.ToString();
+        Income.text = "Income: " + selectedProvince.monthlyIncome.ToString() + "$ USD";
 
         Production.text = "Production: " + selectedProvince.production.ToString();
 
-        CurrentNeed.text = "Needs: : " + selectedProvince.currentNeed.ToString();
+        CurrentNeed.text = "Needs: " + selectedProvince.currentNeed.ToString();
 
         provinceInformationCanvasGroup.DOFade(1, 0.5f);
         provinceInformationCanvasGroup.blocksRaycasts = true;
@@ -165,14 +171,8 @@ public class CanvasController : MonoBehaviour {
 
     public void HideProvinceInformation() {
 
-        ResetSelectedProvince();
-
-        selectedProvinceTextObject.text = "Click over the provices to interact with them";
-
         provinceInformationCanvasGroup.alpha = 0;
         provinceInformationCanvasGroup.blocksRaycasts = false;
-
-        EventSystem.current.SetSelectedGameObject(null);
 
     }
 
