@@ -146,15 +146,7 @@ public class CanvasController : MonoBehaviour {
         if (!selectedProvince.gameObject)
             return;
 
-        HideSelectionPanel();
-
-        selectedProvinceTextObject.text = "";
-
-        Name.text = selectedProvince.name;
-
         Capital.text = "Capital: " + selectedProvince.capital;
-
-        Type.text = "Type: " + selectedProvince.type.ToString();
 
         Population.text = "Population: " + selectedProvince.population.ToString() + " habitants";
 
@@ -164,7 +156,7 @@ public class CanvasController : MonoBehaviour {
 
         CurrentNeed.text = "Needs: " + selectedProvince.currentNeed.ToString();
 
-        provinceInformationCanvasGroup.DOFade(1, 0.5f);
+        provinceInformationCanvasGroup.DOFade(1, 0.2f);
         provinceInformationCanvasGroup.blocksRaycasts = true;
 
     }
