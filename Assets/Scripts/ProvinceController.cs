@@ -50,6 +50,9 @@ public class ProvinceController : MonoBehaviour {
             cc.selectedProvinceGameObject = this.gameObject;
             cc.SetCurrentSelectedProvince(province, true);
             cc.DisplaySelectionPanel();
+            
+            colorFade.Kill();
+            colorFade.Append(sprite.DOFade(0.35f, 0.2f));
 
         }
 
@@ -60,7 +63,7 @@ public class ProvinceController : MonoBehaviour {
     /// </summary>
     void OnMouseEnter() {
 
-        if (cc.hasSelectedProvince)
+        if (cc.hasSelectedProvince || !cc.canUpdate)
             return;
 
         Debug.Log(">> Hovering over " + province.name);
@@ -75,7 +78,7 @@ public class ProvinceController : MonoBehaviour {
     /// </summary>
     void OnMouseExit() {
 
-        if (cc.hasSelectedProvince)
+        if (cc.hasSelectedProvince || !cc.canUpdate)
             return;
 
         Debug.Log("<< Finish hovering " + province.name);

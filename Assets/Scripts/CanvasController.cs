@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class CanvasController : MonoBehaviour {
 
     private TradeRouteController tc;
-    
+
     public Transform provinceHolder;
 
     [HeaderAttribute("Nothing selected")]
@@ -31,13 +31,16 @@ public class CanvasController : MonoBehaviour {
     public Text CurrentNeed;
     public Text currentStatus;
 
-    [HeaderAttribute("Variables")]
-    [RangeAttribute(0.01f, 0.025f)]
-    public float typeDelay = 0.075f;
+    [HeaderAttribute("Help Panel")]
+    public Image helpPanel;
+    private CanvasGroup helpCanvasGroup;
+    public GameObject helpButton;
 
+    private float typeDelay = 0.0175f;
     [HideInInspector] public bool hasSelectedProvince = false;
-
     private Province selectedProvince;
+
+    [HideInInspector] public bool canUpdate = true;
 
     /// <summary>
     /// Awake is called when the script instance is being loaded.
@@ -46,6 +49,7 @@ public class CanvasController : MonoBehaviour {
 
         provinceInformationCanvasGroup = provinceInformationPanel.GetComponent<CanvasGroup>();
         selectionCanvasGroup = selectionPanel.GetComponent<CanvasGroup>();
+        helpCanvasGroup = helpPanel.GetComponent<CanvasGroup>();
 
         tc = FindObjectOfType<TradeRouteController>();
 
@@ -54,14 +58,17 @@ public class CanvasController : MonoBehaviour {
     // Use this for initialization
     void Start() {
 
-        originalText = selectedProvinceTextObject.text;
+        originalText = "Explore Panama's provinces by clicking on them";
 
         selectionPanel.gameObject.SetActive(true);
         provinceInformationPanel.gameObject.SetActive(true);
+        helpPanel.gameObject.SetActive(true);
 
         HideSelectionPanel();
         HideProvinceInformation();
-        ResetSelectedProvince();
+        helpButton.gameObject.SetActive(false);
+        // ResetSelectedProvince();
+        DisplayHelpMenu();
 
     }
 
@@ -77,10 +84,10 @@ public class CanvasController : MonoBehaviour {
             this.hasSelectedProvince = true;
             selectedProvince = p;
 
-            provinceHolder.DOMoveX(3, 0.5f).SetEase(Ease.OutSine);
+            provinceHolder.DOMoveY(provinceHolder.position.y -0.5f, 0.5f).SetEase(Ease.OutSine);
 
             DisplayProvinceInformation();
-            
+
             tc.ShowTradeRoutes();
 
         } else {
@@ -122,10 +129,10 @@ public class CanvasController : MonoBehaviour {
             if (selectedProvinceGameObject) {
 
                 Debug.Log("De-highlighting selected province: " + selectedProvinceGameObject.name);
-                selectedProvinceGameObject.GetComponent<ProvinceController>().Highlight(false, 0);
+                selectedProvinceGameObject.GetComponent<ProvinceController>().Highlight(false, 0.5f);
                 selectedProvinceGameObject = null;
-                
-                provinceHolder.DOMoveX(0, 0.5f).SetEase(Ease.OutSine);
+
+                provinceHolder.DOMoveY(provinceHolder.position.y + 0.5f, 0.5f).SetEase(Ease.OutSine);
                 tc.HideTradeRoutes();
 
             }
@@ -144,9 +151,11 @@ public class CanvasController : MonoBehaviour {
 
     public void DisplaySelectionPanel() {
 
+        HideHelpMenu();
+
         selectionCanvasGroup.DOFade(1, 0.5f);
         selectionCanvasGroup.blocksRaycasts = true;
-        
+
         ResetEventSystems();
 
     }
@@ -159,6 +168,8 @@ public class CanvasController : MonoBehaviour {
     }
 
     public void DisplayProvinceInformation() {
+
+        HideHelpMenu();
 
         if (!selectedProvince.gameObject)
             return;
@@ -174,8 +185,8 @@ public class CanvasController : MonoBehaviour {
         CurrentNeed.text = "Needs: " + selectedProvince.currentNeed.ToString();
 
         provinceInformationCanvasGroup.DOFade(1, 0.5f);
-        provinceInformationCanvasGroup.blocksRaycasts = true;
-        
+        // provinceInformationCanvasGroup.blocksRaycasts = true;
+
         ResetEventSystems();
 
     }
@@ -183,7 +194,7 @@ public class CanvasController : MonoBehaviour {
     public void HideProvinceInformation() {
 
         provinceInformationCanvasGroup.DOFade(0, 0.1f);
-        provinceInformationCanvasGroup.blocksRaycasts = false;
+        // provinceInformationCanvasGroup.blocksRaycasts = false;
 
     }
 
@@ -197,6 +208,34 @@ public class CanvasController : MonoBehaviour {
         tc.SendTrade(selectedObjectTradeRoute);
 
         ResetEventSystems();
+
+    }
+
+    public void DisplayHelpMenu() {
+
+        canUpdate = false;
+        helpButton.gameObject.SetActive(false);
+
+        if (!selectedProvinceGameObject) {
+            selectedProvinceTextObject.text = "";
+        }
+
+        helpCanvasGroup.DOFade(1, 0);
+        helpCanvasGroup.blocksRaycasts = true;
+
+    }
+
+    public void HideHelpMenu() {
+
+        canUpdate = true;
+        helpButton.gameObject.SetActive(true);
+
+        if (!selectedProvinceGameObject) {
+            selectedProvinceTextObject.text = originalText;
+        }
+
+        helpCanvasGroup.DOFade(0, 0);
+        helpCanvasGroup.blocksRaycasts = false;
 
     }
 
