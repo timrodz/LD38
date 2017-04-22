@@ -1,9 +1,4 @@
-﻿public enum ProvinceType {
-	Province,
-	Comarca
-}
-
-public enum Status {
+﻿public enum Status {
 	Healthy,
 	Sick,
 	Dead
@@ -14,6 +9,6 @@ public enum Trade {
 	Cattle,
 	Pottery,
 	Seafood,
-	
+	Coffee
 	
 }

@@ -8,6 +8,8 @@ using UnityEngine.UI;
 
 public class CanvasController : MonoBehaviour {
 
+    private TradeRouteController tc;
+
     [HeaderAttribute("Nothing selected")]
     public Text selectedProvinceTextObject;
     // public TextMeshProUGUI selectedProvinceTextObject;
@@ -46,6 +48,8 @@ public class CanvasController : MonoBehaviour {
         provinceInformationCanvasGroup = provinceInformationPanel.GetComponent<CanvasGroup>();
         selectionCanvasGroup = selectionPanel.GetComponent<CanvasGroup>();
 
+        tc = FindObjectOfType<TradeRouteController>();
+
     }
 
     // Use this for initialization
@@ -74,6 +78,8 @@ public class CanvasController : MonoBehaviour {
             this.hasSelectedProvince = true;
             selectedProvince = p;
 
+            DisplayProvinceInformation();
+
         } else {
 
             this.hasSelectedProvince = false;
@@ -100,11 +106,14 @@ public class CanvasController : MonoBehaviour {
     }
 
     public void ResetSelectedProvince() {
-        
+
         Debug.Log("Resetting selected province");
-        
+
         StopAllCoroutines();
-        
+
+        HideSelectionPanel();
+        HideProvinceInformation();
+
         if (hasSelectedProvince) {
 
             if (selectedProvinceGameObject) {
@@ -114,7 +123,7 @@ public class CanvasController : MonoBehaviour {
                 selectedProvinceGameObject = null;
 
             }
-            
+
             hasSelectedProvince = false;
 
             selectedProvince = null;
@@ -122,7 +131,7 @@ public class CanvasController : MonoBehaviour {
             EventSystem.current.SetSelectedGameObject(null);
 
         }
-        
+
         selectedProvinceTextObject.text = originalText;
 
     }
@@ -165,6 +174,17 @@ public class CanvasController : MonoBehaviour {
 
         provinceInformationCanvasGroup.alpha = 0;
         provinceInformationCanvasGroup.blocksRaycasts = false;
+
+    }
+
+    public void CalculateRoute() {
+        
+        Debug.Log("Calculating route");
+        
+        TradeRoute selectedObjectTradeRoute = selectedProvinceGameObject.GetComponentInChildren<TradeRoute>();
+        
+        Debug.Log("Object: " + selectedObjectTradeRoute.transform.name);
+        tc.SendTrade(selectedObjectTradeRoute);
 
     }
 

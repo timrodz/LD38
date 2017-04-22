@@ -8,7 +8,6 @@ public class Province {
 	[HideInInspector] public GameObject gameObject;
 	public string name;
 	public string capital;
-	public ProvinceType type;
 	public int population;
 	public float monthlyIncome;
 	public Status status;
