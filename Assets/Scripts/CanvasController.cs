@@ -140,6 +140,8 @@ public class CanvasController : MonoBehaviour {
 
         selectionCanvasGroup.DOFade(1, 0.5f);
         selectionCanvasGroup.blocksRaycasts = true;
+        
+        ResetEventSystems();
 
     }
 
@@ -167,6 +169,8 @@ public class CanvasController : MonoBehaviour {
 
         provinceInformationCanvasGroup.DOFade(1, 0.2f);
         provinceInformationCanvasGroup.blocksRaycasts = true;
+        
+        ResetEventSystems();
 
     }
 
@@ -178,13 +182,21 @@ public class CanvasController : MonoBehaviour {
     }
 
     public void CalculateRoute() {
-        
+
         Debug.Log("Calculating route");
-        
+
         TradeRoute selectedObjectTradeRoute = selectedProvinceGameObject.GetComponentInChildren<TradeRoute>();
-        
+
         Debug.Log("Object: " + selectedObjectTradeRoute.transform.name);
         tc.SendTrade(selectedObjectTradeRoute);
+
+        ResetEventSystems();
+
+    }
+
+    private void ResetEventSystems() {
+
+        EventSystem.current.SetSelectedGameObject(null);
 
     }
 

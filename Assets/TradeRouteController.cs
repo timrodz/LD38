@@ -66,23 +66,23 @@ public class TradeRouteController : MonoBehaviour {
 
         }
 
+        // Get the current path to be the shortest
+        Transform shortestPath = needList[0];
+
         for (int i = 0; i < needList.Count; i++) {
 
             if (i + 1 >= needList.Count)
                 break;
 
-            // Get the current path to be the shortest
-            Transform shortestPath = needList[i];
-
             float distance1 = Vector3.Distance(origin.transform.position, shortestPath.position);
 
             if (needList.Count > 1) {
-				
+
                 float distance2 = Vector3.Distance(origin.transform.position, needList[i + 1].position);
 
                 if (distance1 > distance2) {
                     shortestPath = needList[i + 1];
-					Debug.Log("Found new shortest path: " + shortestPath.parent.name);
+                    Debug.Log("Found new shortest path: " + shortestPath.parent.name);
                 }
 
             }
