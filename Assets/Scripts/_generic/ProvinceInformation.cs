@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ImageLoader : MonoBehaviour {
+public class ProvinceInformation : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -13,5 +13,4 @@ public class ImageLoader : MonoBehaviour {
 	void Update () {
 		
 	}
-	
 }
