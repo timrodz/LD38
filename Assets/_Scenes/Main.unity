@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.34666535, g: 0.703023, b: 0.33573583, a: 1}
+  m_IndirectSpecularColor: {r: 0.34946474, g: 0.71832234, b: 0.3211782, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -249,12 +249,12 @@ Prefab:
     - target: {fileID: 114723532379807590, guid: 16da718b21f6c4e1788d229b68df740e,
         type: 2}
       propertyPath: m_havePropertiesChanged
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114723532379807590, guid: 16da718b21f6c4e1788d229b68df740e,
         type: 2}
       propertyPath: m_isInputParsingRequired
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114379091270973596, guid: 16da718b21f6c4e1788d229b68df740e,
         type: 2}
@@ -291,6 +291,35 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 737541739}
+    - target: {fileID: 224121915841364082, guid: 16da718b21f6c4e1788d229b68df740e,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 55
+      objectReference: {fileID: 0}
+    - target: {fileID: 224430066395486100, guid: 16da718b21f6c4e1788d229b68df740e,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 55
+      objectReference: {fileID: 0}
+    - target: {fileID: 224121915841364082, guid: 16da718b21f6c4e1788d229b68df740e,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 55
+      objectReference: {fileID: 0}
+    - target: {fileID: 224430066395486100, guid: 16da718b21f6c4e1788d229b68df740e,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 55
+      objectReference: {fileID: 0}
+    - target: {fileID: 1039894971279198, guid: 16da718b21f6c4e1788d229b68df740e, type: 2}
+      propertyPath: m_Name
+      value: Text
+      objectReference: {fileID: 0}
+    - target: {fileID: 114263370826886304, guid: 16da718b21f6c4e1788d229b68df740e,
+        type: 2}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 16da718b21f6c4e1788d229b68df740e, type: 2}
   m_IsPrefabParent: 0
