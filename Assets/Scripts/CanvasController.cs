@@ -22,7 +22,7 @@ public class CanvasController : MonoBehaviour {
     private CanvasGroup selectionCG;
     [HideInInspector] public GameObject selectedProvinceGameObject = null;
     [HideInInspector] public bool hasSelectedProvince = false;
-    private Province currentProvince;
+    public Province currentProvince;
     private bool showingSelection = false;
 
     [HeaderAttribute("Information Panel")]
@@ -53,6 +53,20 @@ public class CanvasController : MonoBehaviour {
     private bool showingCitadel = false;
     public Image productionImage;
     public Image needImage;
+    public Image statusImage;
+    public Text productionText;
+    public Text inquiryText;
+    public Text statusText;
+
+    [HeaderAttribute("Game Manager Panel")]
+    public GameObject gameManagerPanel;
+    private CanvasGroup gameManagerCG;
+    public Text provincesLeft;
+    public Text summary;
+
+    [HeaderAttribute("Next Turn Panel")]
+    public GameObject nextTurnPanel;
+    private CanvasGroup nextTurnCG;
 
     [HeaderAttribute("Production Images")]
     public Sprite cropsImg;
@@ -66,6 +80,8 @@ public class CanvasController : MonoBehaviour {
 
     [HideInInspector] public bool canUpdate = true;
 
+    [HideInInspector] public bool firstMove = true;
+
     /// <summary>
     /// Awake is called when the script instance is being loaded.
     /// </summary>
@@ -76,6 +92,8 @@ public class CanvasController : MonoBehaviour {
         helpCG = helpPanel.GetComponent<CanvasGroup>();
         aboutCG = aboutPanel.GetComponent<CanvasGroup>();
         citadelCG = citadelPanel.GetComponent<CanvasGroup>();
+        gameManagerCG = gameManagerPanel.GetComponent<CanvasGroup>();
+        nextTurnCG = nextTurnPanel.GetComponent<CanvasGroup>();
 
         gm = FindObjectOfType<GameManager>();
         tc = FindObjectOfType<TradeRouteController>();
@@ -93,11 +111,15 @@ public class CanvasController : MonoBehaviour {
         helpPanel.SetActive(true);
         aboutPanel.SetActive(true);
         citadelPanel.SetActive(true);
+        gameManagerPanel.SetActive(true);
+        nextTurnPanel.SetActive(true);
 
         HideSelectionPanel();
         HideInformationPanel();
         HideAboutPanel();
         HideCitadelPanel();
+        HideGameManagerPanel();
+        HideNextTurnPanel();
 
         helpButton.SetActive(false);
 
@@ -114,10 +136,12 @@ public class CanvasController : MonoBehaviour {
 
             this.hasSelectedProvince = true;
             currentProvince = p;
+            gm.SetProvince(p);
 
             provinceHolder.DOMoveY(provinceHolder.position.y - 0.5f, 0.5f).SetEase(Ease.OutSine);
 
             DisplayInformationPanel();
+            HideGameManagerPanel();
 
             tc.ShowTradeRoutes();
 
@@ -144,11 +168,21 @@ public class CanvasController : MonoBehaviour {
             if (selectedProvinceGameObject) {
 
                 Debug.Log("De-highlighting selected province: " + selectedProvinceGameObject.name);
-                selectedProvinceGameObject.GetComponent<ProvinceController>().Highlight(false, 0.5f);
+
+                if (!selectedProvinceGameObject.GetComponent<ProvinceController>().isExecutingAction) {
+
+                    selectedProvinceGameObject.GetComponent<ProvinceController>().Highlight(false, 0.5f);
+
+                }
+
                 selectedProvinceGameObject = null;
 
                 provinceHolder.DOMoveY(provinceHolder.position.y + 0.5f, 0.5f).SetEase(Ease.OutSine);
                 tc.HideTradeRoutes();
+
+                if (!firstMove) {
+                    DisplayGameManagerPanel();
+                }
 
             }
 
@@ -179,7 +213,7 @@ public class CanvasController : MonoBehaviour {
         ResetEventSystem();
 
     }
-    
+
     public void DisplaySelectionPanelNoTextAnimation() {
 
         selectionCG.DOFade(1, 0.5f);
@@ -352,6 +386,32 @@ public class CanvasController : MonoBehaviour {
         HideSelectionPanel();
         HideInformationPanel();
 
+        productionText.text = "Produce " + currentProvince.production.ToString().ToLower() + " for the next season";
+        inquiryText.text = "Make an inquiry of " + currentProvince.need.ToString().ToLower() + "";
+        
+        statusImage.raycastTarget = true;
+        string stringStatus = "";
+
+        switch (currentProvince.status) {
+
+            case Status.Happy:
+                statusImage.raycastTarget = false;
+                stringStatus = "Happiness can be found everywhere!";
+                break;
+            case Status.Normal:
+                stringStatus = "Minor issues could be resolved";
+                break;
+            case Status.Sad:
+                stringStatus = "Sadness spreads due to recent events";
+                break;
+            case Status.Angry:
+                stringStatus = "Anger curses your streets, actions required!";
+                break;
+
+        }
+
+        statusText.text = stringStatus;
+
         switch (currentProvince.production) {
 
             case Trade.Crops:
@@ -406,7 +466,39 @@ public class CanvasController : MonoBehaviour {
 
     }
 
-    private void ResetEventSystem() {
+    public void DisplayGameManagerPanel() {
+
+        gameManagerCG.DOFade(1, 0.5f);
+
+        provincesLeft.text = "Provinces left this turn: " + gm.provincesLeftForInteraction.ToString();
+
+    }
+
+    public void HideGameManagerPanel() {
+
+        gameManagerCG.DOFade(0, 0);
+
+    }
+
+    public void DisplayNextTurnPanel() {
+
+        nextTurnCG.DOFade(1, 0.5f);
+        nextTurnCG.blocksRaycasts = true;
+
+        provincesLeft.text = "Provinces left this turn: " + gm.provincesLeftForInteraction.ToString();
+
+    }
+
+    public void HideNextTurnPanel() {
+
+        nextTurnCG.DOFade(0, 0);
+        nextTurnCG.blocksRaycasts = false;
+
+    }
+
+    // ------------------------------------------------------------------------------------------
+
+    public void ResetEventSystem() {
 
         EventSystem.current.SetSelectedGameObject(null);
 
@@ -455,6 +547,7 @@ public class CanvasController : MonoBehaviour {
         if (citadelCG.alpha == 0 && showingCitadel) {
             Debug.Log("Showing Citadel");
             DisplayCitadelPanel();
+            StartCoroutine(AnimateText(currentProvince.name));
         }
         showingCitadel = false;
 

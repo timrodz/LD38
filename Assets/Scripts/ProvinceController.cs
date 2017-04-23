@@ -16,7 +16,7 @@ public class ProvinceController : MonoBehaviour {
 
     [HideInInspector] public Text aboutText;
 
-    private bool hasHovered = false;
+    [HideInInspector] public bool isExecutingAction = false;
 
     /// <summary>
     /// Awake is called when the script instance is being loaded.
@@ -44,7 +44,7 @@ public class ProvinceController : MonoBehaviour {
     /// </summary>
     void OnMouseDown() {
 
-        if (!cc.canUpdate)
+        if (!cc.canUpdate || isExecutingAction)
             return;
 
         if (!cc.selectedProvinceGameObject) {
@@ -55,9 +55,7 @@ public class ProvinceController : MonoBehaviour {
             cc.SetCurrentSelectedProvince(province, true);
             cc.DisplaySelectionPanelNoTextAnimation();
 
-            // colorFade.Kill();
-            sprite.DOFade(0.25f, 0.2f);
-            // colorFade.Append(sprite.DOFade(0.25f, 0.2f));
+            sprite.DOFade(0.35f, 0.2f);
 
         }
 
@@ -68,7 +66,7 @@ public class ProvinceController : MonoBehaviour {
     /// </summary>
     void OnMouseEnter() {
 
-        if (cc.hasSelectedProvince || !cc.canUpdate)
+        if (cc.hasSelectedProvince || !cc.canUpdate || isExecutingAction)
             return;
 
         Debug.Log(">> Hovering over " + province.name);
@@ -83,7 +81,7 @@ public class ProvinceController : MonoBehaviour {
     /// </summary>
     void OnMouseExit() {
 
-        if (cc.hasSelectedProvince || !cc.canUpdate)
+        if (cc.hasSelectedProvince || !cc.canUpdate || isExecutingAction)
             return;
 
         Debug.Log("<< Finish hovering " + province.name);
