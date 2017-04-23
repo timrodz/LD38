@@ -8,8 +8,8 @@ public class Province {
 	public string capital;
 	public int population;
 	public float monthlyIncome;
-	public Status status;
 	public Trade production;
-	public Trade currentNeed;
+	public Trade need;
+	[HideInInspector] public Status status = Status.Happy;
 	
 }

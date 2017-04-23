@@ -7,6 +7,8 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class CanvasController : MonoBehaviour {
+    
+    private GameManager gm;
 
     private TradeRouteController tc;
 
@@ -49,7 +51,16 @@ public class CanvasController : MonoBehaviour {
     public GameObject citadelPanel;
     private CanvasGroup citadelCG;
     private bool showingCitadel = false;
-
+    public Image productionImage;
+    public Image needImage;
+    
+    [HeaderAttribute("Production Images")]
+    public Sprite cropsImg;
+    public Sprite cattleImg;
+    public Sprite potteryImg;
+    public Sprite seafoodImg;
+    public Sprite coffeeImg;
+    
     // Others
     private float typeDelay = 0.0175f;
 
@@ -65,7 +76,8 @@ public class CanvasController : MonoBehaviour {
         helpCG = helpPanel.GetComponent<CanvasGroup>();
         aboutCG = aboutPanel.GetComponent<CanvasGroup>();
         citadelCG = citadelPanel.GetComponent<CanvasGroup>();
-
+        
+        gm = FindObjectOfType<GameManager>();
         tc = FindObjectOfType<TradeRouteController>();
 
     }
@@ -182,7 +194,7 @@ public class CanvasController : MonoBehaviour {
 
         Production.text = "Produces: " + selectedProvince.production.ToString();
 
-        CurrentNeed.text = "Needs: " + selectedProvince.currentNeed.ToString();
+        CurrentNeed.text = "Needs: " + selectedProvince.need.ToString();
 
         informationCG.DOFade(1, 0.5f);
 
@@ -294,6 +306,8 @@ public class CanvasController : MonoBehaviour {
 
     public void HideAboutPanel() {
         
+        canUpdate = true;
+        
         selectionCG.blocksRaycasts = true;
 
         aboutCG.DOFade(0, 0);
@@ -304,8 +318,51 @@ public class CanvasController : MonoBehaviour {
     }
 
     public void DisplayCitadelPanel() {
-
+        
+        selectionCG.blocksRaycasts = false;
+        
+        switch (selectedProvince.production) {
+            
+            case Trade.Crops:
+                productionImage.sprite = cropsImg;
+            break;
+            case Trade.Cattle:
+                productionImage.sprite = cattleImg;
+            break;
+            case Trade.Pottery:
+                productionImage.sprite = potteryImg;
+            break;
+            case Trade.Seafood:
+                productionImage.sprite = seafoodImg;
+            break;
+            case Trade.Coffee:
+                productionImage.sprite = coffeeImg;
+            break;
+            
+        }
+        
+        switch (selectedProvince.need) {
+            
+            case Trade.Crops:
+                needImage.sprite = cropsImg;
+            break;
+            case Trade.Cattle:
+                needImage.sprite = cattleImg;
+            break;
+            case Trade.Pottery:
+                needImage.sprite = potteryImg;
+            break;
+            case Trade.Seafood:
+                needImage.sprite = seafoodImg;
+            break;
+            case Trade.Coffee:
+                needImage.sprite = coffeeImg;
+            break;
+            
+        }
+        
         citadelCG.DOFade(1, 0.5f);
+        citadelCG.blocksRaycasts = true;
 
     }
 

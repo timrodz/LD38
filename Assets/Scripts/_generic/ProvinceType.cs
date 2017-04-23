@@ -1,7 +1,8 @@
 ﻿public enum Status {
-	Healthy,
-	Sick,
-	Dead
+	Happy,
+	Normal,
+	Sad,
+	Angry
 }
 
 public enum Trade {

@@ -52,13 +52,13 @@ public class TradeRouteController : MonoBehaviour {
 
     public void SendTrade(TradeRoute origin) {
 
-        Debug.Log("Looking for provinces that produce need: " + origin.province.currentNeed);
+        Debug.Log("Looking for provinces that produce need: " + origin.province.need);
 
         needList.Clear();
 
         foreach(TradeRoute t in tradeRoutes) {
 			
-            if (origin.province.currentNeed == t.province.production) {
+            if (origin.province.need == t.province.production) {
 
                 Debug.Log("Province that produces need: " + t.province.name);
                 needList.Add(t.transform);
