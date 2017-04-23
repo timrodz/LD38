@@ -10,7 +10,8 @@ public class TradeRoute : MonoBehaviour {
 
     private float animationTime = 2;
 
-    private Sprite sprite;
+    [HideInInspector] public Sprite sprite;
+    [HideInInspector] public Sprite inquirySprite;
     [HideInInspector] public Sprite originalSprite;
 
     /// <summary>
@@ -29,15 +30,6 @@ public class TradeRoute : MonoBehaviour {
     void Start() {
 
         originalSprite = sprite;
-        // path.numPositions = 2;
-
-        // Vector3 pos = transform.position;
-        // // pos.y += transform.parent.parent.position.y;
-        // pos.z = -0.1f;
-        // transform.position = pos;
-
-        // path.SetPosition(0, transform.position);
-        // path.SetPosition(1, transform.position);
 
     }
 

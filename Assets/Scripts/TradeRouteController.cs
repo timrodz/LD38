@@ -36,13 +36,13 @@ public class TradeRouteController : MonoBehaviour {
 
     public Province CalculateShortestTradeRoute(TradeRoute origin) {
 
-        Debug.Log("Looking for provinces that produce need: " + origin.province.need);
+        Debug.Log("Looking for provinces that produce need: " + origin.province.inquiry);
 
         needList.Clear();
 
         foreach(TradeRoute t in tradeRoutes) {
 
-            if (origin.province.need == t.province.production) {
+            if (origin.province.inquiry == t.province.production) {
 
                 Debug.Log("Province that produces need: " + t.province.name);
                 needList.Add(t);

@@ -28,6 +28,8 @@ public class ProvinceController : MonoBehaviour {
         sprite = GetComponent<SpriteRenderer>();
 
         aboutText = GetComponent<Text>();
+        
+        
 
     }
 
@@ -35,6 +37,7 @@ public class ProvinceController : MonoBehaviour {
     void Start() {
 
         province.gameObject = this.gameObject;
+        province.tradeRoute = GetComponentInChildren<TradeRoute>();
 
     }
 
@@ -50,9 +53,11 @@ public class ProvinceController : MonoBehaviour {
         if (!cc.selectedProvinceGameObject) {
 
             Debug.Log("Interacting with " + province.name + " - Status: " + province.status.ToString());
+            
             cc.selectedProvinceGameObject = this.gameObject;
             
             cc.SetCurrentSelectedProvince(province, true);
+            
             cc.DisplaySelectionPanelNoTextAnimation();
 
             sprite.DOFade(0.35f, 0.2f);

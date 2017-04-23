@@ -9,8 +9,9 @@ public class Province {
 	public int population;
 	public float monthlyIncome;
 	public Trade production;
-	public Trade need;
+	public Trade inquiry;
 	public Status status = Status.Happy;
 	public int happiness = 0;
+	public TradeRoute tradeRoute;
 	
 }

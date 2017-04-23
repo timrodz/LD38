@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -32,8 +31,8 @@ public class CanvasController : MonoBehaviour {
     public Text Capital;
     public Text Population;
     public Text Income;
-    public Text Production;
-    public Text CurrentNeed;
+    public Image productionImage;
+    public Image inquiryImage;
     private bool showingInformation = false;
 
     [HeaderAttribute("Help Panel")]
@@ -63,10 +62,7 @@ public class CanvasController : MonoBehaviour {
     private CanvasGroup gameManagerCG;
     public Text provincesLeft;
     public Text summary;
-
-    [HeaderAttribute("Next Turn Panel")]
-    public GameObject nextTurnPanel;
-    private CanvasGroup nextTurnCG;
+    public GameObject nextTurnButton;
 
     [HeaderAttribute("Production Images")]
     public Sprite cropsImg;
@@ -93,7 +89,6 @@ public class CanvasController : MonoBehaviour {
         aboutCG = aboutPanel.GetComponent<CanvasGroup>();
         citadelCG = citadelPanel.GetComponent<CanvasGroup>();
         gameManagerCG = gameManagerPanel.GetComponent<CanvasGroup>();
-        nextTurnCG = nextTurnPanel.GetComponent<CanvasGroup>();
 
         gm = FindObjectOfType<GameManager>();
         tc = FindObjectOfType<TradeRouteController>();
@@ -112,14 +107,13 @@ public class CanvasController : MonoBehaviour {
         aboutPanel.SetActive(true);
         citadelPanel.SetActive(true);
         gameManagerPanel.SetActive(true);
-        nextTurnPanel.SetActive(true);
+        nextTurnButton.SetActive(false);
 
         HideSelectionPanel();
         HideInformationPanel();
         HideAboutPanel();
         HideCitadelPanel();
         HideGameManagerPanel();
-        HideNextTurnPanel();
 
         helpButton.SetActive(false);
 
@@ -178,7 +172,7 @@ public class CanvasController : MonoBehaviour {
                 selectedProvinceGameObject = null;
 
                 provinceHolder.DOMoveY(provinceHolder.position.y + 0.5f, 0.5f).SetEase(Ease.OutSine);
-                tc.HideTradeRoutes();
+                // tc.HideTradeRoutes();
 
                 if (!firstMove) {
                     Debug.Log("Displaying Citadel");
@@ -263,10 +257,56 @@ public class CanvasController : MonoBehaviour {
 
         Income.text = "Income: " + currentProvince.monthlyIncome.ToString() + "$ USD";
 
-        Production.text = "Produces: " + currentProvince.production.ToString();
+        switch (currentProvince.production) {
 
-        CurrentNeed.text = "Needs: " + currentProvince.need.ToString();
+            case Trade.Crops:
+                productionImage.sprite = cropsImg;
+                productionButton.sprite = cropsImg;
+                break;
+            case Trade.Cattle:
+                productionImage.sprite = cattleImg;
+                productionButton.sprite = cattleImg;
+                break;
+            case Trade.Pottery:
+                productionImage.sprite = potteryImg;
+                productionButton.sprite = potteryImg;
+                break;
+            case Trade.Seafood:
+                productionImage.sprite = seafoodImg;
+                productionButton.sprite = seafoodImg;
+                break;
+            case Trade.Coffee:
+                productionImage.sprite = coffeeImg;
+                productionButton.sprite = coffeeImg;
+                break;
 
+        }
+        
+        switch (currentProvince.inquiry) {
+
+            case Trade.Crops:
+                inquiryImage.sprite = cropsImg;
+                inquiryButton.sprite = cropsImg;
+                break;
+            case Trade.Cattle:
+                inquiryImage.sprite = cattleImg;
+                inquiryButton.sprite = cattleImg;
+                break;
+            case Trade.Pottery:
+                inquiryImage.sprite = potteryImg;
+                inquiryButton.sprite = potteryImg;
+                break;
+            case Trade.Seafood:
+                inquiryImage.sprite = seafoodImg;
+                inquiryButton.sprite = seafoodImg;
+                break;
+            case Trade.Coffee:
+                inquiryImage.sprite = coffeeImg;
+                inquiryButton.sprite = coffeeImg;
+                break;
+
+        }
+        
         informationCG.DOFade(1, 0.5f);
 
         ResetEventSystem();
@@ -343,7 +383,7 @@ public class CanvasController : MonoBehaviour {
         helpCG.blocksRaycasts = true;
 
     }
-
+    
     public void HideHelpPanel() {
 
         canUpdate = true;
@@ -413,58 +453,58 @@ public class CanvasController : MonoBehaviour {
 
         productionButtonText.text = "Produce " + currentProvince.production.ToString().ToLower() + " for the next season";
 
-        switch (currentProvince.production) {
+        // switch (currentProvince.production) {
 
-            case Trade.Crops:
-                productionButton.sprite = cropsImg;
-                break;
-            case Trade.Cattle:
-                productionButton.sprite = cattleImg;
-                break;
-            case Trade.Pottery:
-                productionButton.sprite = potteryImg;
-                break;
-            case Trade.Seafood:
-                productionButton.sprite = seafoodImg;
-                break;
-            case Trade.Coffee:
-                productionButton.sprite = coffeeImg;
-                break;
+        //     case Trade.Crops:
+        //         productionButton.sprite = cropsImg;
+        //         break;
+        //     case Trade.Cattle:
+        //         productionButton.sprite = cattleImg;
+        //         break;
+        //     case Trade.Pottery:
+        //         productionButton.sprite = potteryImg;
+        //         break;
+        //     case Trade.Seafood:
+        //         productionButton.sprite = seafoodImg;
+        //         break;
+        //     case Trade.Coffee:
+        //         productionButton.sprite = coffeeImg;
+        //         break;
 
-        }
+        // }
 
         inquiryButton.raycastTarget = true;
 
-        if (!tc.FoundProvincesThatProduceNeed(currentProvince.need)) {
+        if (!tc.FoundProvincesThatProduceNeed(currentProvince.inquiry)) {
 
             DisableCitadelOption(inquiryButton);
-            inquiryButtonText.text = "Provinces that produce " + currentProvince.need.ToString().ToLower() + " are busy";
+            inquiryButtonText.text = "Provinces that produce " + currentProvince.inquiry.ToString().ToLower() + " are busy";
 
         } else {
 
-            inquiryButtonText.text = "Make an inquiry of " + currentProvince.need.ToString().ToLower();
+            inquiryButtonText.text = "Make an inquiry of " + currentProvince.inquiry.ToString().ToLower();
 
         }
 
-        switch (currentProvince.need) {
+        // switch (currentProvince.inquiry) {
 
-            case Trade.Crops:
-                inquiryButton.sprite = cropsImg;
-                break;
-            case Trade.Cattle:
-                inquiryButton.sprite = cattleImg;
-                break;
-            case Trade.Pottery:
-                inquiryButton.sprite = potteryImg;
-                break;
-            case Trade.Seafood:
-                inquiryButton.sprite = seafoodImg;
-                break;
-            case Trade.Coffee:
-                inquiryButton.sprite = coffeeImg;
-                break;
+        //     case Trade.Crops:
+        //         inquiryButton.sprite = cropsImg;
+        //         break;
+        //     case Trade.Cattle:
+        //         inquiryButton.sprite = cattleImg;
+        //         break;
+        //     case Trade.Pottery:
+        //         inquiryButton.sprite = potteryImg;
+        //         break;
+        //     case Trade.Seafood:
+        //         inquiryButton.sprite = seafoodImg;
+        //         break;
+        //     case Trade.Coffee:
+        //         inquiryButton.sprite = coffeeImg;
+        //         break;
 
-        }
+        // }
 
         statusButton.raycastTarget = true;
 
@@ -530,22 +570,6 @@ public class CanvasController : MonoBehaviour {
     public void HideGameManagerPanel() {
 
         gameManagerCG.DOFade(0, 0);
-
-    }
-
-    public void DisplayNextTurnPanel() {
-
-        nextTurnCG.DOFade(1, 0.5f);
-        nextTurnCG.blocksRaycasts = true;
-
-        provincesLeft.text = "Provinces left this turn: " + gm.provincesLeftForInteraction.ToString();
-
-    }
-
-    public void HideNextTurnPanel() {
-
-        nextTurnCG.DOFade(0, 0);
-        nextTurnCG.blocksRaycasts = false;
 
     }
 
