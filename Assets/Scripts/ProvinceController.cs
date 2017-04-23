@@ -56,7 +56,8 @@ public class ProvinceController : MonoBehaviour {
             cc.DisplaySelectionPanelNoTextAnimation();
 
             // colorFade.Kill();
-            colorFade.Append(sprite.DOFade(0.25f, 0.2f));
+            sprite.DOFade(0.25f, 0.2f);
+            // colorFade.Append(sprite.DOFade(0.25f, 0.2f));
 
         }
 
@@ -94,11 +95,13 @@ public class ProvinceController : MonoBehaviour {
 
     public void Highlight(bool highlight, float duration) {
 
-        // colorFade.Kill();
+        colorFade.Kill();
 
         if (highlight) {
+            // sprite.DOFade(0.5f, duration);
             colorFade.Append(sprite.DOFade(0.5f, duration));
         } else {
+            // sprite.DOFade(1, duration);
             colorFade.Append(sprite.DOFade(1, duration));
         }
 

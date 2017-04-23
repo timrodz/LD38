@@ -420,7 +420,7 @@ public class CanvasController : MonoBehaviour {
 
     private IEnumerator AnimateText(string _province) {
 
-        selectedProvinceTextObject.fontSize = 100;
+        selectedProvinceTextObject.fontSize = 80;
         selectedProvinceTextObject.text = "";
 
         for (int i = 0; i < _province.Length; i++) {
