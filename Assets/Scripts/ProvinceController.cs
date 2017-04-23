@@ -51,11 +51,12 @@ public class ProvinceController : MonoBehaviour {
 
             Debug.Log("Interacting with " + province.name + " - Status: " + province.status.ToString());
             cc.selectedProvinceGameObject = this.gameObject;
+            
             cc.SetCurrentSelectedProvince(province, true);
-            cc.DisplaySelectionPanel();
+            cc.DisplaySelectionPanelNoTextAnimation();
 
-            colorFade.Kill();
-            colorFade.Append(sprite.DOFade(0.35f, 0.2f));
+            // colorFade.Kill();
+            colorFade.Append(sprite.DOFade(0.25f, 0.2f));
 
         }
 
@@ -93,7 +94,7 @@ public class ProvinceController : MonoBehaviour {
 
     public void Highlight(bool highlight, float duration) {
 
-        colorFade.Kill();
+        // colorFade.Kill();
 
         if (highlight) {
             colorFade.Append(sprite.DOFade(0.5f, duration));

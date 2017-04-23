@@ -16,16 +16,24 @@ public class GameManager : MonoBehaviour {
         cc = FindObjectOfType<CanvasController>();
 		pc = FindObjectOfType<ProvinceController>();
 	}
-
-    // Use this for initialization
-    void Start() {
-
-    }
-
-    // Update is called once per frame
-    void Update() {
-
-    }
+	
+	public void ProduceResources() {
+		
+		
+		
+	}
+	
+	public void InquireResources() {
+		
+		
+		
+	}
+	
+	public void ResolveMood() {
+		
+		
+		
+	}
 
     public void IncrementTurn() {
 

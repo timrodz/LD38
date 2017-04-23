@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class CanvasController : MonoBehaviour {
-    
+
     private GameManager gm;
 
     private TradeRouteController tc;
@@ -22,7 +22,7 @@ public class CanvasController : MonoBehaviour {
     private CanvasGroup selectionCG;
     [HideInInspector] public GameObject selectedProvinceGameObject = null;
     [HideInInspector] public bool hasSelectedProvince = false;
-    private Province selectedProvince;
+    private Province currentProvince;
     private bool showingSelection = false;
 
     [HeaderAttribute("Information Panel")]
@@ -53,14 +53,14 @@ public class CanvasController : MonoBehaviour {
     private bool showingCitadel = false;
     public Image productionImage;
     public Image needImage;
-    
+
     [HeaderAttribute("Production Images")]
     public Sprite cropsImg;
     public Sprite cattleImg;
     public Sprite potteryImg;
     public Sprite seafoodImg;
     public Sprite coffeeImg;
-    
+
     // Others
     private float typeDelay = 0.0175f;
 
@@ -76,7 +76,7 @@ public class CanvasController : MonoBehaviour {
         helpCG = helpPanel.GetComponent<CanvasGroup>();
         aboutCG = aboutPanel.GetComponent<CanvasGroup>();
         citadelCG = citadelPanel.GetComponent<CanvasGroup>();
-        
+
         gm = FindObjectOfType<GameManager>();
         tc = FindObjectOfType<TradeRouteController>();
 
@@ -85,6 +85,7 @@ public class CanvasController : MonoBehaviour {
     // Use this for initialization
     void Start() {
 
+        selectedProvinceTextObject.fontSize = 60;
         originalText = "Explore Panama's provinces by clicking on them";
 
         selectionPanel.SetActive(true);
@@ -112,7 +113,7 @@ public class CanvasController : MonoBehaviour {
         if (hasSelectedProvince) {
 
             this.hasSelectedProvince = true;
-            selectedProvince = p;
+            currentProvince = p;
 
             provinceHolder.DOMoveY(provinceHolder.position.y - 0.5f, 0.5f).SetEase(Ease.OutSine);
 
@@ -123,7 +124,7 @@ public class CanvasController : MonoBehaviour {
         } else {
 
             this.hasSelectedProvince = false;
-            selectedProvince = null;
+            currentProvince = null;
 
         }
 
@@ -153,12 +154,13 @@ public class CanvasController : MonoBehaviour {
 
             hasSelectedProvince = false;
 
-            selectedProvince = null;
+            currentProvince = null;
 
             EventSystem.current.SetSelectedGameObject(null);
 
         }
 
+        selectedProvinceTextObject.fontSize = 60;
         selectedProvinceTextObject.text = originalText;
 
     }
@@ -169,6 +171,25 @@ public class CanvasController : MonoBehaviour {
         selectionCG.blocksRaycasts = true;
 
         canUpdate = true;
+
+        StopAllCoroutines();
+
+        StartCoroutine(AnimateText(currentProvince.name));
+
+        ResetEventSystem();
+
+    }
+    
+    public void DisplaySelectionPanelNoTextAnimation() {
+
+        selectionCG.DOFade(1, 0.5f);
+        selectionCG.blocksRaycasts = true;
+
+        canUpdate = true;
+
+        StopAllCoroutines();
+
+        selectedProvinceTextObject.text = currentProvince.name;
 
         ResetEventSystem();
 
@@ -186,15 +207,15 @@ public class CanvasController : MonoBehaviour {
         if (!selectedProvinceGameObject)
             return;
 
-        Capital.text = "Capital: " + selectedProvince.capital;
+        Capital.text = "Capital: " + currentProvince.capital;
 
-        Population.text = "Population: " + selectedProvince.population.ToString() + " habitants";
+        Population.text = "Population: " + currentProvince.population.ToString() + " habitants";
 
-        Income.text = "Income: " + selectedProvince.monthlyIncome.ToString() + "$ USD";
+        Income.text = "Income: " + currentProvince.monthlyIncome.ToString() + "$ USD";
 
-        Production.text = "Produces: " + selectedProvince.production.ToString();
+        Production.text = "Produces: " + currentProvince.production.ToString();
 
-        CurrentNeed.text = "Needs: " + selectedProvince.need.ToString();
+        CurrentNeed.text = "Needs: " + currentProvince.need.ToString();
 
         informationCG.DOFade(1, 0.5f);
 
@@ -276,9 +297,9 @@ public class CanvasController : MonoBehaviour {
         helpButton.SetActive(true);
 
         if (!selectedProvinceGameObject) {
+            selectedProvinceTextObject.fontSize = 60;
             selectedProvinceTextObject.text = originalText;
         } else {
-            selectedProvinceTextObject.text = selectedProvince.name;
 
             ResetPanels();
 
@@ -293,11 +314,11 @@ public class CanvasController : MonoBehaviour {
 
         canUpdate = false;
 
-        selectionCG.blocksRaycasts = false;
+        HideSelectionPanel();
         HideInformationPanel();
 
         selectedProvinceTextObject.text = "";
-        aboutText.text = selectedProvince.gameObject.GetComponent<ProvinceController>().aboutText.text;
+        aboutText.text = currentProvince.gameObject.GetComponent<ProvinceController>().aboutText.text;
 
         aboutCG.DOFade(1, 0);
         aboutCG.blocksRaycasts = true;
@@ -305,68 +326,80 @@ public class CanvasController : MonoBehaviour {
     }
 
     public void HideAboutPanel() {
-        
+
         canUpdate = true;
-        
+
         selectionCG.blocksRaycasts = true;
 
         aboutCG.DOFade(0, 0);
         aboutCG.blocksRaycasts = false;
-        
+
+        if (selectedProvinceGameObject) {
+
+            StopAllCoroutines();
+            StartCoroutine(AnimateText(currentProvince.name));
+
+        }
+
         ResetEventSystem();
 
     }
 
     public void DisplayCitadelPanel() {
-        
-        selectionCG.blocksRaycasts = false;
-        
-        switch (selectedProvince.production) {
-            
+
+        canUpdate = false;
+
+        HideSelectionPanel();
+        HideInformationPanel();
+
+        switch (currentProvince.production) {
+
             case Trade.Crops:
                 productionImage.sprite = cropsImg;
-            break;
+                break;
             case Trade.Cattle:
                 productionImage.sprite = cattleImg;
-            break;
+                break;
             case Trade.Pottery:
                 productionImage.sprite = potteryImg;
-            break;
+                break;
             case Trade.Seafood:
                 productionImage.sprite = seafoodImg;
-            break;
+                break;
             case Trade.Coffee:
                 productionImage.sprite = coffeeImg;
-            break;
-            
+                break;
+
         }
-        
-        switch (selectedProvince.need) {
-            
+
+        switch (currentProvince.need) {
+
             case Trade.Crops:
                 needImage.sprite = cropsImg;
-            break;
+                break;
             case Trade.Cattle:
                 needImage.sprite = cattleImg;
-            break;
+                break;
             case Trade.Pottery:
                 needImage.sprite = potteryImg;
-            break;
+                break;
             case Trade.Seafood:
                 needImage.sprite = seafoodImg;
-            break;
+                break;
             case Trade.Coffee:
                 needImage.sprite = coffeeImg;
-            break;
-            
+                break;
+
         }
-        
+
         citadelCG.DOFade(1, 0.5f);
         citadelCG.blocksRaycasts = true;
 
     }
 
     public void HideCitadelPanel() {
+
+        canUpdate = true;
 
         citadelCG.DOFade(0, 0);
         citadelCG.blocksRaycasts = false;
@@ -387,6 +420,7 @@ public class CanvasController : MonoBehaviour {
 
     private IEnumerator AnimateText(string _province) {
 
+        selectedProvinceTextObject.fontSize = 100;
         selectedProvinceTextObject.text = "";
 
         for (int i = 0; i < _province.Length; i++) {

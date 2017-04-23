@@ -11,5 +11,6 @@ public class Province {
 	public Trade production;
 	public Trade need;
 	[HideInInspector] public Status status = Status.Happy;
+	[HideInInspector] public int happiness = 0;
 	
 }

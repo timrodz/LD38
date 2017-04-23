@@ -18,10 +18,12 @@ GameObject:
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4049559092211720}
+  - component: {fileID: 224286819289732558}
   - component: {fileID: 212217958738171986}
   - component: {fileID: 60494937709494714}
   - component: {fileID: 114207867176923760}
+  - component: {fileID: 222322784111943938}
+  - component: {fileID: 114121233988033808}
   m_Layer: 0
   m_Name: Chiriqui
   m_TagString: Untagged
@@ -36,10 +38,12 @@ GameObject:
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4448843098576824}
+  - component: {fileID: 224838818479520686}
   - component: {fileID: 212049106189131162}
   - component: {fileID: 60218094625968616}
   - component: {fileID: 114984482373216364}
+  - component: {fileID: 222115652303979754}
+  - component: {fileID: 114307243760772966}
   m_Layer: 0
   m_Name: GunaYala
   m_TagString: Untagged
@@ -54,10 +58,12 @@ GameObject:
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4320882472475314}
+  - component: {fileID: 224821332798187646}
   - component: {fileID: 212852061744426302}
   - component: {fileID: 60726484117336904}
   - component: {fileID: 114408753342006284}
+  - component: {fileID: 222342820701490874}
+  - component: {fileID: 114543761021560652}
   m_Layer: 0
   m_Name: LosSantos
   m_TagString: Untagged
@@ -72,10 +78,12 @@ GameObject:
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4607845131579324}
+  - component: {fileID: 224103649218993834}
   - component: {fileID: 212667552599036098}
   - component: {fileID: 60436895283525534}
   - component: {fileID: 114393663782306606}
+  - component: {fileID: 222476661336352368}
+  - component: {fileID: 114391887343418850}
   m_Layer: 0
   m_Name: Cocle
   m_TagString: Untagged
@@ -108,10 +116,12 @@ GameObject:
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4928217538043948}
+  - component: {fileID: 224283909208062184}
   - component: {fileID: 212079079540938054}
   - component: {fileID: 60575414418030626}
   - component: {fileID: 114326601765168250}
+  - component: {fileID: 222653577695013416}
+  - component: {fileID: 114786030277618870}
   m_Layer: 0
   m_Name: Colon
   m_TagString: Untagged
@@ -180,10 +190,12 @@ GameObject:
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4860274277867092}
+  - component: {fileID: 224887641041703630}
   - component: {fileID: 212684313455552130}
   - component: {fileID: 60745101469456970}
   - component: {fileID: 114146954770869346}
+  - component: {fileID: 222191358714293944}
+  - component: {fileID: 114947501593998462}
   m_Layer: 0
   m_Name: Veraguas
   m_TagString: Untagged
@@ -216,10 +228,12 @@ GameObject:
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4063688735827358}
+  - component: {fileID: 224204153688957698}
   - component: {fileID: 212598783749390262}
   - component: {fileID: 60376195386719232}
   - component: {fileID: 114906904318924480}
+  - component: {fileID: 222064938410113336}
+  - component: {fileID: 114815371123742590}
   m_Layer: 0
   m_Name: Herrera
   m_TagString: Untagged
@@ -234,10 +248,12 @@ GameObject:
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4313743801719092}
+  - component: {fileID: 224082081795936904}
   - component: {fileID: 212953526066593330}
   - component: {fileID: 60112753126218792}
   - component: {fileID: 114976136764576420}
+  - component: {fileID: 222324288627336092}
+  - component: {fileID: 114824417885116606}
   m_Layer: 0
   m_Name: BocasDelToro
   m_TagString: Untagged
@@ -252,10 +268,12 @@ GameObject:
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4767435296186370}
+  - component: {fileID: 224786510162824602}
   - component: {fileID: 212612430248748052}
   - component: {fileID: 60510091838229930}
   - component: {fileID: 114193441458502826}
+  - component: {fileID: 222027453669620950}
+  - component: {fileID: 114208624262355866}
   m_Layer: 0
   m_Name: NgabeBugle
   m_TagString: Untagged
@@ -306,10 +324,12 @@ GameObject:
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4844277914283066}
+  - component: {fileID: 224803465647186094}
   - component: {fileID: 212275394136110390}
   - component: {fileID: 60381036714326206}
   - component: {fileID: 114882112506434620}
+  - component: {fileID: 222364989655412152}
+  - component: {fileID: 114983760942911692}
   m_Layer: 0
   m_Name: Darien
   m_TagString: Untagged
@@ -360,10 +380,12 @@ GameObject:
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4582279301370408}
+  - component: {fileID: 224021073491453276}
   - component: {fileID: 212993669274550986}
   - component: {fileID: 60228103858623578}
   - component: {fileID: 114785538529682946}
+  - component: {fileID: 222166575682484364}
+  - component: {fileID: 114262786608233120}
   m_Layer: 0
   m_Name: Panama
   m_TagString: Untagged
@@ -396,10 +418,12 @@ GameObject:
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4230381946187418}
+  - component: {fileID: 224863092478858906}
   - component: {fileID: 212754279917816444}
   - component: {fileID: 60245934650883324}
   - component: {fileID: 114705301374215906}
+  - component: {fileID: 222700484671199118}
+  - component: {fileID: 114430216412700306}
   m_Layer: 0
   m_Name: EmberaWounaan
   m_TagString: Untagged
@@ -471,36 +495,8 @@ Transform:
   m_LocalPosition: {x: 7.5, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4844277914283066}
+  m_Father: {fileID: 224803465647186094}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4049559092211720
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1043147286778940}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 4103566282742136}
-  m_Father: {fileID: 4382701763295354}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4063688735827358
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1387738421588784}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 4991469679154758}
-  m_Father: {fileID: 4382701763295354}
-  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4103566282742136
 Transform:
@@ -512,7 +508,7 @@ Transform:
   m_LocalPosition: {x: -8.65, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4049559092211720}
+  m_Father: {fileID: 224286819289732558}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4105983566834420
@@ -525,7 +521,7 @@ Transform:
   m_LocalPosition: {x: 0.04, y: 2.61, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4928217538043948}
+  m_Father: {fileID: 224283909208062184}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4161725917166664
@@ -538,22 +534,8 @@ Transform:
   m_LocalPosition: {x: 6.43, y: 3.22, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4448843098576824}
+  m_Father: {fileID: 224838818479520686}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4230381946187418
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1735958320976598}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 4779692618003786}
-  m_Father: {fileID: 4382701763295354}
-  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4234793667081832
 Transform:
@@ -565,36 +547,8 @@ Transform:
   m_LocalPosition: {x: -1.07, y: -2.98, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4320882472475314}
+  m_Father: {fileID: 224821332798187646}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4313743801719092
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1414365752752412}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 4411966908991728}
-  m_Father: {fileID: 4382701763295354}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4320882472475314
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1156602008832502}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 4234793667081832}
-  m_Father: {fileID: 4382701763295354}
-  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4382701763295354
 Transform:
@@ -606,18 +560,18 @@ Transform:
   m_LocalPosition: {x: 0, y: -0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4313743801719092}
-  - {fileID: 4767435296186370}
-  - {fileID: 4049559092211720}
-  - {fileID: 4860274277867092}
-  - {fileID: 4320882472475314}
-  - {fileID: 4063688735827358}
-  - {fileID: 4607845131579324}
-  - {fileID: 4582279301370408}
-  - {fileID: 4928217538043948}
-  - {fileID: 4448843098576824}
-  - {fileID: 4844277914283066}
-  - {fileID: 4230381946187418}
+  - {fileID: 224082081795936904}
+  - {fileID: 224786510162824602}
+  - {fileID: 224286819289732558}
+  - {fileID: 224887641041703630}
+  - {fileID: 224821332798187646}
+  - {fileID: 224204153688957698}
+  - {fileID: 224103649218993834}
+  - {fileID: 224021073491453276}
+  - {fileID: 224283909208062184}
+  - {fileID: 224838818479520686}
+  - {fileID: 224803465647186094}
+  - {fileID: 224863092478858906}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -631,22 +585,8 @@ Transform:
   m_LocalPosition: {x: -9.11, y: 2.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4313743801719092}
+  m_Father: {fileID: 224082081795936904}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4448843098576824
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1092904173045204}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 4161725917166664}
-  m_Father: {fileID: 4382701763295354}
-  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4472359826089842
 Transform:
@@ -658,50 +598,8 @@ Transform:
   m_LocalPosition: {x: -1.07, y: 0.42, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4607845131579324}
+  m_Father: {fileID: 224103649218993834}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4582279301370408
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1667531960316872}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 4877689719740942}
-  m_Father: {fileID: 4382701763295354}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4607845131579324
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1160850995429754}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 4472359826089842}
-  m_Father: {fileID: 4382701763295354}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4767435296186370
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1448006161556164}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 4912891316742604}
-  m_Father: {fileID: 4382701763295354}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4779692618003786
 Transform:
@@ -713,36 +611,8 @@ Transform:
   m_LocalPosition: {x: 8.96, y: -0.15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4230381946187418}
+  m_Father: {fileID: 224863092478858906}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4844277914283066
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1495982523482542}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 4047734369140708}
-  m_Father: {fileID: 4382701763295354}
-  m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4860274277867092
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1368571483349608}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 4928343778155758}
-  m_Father: {fileID: 4382701763295354}
-  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4877689719740942
 Transform:
@@ -754,7 +624,7 @@ Transform:
   m_LocalPosition: {x: 2.57, y: 2.57, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4582279301370408}
+  m_Father: {fileID: 224021073491453276}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4912891316742604
@@ -767,22 +637,8 @@ Transform:
   m_LocalPosition: {x: -6.13, y: 0.81, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4767435296186370}
+  m_Father: {fileID: 224786510162824602}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4928217538043948
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1230027535992418}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 4105983566834420}
-  m_Father: {fileID: 4382701763295354}
-  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4928343778155758
 Transform:
@@ -794,7 +650,7 @@ Transform:
   m_LocalPosition: {x: -3.71, y: -0.76, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4860274277867092}
+  m_Father: {fileID: 224887641041703630}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4991469679154758
@@ -807,7 +663,7 @@ Transform:
   m_LocalPosition: {x: -2.22, y: -1.95, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4063688735827358}
+  m_Father: {fileID: 224204153688957698}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!60 &60112753126218792
@@ -2199,9 +2055,10 @@ MonoBehaviour:
     capital: 
     population: 0
     monthlyIncome: 0
-    status: 0
     production: 0
-    currentNeed: 0
+    need: 0
+    status: 0
+    happiness: 0
 --- !u!114 &114107783832435610
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2219,9 +2076,50 @@ MonoBehaviour:
     capital: 
     population: 0
     monthlyIncome: 0
-    status: 0
     production: 0
-    currentNeed: 0
+    need: 0
+    status: 0
+    happiness: 0
+--- !u!114 &114121233988033808
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1043147286778940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "Until the arrival of the Spanish conquistadores, Chiriqu\xED was populated
+    by a number of indigenous tribes, known collectively as the Guaym\xED people.\r\n\r\nThe
+    first european to visit and describe Chiriqu\xED was Gaspar de Espinosa, in 1519.
+    The province was officially established on May 26, 1849, when Panama was still
+    part of Colombia.\n\nChiriqu\xED was Abraham Lincoln's favored destination for
+    Linconia, a project of colonization by free blacks. Chiriqu\xED was the province
+    in which Manuel Noriega rose in the military ranks which included helping bring
+    Omar Torrijos back into the country after a coup d'\xE9tat."
 --- !u!114 &114146954770869346
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2239,9 +2137,11 @@ MonoBehaviour:
     capital: Santiago
     population: 25000
     monthlyIncome: 7750
-    status: 0
     production: 2
-    currentNeed: 1
+    need: 0
+    status: 0
+    happiness: 0
+  aboutText: {fileID: 0}
 --- !u!114 &114193441458502826
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2259,9 +2159,11 @@ MonoBehaviour:
     capital: "Llano Tugr\xED"
     population: 20000
     monthlyIncome: 7000
-    status: 0
     production: 3
-    currentNeed: 4
+    need: 0
+    status: 0
+    happiness: 0
+  aboutText: {fileID: 114208624262355866}
 --- !u!114 &114207867176923760
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2279,9 +2181,52 @@ MonoBehaviour:
     capital: David
     population: 45000
     monthlyIncome: 9000
-    status: 0
     production: 4
-    currentNeed: 1
+    need: 0
+    status: 0
+    happiness: 0
+  aboutText: {fileID: 114121233988033808}
+--- !u!114 &114208624262355866
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1448006161556164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "Since 1972, the Panamanian government was required to establish comarcas,
+    demarcated regions in which indigenous groups possess exclusive land rights and
+    considerable administrative autonomy.\n\nWithin these comarcas, people elect a
+    General assembly, governor, and any number of regional and local leaders, although
+    the government still controls public expenditure and tax revenues within the territory.\n\nAs
+    the Ng\xE4be-Bugl\xE9 population tends to identify more with their communities
+    than with an ethnicity and is distributed rather unevenly, the political organization
+    that prompted the formation of their comarca is fairly unusual, but nonetheless
+    demonstrates a powerful capacity to influence government actions."
 --- !u!114 &114221976017055084
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2299,9 +2244,51 @@ MonoBehaviour:
     capital: 
     population: 0
     monthlyIncome: 0
-    status: 0
     production: 0
-    currentNeed: 0
+    need: 0
+    status: 0
+    happiness: 0
+--- !u!114 &114262786608233120
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1667531960316872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "The city was founded on August 15, 1519, by Pedro Arias de \xC1vila, also
+    known as Pedrarias D\xE1vila. Within a few years of its founding, the city became
+    a launching point for the exploration and conquest of Peru and a transit point
+    for gold and silver headed back to Spain through the Isthmus. \n\nIn 1671, Henry
+    Morgan with a band of 1400 men attacked and looted the city, which was subsequently
+    destroyed by fire. The ruins of the old city still remain and are a popular tourist
+    attraction known as Panam\xE1 la Vieja. \n\nOne year before the start of the California
+    Gold Rush, the Panama Railroad Company was formed, but the railroad did not begin
+    operation until 1855."
 --- !u!114 &114267252527237756
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2319,9 +2306,10 @@ MonoBehaviour:
     capital: 
     population: 0
     monthlyIncome: 0
-    status: 0
     production: 0
-    currentNeed: 0
+    need: 0
+    status: 0
+    happiness: 0
 --- !u!114 &114271672446892108
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2339,9 +2327,53 @@ MonoBehaviour:
     capital: 
     population: 0
     monthlyIncome: 0
-    status: 0
     production: 0
-    currentNeed: 0
+    need: 0
+    status: 0
+    happiness: 0
+--- !u!114 &114307243760772966
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1092904173045204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'Among the most important traditions of the people mentioned Guna: "Ico-inna"
+    or Feast of the needle. where a young girl gets her septum pierced with a ring
+    using coconut oil as an antisceptic, in oder to celebrate her first menstrual
+    period. She''s now ready to have a husband.
+
+
+    In 1925 there was a revolution, in which the Guna Indians fought the ruling Panamanian
+    authorities whom were attempting to force them to adopt Hispanic culture by military
+    action. During this revolution the Guna Yala territory seceded and operated as
+    the short-lived Republic of Tule. Following mediation by the United States the
+    Guna re-united with Panama.'
 --- !u!114 &114317638878543672
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2359,9 +2391,10 @@ MonoBehaviour:
     capital: 
     population: 0
     monthlyIncome: 0
-    status: 0
     production: 0
-    currentNeed: 0
+    need: 0
+    status: 0
+    happiness: 0
 --- !u!114 &114326601765168250
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2379,9 +2412,50 @@ MonoBehaviour:
     capital: "Col\xF3n"
     population: 28000
     monthlyIncome: 5000
-    status: 0
     production: 3
-    currentNeed: 0
+    need: 0
+    status: 0
+    happiness: 0
+  aboutText: {fileID: 0}
+--- !u!114 &114391887343418850
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1160850995429754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "During pre-Columbian times, the area of Panama which today includes Cocl\xE9
+    province had a number of identifiable native cultures. Archaeologists have loosely
+    designated these cultures by pottery style. \n\nThe poorly studied \"La Mula\"
+    period ranged from 150 BC to AD 300. It was followed by the Tonosi period, from
+    AD 300 to AD 550, and by the Cubita period, from AD 550 to AD 700. A unified Native
+    American culture appears to have flourished in this area from approximately 1200
+    BC until the 16th century."
 --- !u!114 &114393663782306606
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2399,9 +2473,11 @@ MonoBehaviour:
     capital: "Penonom\xE9"
     population: 26000
     monthlyIncome: 7000
-    status: 0
     production: 0
-    currentNeed: 4
+    need: 0
+    status: 0
+    happiness: 0
+  aboutText: {fileID: 0}
 --- !u!114 &114408753342006284
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2419,9 +2495,91 @@ MonoBehaviour:
     capital: Las Tablas
     population: 9500
     monthlyIncome: 9250
-    status: 0
     production: 1
-    currentNeed: 2
+    need: 0
+    status: 0
+    happiness: 0
+  aboutText: {fileID: 0}
+--- !u!114 &114430216412700306
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1735958320976598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "The name Embera means \"people\", although they are collectively known
+    as the Choc\xF3 and live in small villages of 5 to 20 houses along the banks of
+    the rivers throughout the Dari\xE9n Province.\n\nThere are generally three villages
+    on each tributary that branches off from the main river system. The villages are
+    about a half day's walk apart and are built around 30 meters away from any neighboring
+    rivers.\n\nThe Choc\xF3 have their own form of government and live by their own
+    set of unwritten rules. They avoid relying on any Panamian or Colombian government
+    identities. Health care is primarily provided by trained shamans."
+--- !u!114 &114543761021560652
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1156602008832502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "In this region are the oldest human settlements in the Isthmus of Panama.
+    It was part of the cultural region of Gran Cocle where one of the first ceramic
+    styles of the Americas developed. The first Europeans to explore Los Santos were
+    the Spanish in 1515 under the command of Gonzalo de Badajoz. \n\nGeographically,
+    Los Santos is located in the \"Arco Seco\" or \"Dry Arch\", name given to the
+    strip of land between the Gulf of Panama and the Central Mountain range which
+    includes areas of the provinces of Cocle, Herrera and Veraguas in the south of
+    the Isthmus of Panama."
 --- !u!114 &114568165761035528
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2439,9 +2597,10 @@ MonoBehaviour:
     capital: 
     population: 0
     monthlyIncome: 0
-    status: 0
     production: 0
-    currentNeed: 0
+    need: 0
+    status: 0
+    happiness: 0
 --- !u!114 &114705301374215906
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2459,9 +2618,11 @@ MonoBehaviour:
     capital: "Uni\xF3n Choc\xF3"
     population: 1100
     monthlyIncome: 4000
-    status: 0
     production: 2
-    currentNeed: 0
+    need: 0
+    status: 0
+    happiness: 0
+  aboutText: {fileID: 0}
 --- !u!114 &114737847350201884
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2479,9 +2640,10 @@ MonoBehaviour:
     capital: 
     population: 0
     monthlyIncome: 0
-    status: 0
     production: 0
-    currentNeed: 0
+    need: 0
+    status: 0
+    happiness: 0
 --- !u!114 &114785538529682946
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2499,9 +2661,131 @@ MonoBehaviour:
     capital: "Panam\xE1"
     population: 155000
     monthlyIncome: 10000
-    status: 0
     production: 1
-    currentNeed: 1
+    need: 0
+    status: 0
+    happiness: 0
+  aboutText: {fileID: 0}
+--- !u!114 &114786030277618870
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1230027535992418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "This province has traditionally been focused in commerce (through the Col\xF3n
+    Free Zone, Panama Canal and its banking activities), but also has natural resources
+    that are being developed as tourist attraction, such as coral reefs and rainforests.
+    \n\nDuring the Spanish colonial period, the Colon region of Panama was the center
+    of trade, commerce, and overall economy for the Spanish. They imported many black
+    African slaves to this area to work in Panama and to ship to other Spaniard colonies.\n\nIn
+    the nineteenth century, beginning as early as the 1840s, blacks from the Caribbean
+    and West Indies immigrated to Panama to assist to build the Panama Railway and
+    the Panama Canal. Because of this reason, most of the black population lives here."
+--- !u!114 &114815371123742590
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1387738421588784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "After gaining independence from Spain in 1821, the isthmus of Panama was
+    divided into two provinces, Panam\xE1 and Veraguas. The province Panam\xE1 consisted
+    of the districts of Nat\xE1, Portobelo, Panama and Dari\xE9n. \n\nAt the time,
+    the location now occupied by the city of Chitr\xE9 was inhabited by a small population
+    of indigenous persons, near La Villa de Los Santos and was governed from Nat\xE1.
+    \n\nIt later came under the control of the Los Santos government. The province
+    of Herrera was created in 1854 and eliminated in 1860. 55 years later, in 1915
+    the province was created again by the president of Panama Dr. Belisario Porras."
+--- !u!114 &114824417885116606
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1414365752752412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "Christopher Columbus explored the area in 1502 while searching for the
+    passage to the Pacific Ocean. Columbus's original name for the island was Isla
+    del Drago. \n\nIn colonial times, Bocas del Toro was part of Veraguas. It was
+    originally part of Costa Rica until, in one of many territorial disputes, Colombia
+    took control of it with armed forces. \n\nThe ruling government made a reservation
+    called Bocas del Toro in 1834. In 1850, Bocas del Toro became a part of Chiriqui,
+    then was separated from it and became part of Col\xF3n."
 --- !u!114 &114834166352690156
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2519,9 +2803,10 @@ MonoBehaviour:
     capital: 
     population: 0
     monthlyIncome: 0
-    status: 0
     production: 0
-    currentNeed: 0
+    need: 0
+    status: 0
+    happiness: 0
 --- !u!114 &114845269165793690
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2539,9 +2824,10 @@ MonoBehaviour:
     capital: 
     population: 0
     monthlyIncome: 0
-    status: 0
     production: 0
-    currentNeed: 0
+    need: 0
+    status: 0
+    happiness: 0
 --- !u!114 &114861275146330978
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2559,9 +2845,10 @@ MonoBehaviour:
     capital: 
     population: 0
     monthlyIncome: 0
-    status: 0
     production: 0
-    currentNeed: 0
+    need: 0
+    status: 0
+    happiness: 0
 --- !u!114 &114882112506434620
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2579,9 +2866,11 @@ MonoBehaviour:
     capital: La Palma
     population: 5500
     monthlyIncome: 6500
-    status: 0
     production: 4
-    currentNeed: 1
+    need: 0
+    status: 0
+    happiness: 0
+  aboutText: {fileID: 0}
 --- !u!114 &114892718861484852
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2599,9 +2888,10 @@ MonoBehaviour:
     capital: 
     population: 0
     monthlyIncome: 0
-    status: 0
     production: 0
-    currentNeed: 0
+    need: 0
+    status: 0
+    happiness: 0
 --- !u!114 &114906904318924480
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2619,9 +2909,52 @@ MonoBehaviour:
     capital: "Chitr\xE9"
     population: 10000
     monthlyIncome: 9500
-    status: 0
     production: 0
-    currentNeed: 1
+    need: 1
+    status: 0
+    happiness: 0
+  aboutText: {fileID: 0}
+--- !u!114 &114947501593998462
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1368571483349608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "Veraguas was explored by Christopher Columbus on his fourth voyage. He
+    tried to establish the first colony in the new Spanish mainland but failed due
+    to attacks from native Indians. Diego de Nicuesa also tried to make a colony and
+    failed, which made him create a colony to fight against the Indians called Nombre
+    de Dios. Its capital, Santiago de Veraguas, was founded about 1636.\n\r\nIt is
+    said that its name comes from the indigenous word \"Veracua\" or \"Viragua\",
+    though other theories abound. It is the only province in Panama with coastlines
+    on both the Caribbean Sea and the Pacific Ocean. The majority of people live on
+    the Pacific side; the Caribbean coast is mostly uninhabited."
 --- !u!114 &114976136764576420
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2639,9 +2972,50 @@ MonoBehaviour:
     capital: Bocas Del Toro
     population: 15000
     monthlyIncome: 12250
-    status: 0
     production: 3
-    currentNeed: 4
+    need: 0
+    status: 0
+    happiness: 0
+  aboutText: {fileID: 114824417885116606}
+--- !u!114 &114983760942911692
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1495982523482542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "In the Dari\xE9n Province, water runs form extensive sedimentary waterways,
+    pouring their waters into rivers such as the 231-kilometre (144 mi) Rio Chucunaque
+    and the 230-km Tuira (the longest, most treacherous rivers in Panama). \n\nThe
+    hydrographic system in the province shows a minimum flow in March and April and
+    a maximum in November.\n\nThis zone is known to be a military outpost that aims
+    to protect drug trafficking that comes from Colombia, especially since Darien
+    is known to have many swamps and other unhabitable areas."
 --- !u!114 &114984482373216364
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2659,9 +3033,11 @@ MonoBehaviour:
     capital: El Porvenir
     population: 4350
     monthlyIncome: 10000
-    status: 0
     production: 3
-    currentNeed: 0
+    need: 0
+    status: 0
+    happiness: 0
+  aboutText: {fileID: 0}
 --- !u!120 &120016531477606638
 LineRenderer:
   m_ObjectHideFlags: 1
@@ -4713,3 +5089,303 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!222 &222027453669620950
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1448006161556164}
+--- !u!222 &222064938410113336
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1387738421588784}
+--- !u!222 &222115652303979754
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1092904173045204}
+--- !u!222 &222166575682484364
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1667531960316872}
+--- !u!222 &222191358714293944
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1368571483349608}
+--- !u!222 &222322784111943938
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1043147286778940}
+--- !u!222 &222324288627336092
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1414365752752412}
+--- !u!222 &222342820701490874
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1156602008832502}
+--- !u!222 &222364989655412152
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1495982523482542}
+--- !u!222 &222476661336352368
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1160850995429754}
+--- !u!222 &222653577695013416
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1230027535992418}
+--- !u!222 &222700484671199118
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1735958320976598}
+--- !u!224 &224021073491453276
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1667531960316872}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4877689719740942}
+  m_Father: {fileID: 4382701763295354}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 30.000002, y: 22.500002}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!224 &224082081795936904
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1414365752752412}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4411966908991728}
+  m_Father: {fileID: 4382701763295354}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 30.000002, y: 22.500002}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!224 &224103649218993834
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1160850995429754}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4472359826089842}
+  m_Father: {fileID: 4382701763295354}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 30.000002, y: 22.500002}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!224 &224204153688957698
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1387738421588784}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4991469679154758}
+  m_Father: {fileID: 4382701763295354}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 30.000002, y: 22.500002}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!224 &224283909208062184
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1230027535992418}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4105983566834420}
+  m_Father: {fileID: 4382701763295354}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 30.000002, y: 22.500002}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!224 &224286819289732558
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1043147286778940}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4103566282742136}
+  m_Father: {fileID: 4382701763295354}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 30.000002, y: 22.500002}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!224 &224786510162824602
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1448006161556164}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4912891316742604}
+  m_Father: {fileID: 4382701763295354}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 30.000002, y: 22.500002}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!224 &224803465647186094
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1495982523482542}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4047734369140708}
+  m_Father: {fileID: 4382701763295354}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 30.000002, y: 22.500002}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!224 &224821332798187646
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1156602008832502}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4234793667081832}
+  m_Father: {fileID: 4382701763295354}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 30.000002, y: 22.500002}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!224 &224838818479520686
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1092904173045204}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4161725917166664}
+  m_Father: {fileID: 4382701763295354}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 30.000002, y: 22.500002}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!224 &224863092478858906
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1735958320976598}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4779692618003786}
+  m_Father: {fileID: 4382701763295354}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 30.000002, y: 22.500002}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!224 &224887641041703630
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1368571483349608}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4928343778155758}
+  m_Father: {fileID: 4382701763295354}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 30.000002, y: 22.500002}
+  m_Pivot: {x: 0.5, y: 0.5}
