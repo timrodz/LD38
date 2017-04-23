@@ -12,33 +12,46 @@ public class CanvasController : MonoBehaviour {
 
     public Transform provinceHolder;
 
-    [HeaderAttribute("Nothing selected")]
     public Text selectedProvinceTextObject;
     private string originalText;
 
     [HeaderAttribute("Selection Panel")]
-    public Image selectionPanel;
-    private CanvasGroup selectionCanvasGroup;
+    public GameObject selectionPanel;
+    private CanvasGroup selectionCG;
     [HideInInspector] public GameObject selectedProvinceGameObject = null;
+    [HideInInspector] public bool hasSelectedProvince = false;
+    private Province selectedProvince;
+    private bool showingSelection = false;
 
     [HeaderAttribute("Information Panel")]
-    public Image provinceInformationPanel;
-    private CanvasGroup provinceInformationCanvasGroup;
+    public GameObject informationPanel;
+    private CanvasGroup informationCG;
     public Text Capital;
     public Text Population;
     public Text Income;
     public Text Production;
     public Text CurrentNeed;
     public Text currentStatus;
+    private bool showingInformation = false;
 
     [HeaderAttribute("Help Panel")]
-    public Image helpPanel;
-    private CanvasGroup helpCanvasGroup;
+    public GameObject helpPanel;
+    private CanvasGroup helpCG;
     public GameObject helpButton;
 
+    [HeaderAttribute("About Panel")]
+    public GameObject aboutPanel;
+    private CanvasGroup aboutCG;
+    public TextMeshProUGUI aboutText;
+    private bool showingAbout = false;
+
+    [HeaderAttribute("Citadel Panel")]
+    public GameObject citadelPanel;
+    private CanvasGroup citadelCG;
+    private bool showingCitadel = false;
+
+    // Others
     private float typeDelay = 0.0175f;
-    [HideInInspector] public bool hasSelectedProvince = false;
-    private Province selectedProvince;
 
     [HideInInspector] public bool canUpdate = true;
 
@@ -47,9 +60,11 @@ public class CanvasController : MonoBehaviour {
     /// </summary>
     void Awake() {
 
-        provinceInformationCanvasGroup = provinceInformationPanel.GetComponent<CanvasGroup>();
-        selectionCanvasGroup = selectionPanel.GetComponent<CanvasGroup>();
-        helpCanvasGroup = helpPanel.GetComponent<CanvasGroup>();
+        informationCG = informationPanel.GetComponent<CanvasGroup>();
+        selectionCG = selectionPanel.GetComponent<CanvasGroup>();
+        helpCG = helpPanel.GetComponent<CanvasGroup>();
+        aboutCG = aboutPanel.GetComponent<CanvasGroup>();
+        citadelCG = citadelPanel.GetComponent<CanvasGroup>();
 
         tc = FindObjectOfType<TradeRouteController>();
 
@@ -60,33 +75,36 @@ public class CanvasController : MonoBehaviour {
 
         originalText = "Explore Panama's provinces by clicking on them";
 
-        selectionPanel.gameObject.SetActive(true);
-        provinceInformationPanel.gameObject.SetActive(true);
-        helpPanel.gameObject.SetActive(true);
+        selectionPanel.SetActive(true);
+        informationPanel.SetActive(true);
+        helpPanel.SetActive(true);
+        aboutPanel.SetActive(true);
+        citadelPanel.SetActive(true);
 
         HideSelectionPanel();
-        HideProvinceInformation();
-        helpButton.gameObject.SetActive(false);
-        // ResetSelectedProvince();
-        DisplayHelpMenu();
+        HideInformationPanel();
+        HideAboutPanel();
+        HideCitadelPanel();
 
-    }
+        helpButton.SetActive(false);
 
-    // Update is called once per frame
-    void Update() {
+        DisplayHelpPanel();
 
     }
 
     public void SetCurrentSelectedProvince(Province p, bool hasSelectedProvince) {
+
+        StopAllCoroutines();
+        StartCoroutine(AnimateText(p.name));
 
         if (hasSelectedProvince) {
 
             this.hasSelectedProvince = true;
             selectedProvince = p;
 
-            provinceHolder.DOMoveY(provinceHolder.position.y -0.5f, 0.5f).SetEase(Ease.OutSine);
+            provinceHolder.DOMoveY(provinceHolder.position.y - 0.5f, 0.5f).SetEase(Ease.OutSine);
 
-            DisplayProvinceInformation();
+            DisplayInformationPanel();
 
             tc.ShowTradeRoutes();
 
@@ -94,22 +112,6 @@ public class CanvasController : MonoBehaviour {
 
             this.hasSelectedProvince = false;
             selectedProvince = null;
-
-            StopAllCoroutines();
-            StartCoroutine(AnimateProvinceText(p.name));
-
-        }
-
-    }
-
-    private IEnumerator AnimateProvinceText(string _province) {
-
-        selectedProvinceTextObject.text = "";
-
-        for (int i = 0; i < _province.Length; i++) {
-
-            selectedProvinceTextObject.text += _province[i];
-            yield return new WaitForSeconds(typeDelay);
 
         }
 
@@ -122,7 +124,7 @@ public class CanvasController : MonoBehaviour {
         StopAllCoroutines();
 
         HideSelectionPanel();
-        HideProvinceInformation();
+        HideInformationPanel();
 
         if (hasSelectedProvince) {
 
@@ -151,21 +153,23 @@ public class CanvasController : MonoBehaviour {
 
     public void DisplaySelectionPanel() {
 
-        selectionCanvasGroup.DOFade(1, 0.5f);
-        selectionCanvasGroup.blocksRaycasts = true;
+        selectionCG.DOFade(1, 0.5f);
+        selectionCG.blocksRaycasts = true;
 
-        ResetEventSystems();
+        canUpdate = true;
+
+        ResetEventSystem();
 
     }
 
     public void HideSelectionPanel() {
 
-        selectionCanvasGroup.DOFade(0, 0.1f);
-        selectionCanvasGroup.blocksRaycasts = false;
+        selectionCG.DOFade(0, 0.1f);
+        selectionCG.blocksRaycasts = false;
 
     }
 
-    public void DisplayProvinceInformation() {
+    public void DisplayInformationPanel() {
 
         if (!selectedProvinceGameObject)
             return;
@@ -180,17 +184,16 @@ public class CanvasController : MonoBehaviour {
 
         CurrentNeed.text = "Needs: " + selectedProvince.currentNeed.ToString();
 
-        provinceInformationCanvasGroup.DOFade(1, 0.5f);
-        // provinceInformationCanvasGroup.blocksRaycasts = true;
+        informationCG.DOFade(1, 0.5f);
 
-        ResetEventSystems();
+        ResetEventSystem();
 
     }
 
-    public void HideProvinceInformation() {
+    public void HideInformationPanel() {
 
-        provinceInformationCanvasGroup.DOFade(0, 0.1f);
-        // provinceInformationCanvasGroup.blocksRaycasts = false;
+        informationCG.DOFade(0, 0.1f);
+        informationCG.blocksRaycasts = false;
 
     }
 
@@ -203,49 +206,166 @@ public class CanvasController : MonoBehaviour {
         Debug.Log("Object: " + selectedObjectTradeRoute.transform.name);
         tc.SendTrade(selectedObjectTradeRoute);
 
-        ResetEventSystems();
+        ResetEventSystem();
 
     }
 
-    public void DisplayHelpMenu() {
+    public void DisplayHelpPanel() {
 
-        canUpdate = false;
-        helpButton.gameObject.SetActive(false);
-        
-        HideSelectionPanel();
-        HideProvinceInformation();
-        
-        if (!selectedProvinceGameObject) {
-            selectedProvinceTextObject.text = "";
+        Debug.Log("Help Panel");
+
+        showingSelection = showingInformation = showingAbout = showingCitadel = false;
+
+        if (selectionCG.alpha == 1 && !showingSelection) {
+
+            Debug.Log("Selection was shown");
+            showingSelection = true;
+            HideSelectionPanel();
+
         }
 
-        helpCanvasGroup.DOFade(1, 0);
-        helpCanvasGroup.blocksRaycasts = true;
+        if (informationCG.alpha == 1 && !showingInformation) {
+
+            Debug.Log("Information was shown");
+            showingInformation = true;
+            HideInformationPanel();
+
+        }
+
+        if (aboutCG.alpha == 1 && !showingAbout) {
+
+            Debug.Log("About was shown");
+            showingAbout = true;
+            HideAboutPanel();
+
+        }
+
+        if (citadelCG.alpha == 1 && !showingCitadel) {
+
+            Debug.Log("Citadel was shown");
+            showingCitadel = true;
+            HideCitadelPanel();
+
+        }
+
+        canUpdate = false;
+        helpButton.SetActive(false);
+
+        selectedProvinceTextObject.text = "";
+
+        helpCG.DOFade(1, 0);
+        helpCG.blocksRaycasts = true;
 
     }
 
-    public void HideHelpMenu() {
+    public void HideHelpPanel() {
 
         canUpdate = true;
-        helpButton.gameObject.SetActive(true);
+        helpButton.SetActive(true);
 
-            
-            
         if (!selectedProvinceGameObject) {
             selectedProvinceTextObject.text = originalText;
         } else {
-            DisplaySelectionPanel();
-            DisplayProvinceInformation();
+            selectedProvinceTextObject.text = selectedProvince.name;
+
+            ResetPanels();
+
         }
 
-        helpCanvasGroup.DOFade(0, 0);
-        helpCanvasGroup.blocksRaycasts = false;
+        helpCG.DOFade(0, 0);
+        helpCG.blocksRaycasts = false;
 
     }
 
-    private void ResetEventSystems() {
+    public void DisplayAboutPanel() {
+
+        canUpdate = false;
+
+        selectionCG.blocksRaycasts = false;
+        HideInformationPanel();
+
+        selectedProvinceTextObject.text = "";
+        aboutText.text = selectedProvince.gameObject.GetComponent<ProvinceController>().aboutText.text;
+
+        aboutCG.DOFade(1, 0);
+        aboutCG.blocksRaycasts = true;
+
+    }
+
+    public void HideAboutPanel() {
+        
+        selectionCG.blocksRaycasts = true;
+
+        aboutCG.DOFade(0, 0);
+        aboutCG.blocksRaycasts = false;
+        
+        ResetEventSystem();
+
+    }
+
+    public void DisplayCitadelPanel() {
+
+        citadelCG.DOFade(1, 0.5f);
+
+    }
+
+    public void HideCitadelPanel() {
+
+        citadelCG.DOFade(0, 0);
+        citadelCG.blocksRaycasts = false;
+
+    }
+
+    private void ResetEventSystem() {
 
         EventSystem.current.SetSelectedGameObject(null);
+
+    }
+
+    public void Fade(CanvasGroup cg, float amount, float duration) {
+
+        cg.DOFade(amount, duration);
+
+    }
+
+    private IEnumerator AnimateText(string _province) {
+
+        selectedProvinceTextObject.text = "";
+
+        for (int i = 0; i < _province.Length; i++) {
+
+            selectedProvinceTextObject.text += _province[i];
+            yield return new WaitForSeconds(typeDelay);
+
+        }
+
+    }
+
+    public void ResetPanels() {
+
+        if (selectionCG.alpha == 0 && showingSelection) {
+            Debug.Log("Showing Selection");
+            DisplaySelectionPanel();
+        }
+        showingSelection = false;
+
+        if (informationCG.alpha == 0 && showingInformation) {
+            Debug.Log("Showing Information");
+            DisplayInformationPanel();
+        }
+        showingInformation = false;
+
+        if (aboutCG.alpha == 0 && showingAbout) {
+            Debug.Log("Showing About");
+            DisplayAboutPanel();
+        }
+        showingAbout = false;
+
+        if (citadelCG.alpha == 0 && showingCitadel) {
+            Debug.Log("Showing Citadel");
+            DisplayCitadelPanel();
+        }
+        showingCitadel = false;
 
     }
 

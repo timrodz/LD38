@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ProvinceController : MonoBehaviour {
 
@@ -13,6 +14,8 @@ public class ProvinceController : MonoBehaviour {
 
     private Sequence colorFade;
 
+    [HideInInspector] public Text aboutText;
+
     private bool hasHovered = false;
 
     /// <summary>
@@ -20,9 +23,11 @@ public class ProvinceController : MonoBehaviour {
     /// </summary>
     void Awake() {
 
-        cc = FindObjectOfType<CanvasController> ();
+        cc = FindObjectOfType<CanvasController>();
 
-        sprite = GetComponent<SpriteRenderer> ();
+        sprite = GetComponent<SpriteRenderer>();
+
+        aboutText = GetComponent<Text>();
 
     }
 
@@ -33,24 +38,22 @@ public class ProvinceController : MonoBehaviour {
 
     }
 
-    // Update is called once per frame
-    void Update() {
-
-    }
-
     /// <summary>
     /// OnMouseDown is called when the user has pressed the mouse button while
     /// over the GUIElement or Collider.
     /// </summary>
     void OnMouseDown() {
 
+        if (!cc.canUpdate)
+            return;
+
         if (!cc.selectedProvinceGameObject) {
-            
+
             Debug.Log("Interacting with " + province.name + " - Status: " + province.status.ToString());
             cc.selectedProvinceGameObject = this.gameObject;
             cc.SetCurrentSelectedProvince(province, true);
             cc.DisplaySelectionPanel();
-            
+
             colorFade.Kill();
             colorFade.Append(sprite.DOFade(0.35f, 0.2f));
 
