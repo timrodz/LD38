@@ -453,26 +453,6 @@ public class CanvasController : MonoBehaviour {
 
         productionButtonText.text = "Produce " + currentProvince.production.ToString().ToLower() + " for the next season";
 
-        // switch (currentProvince.production) {
-
-        //     case Trade.Crops:
-        //         productionButton.sprite = cropsImg;
-        //         break;
-        //     case Trade.Cattle:
-        //         productionButton.sprite = cattleImg;
-        //         break;
-        //     case Trade.Pottery:
-        //         productionButton.sprite = potteryImg;
-        //         break;
-        //     case Trade.Seafood:
-        //         productionButton.sprite = seafoodImg;
-        //         break;
-        //     case Trade.Coffee:
-        //         productionButton.sprite = coffeeImg;
-        //         break;
-
-        // }
-
         inquiryButton.raycastTarget = true;
 
         if (!tc.FoundProvincesThatProduceNeed(currentProvince.inquiry)) {
@@ -485,26 +465,6 @@ public class CanvasController : MonoBehaviour {
             inquiryButtonText.text = "Make an inquiry of " + currentProvince.inquiry.ToString().ToLower();
 
         }
-
-        // switch (currentProvince.inquiry) {
-
-        //     case Trade.Crops:
-        //         inquiryButton.sprite = cropsImg;
-        //         break;
-        //     case Trade.Cattle:
-        //         inquiryButton.sprite = cattleImg;
-        //         break;
-        //     case Trade.Pottery:
-        //         inquiryButton.sprite = potteryImg;
-        //         break;
-        //     case Trade.Seafood:
-        //         inquiryButton.sprite = seafoodImg;
-        //         break;
-        //     case Trade.Coffee:
-        //         inquiryButton.sprite = coffeeImg;
-        //         break;
-
-        // }
 
         statusButton.raycastTarget = true;
 

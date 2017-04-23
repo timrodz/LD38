@@ -87,6 +87,7 @@ public class TradeRouteController : MonoBehaviour {
     public void ShowTradeRoutes() {
 
         foreach(TradeRoute t in tradeRoutes) {
+            
             switch (t.province.status) {
 
                 case Status.Happy:
@@ -101,11 +102,13 @@ public class TradeRouteController : MonoBehaviour {
                     break;
                 case Status.Sad:
                     {
+                        Debug.Log("Sad");
                         t.SetSprite(sadSprite);
                     }
                     break;
                 case Status.Angry:
                     {
+                        Debug.Log("Angry");
                         t.SetSprite(angrySprite);
                     }
                     break;

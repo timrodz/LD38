@@ -10,7 +10,7 @@ public class TradeRoute : MonoBehaviour {
 
     private float animationTime = 2;
 
-    [HideInInspector] public Sprite sprite;
+    [HideInInspector] public SpriteRenderer spriteRenderer;
     [HideInInspector] public Sprite inquirySprite;
     [HideInInspector] public Sprite originalSprite;
 
@@ -19,7 +19,7 @@ public class TradeRoute : MonoBehaviour {
     /// </summary>
     void Awake() {
         path = GetComponent<LineRenderer>();
-        sprite = GetComponent<Sprite>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         province = GetComponentInParent<ProvinceController>().province;
     }
 
@@ -29,7 +29,7 @@ public class TradeRoute : MonoBehaviour {
     /// </summary>
     void Start() {
 
-        originalSprite = sprite;
+        originalSprite = spriteRenderer.sprite;
 
     }
 
@@ -70,14 +70,14 @@ public class TradeRoute : MonoBehaviour {
     }
 
     public void SetSprite(Sprite p) {
-
-        sprite = p;
+        
+        spriteRenderer.sprite = p;
 
     }
     
     public void ResetSprite() {
         
-        sprite = originalSprite;
+        spriteRenderer.sprite = originalSprite;
         
     }
 
