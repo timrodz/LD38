@@ -15,6 +15,7 @@ public class CanvasController : MonoBehaviour {
     public Transform provinceHolder;
 
     public Text selectedProvinceTextObject;
+    public Text statusText;
     private string originalText;
 
     [HeaderAttribute("Selection Panel")]
@@ -33,7 +34,6 @@ public class CanvasController : MonoBehaviour {
     public Text Income;
     public Text Production;
     public Text CurrentNeed;
-    public Text currentStatus;
     private bool showingInformation = false;
 
     [HeaderAttribute("Help Panel")]
@@ -51,12 +51,12 @@ public class CanvasController : MonoBehaviour {
     public GameObject citadelPanel;
     private CanvasGroup citadelCG;
     private bool showingCitadel = false;
-    public Image productionImage;
-    public Image needImage;
-    public Image statusImage;
-    public Text productionText;
-    public Text inquiryText;
-    public Text statusText;
+    public Image productionButton;
+    public Image inquiryButton;
+    public Image statusButton;
+    public Text productionButtonText;
+    public Text inquiryButtonText;
+    public Text statusButtonText;
 
     [HeaderAttribute("Game Manager Panel")]
     public GameObject gameManagerPanel;
@@ -78,9 +78,9 @@ public class CanvasController : MonoBehaviour {
     // Others
     private float typeDelay = 0.0175f;
 
-    [HideInInspector] public bool canUpdate = true;
+    public bool canUpdate = true;
 
-    [HideInInspector] public bool firstMove = true;
+    public bool firstMove = true;
 
     /// <summary>
     /// Awake is called when the script instance is being loaded.
@@ -103,8 +103,8 @@ public class CanvasController : MonoBehaviour {
     // Use this for initialization
     void Start() {
 
-        selectedProvinceTextObject.fontSize = 60;
-        originalText = "Explore Panama's provinces by clicking on them";
+        selectedProvinceTextObject.gameObject.SetActive(true);
+        statusText.gameObject.SetActive(true);
 
         selectionPanel.SetActive(true);
         informationPanel.SetActive(true);
@@ -125,12 +125,14 @@ public class CanvasController : MonoBehaviour {
 
         DisplayHelpPanel();
 
+        selectedProvinceTextObject.fontSize = 60;
+        originalText = "Explore Panama's provinces by clicking on them";
+
     }
 
     public void SetCurrentSelectedProvince(Province p, bool hasSelectedProvince) {
 
-        StopAllCoroutines();
-        StartCoroutine(AnimateText(p.name));
+        ShowProvinceInformation(p);
 
         if (hasSelectedProvince) {
 
@@ -156,8 +158,6 @@ public class CanvasController : MonoBehaviour {
 
     public void ResetSelectedProvince() {
 
-        Debug.Log("Resetting selected province");
-
         StopAllCoroutines();
 
         HideSelectionPanel();
@@ -181,6 +181,7 @@ public class CanvasController : MonoBehaviour {
                 tc.HideTradeRoutes();
 
                 if (!firstMove) {
+                    Debug.Log("Displaying Citadel");
                     DisplayGameManagerPanel();
                 }
 
@@ -196,6 +197,8 @@ public class CanvasController : MonoBehaviour {
 
         selectedProvinceTextObject.fontSize = 60;
         selectedProvinceTextObject.text = originalText;
+        
+        statusText.text = "";
 
     }
 
@@ -206,9 +209,7 @@ public class CanvasController : MonoBehaviour {
 
         canUpdate = true;
 
-        StopAllCoroutines();
-
-        StartCoroutine(AnimateText(currentProvince.name));
+        ShowProvinceInformation(currentProvince);
 
         ResetEventSystem();
 
@@ -224,6 +225,21 @@ public class CanvasController : MonoBehaviour {
         StopAllCoroutines();
 
         selectedProvinceTextObject.text = currentProvince.name;
+        
+        switch (currentProvince.status) {
+            case Status.Happy:
+                statusText.text = "Citizens are happy";
+                break;
+            case Status.Normal:
+                statusText.text = "Citizens are bored";
+                break;
+            case Status.Sad:
+                statusText.text = "Citizens are sad";
+                break;
+            case Status.Angry:
+                statusText.text = "Citizens are angry";
+                break;
+        }
 
         ResetEventSystem();
 
@@ -271,7 +287,7 @@ public class CanvasController : MonoBehaviour {
         TradeRoute selectedObjectTradeRoute = selectedProvinceGameObject.GetComponentInChildren<TradeRoute>();
 
         Debug.Log("Object: " + selectedObjectTradeRoute.transform.name);
-        tc.SendTrade(selectedObjectTradeRoute);
+        tc.CalculateShortestTradeRoute(selectedObjectTradeRoute);
 
         ResetEventSystem();
 
@@ -280,6 +296,8 @@ public class CanvasController : MonoBehaviour {
     public void DisplayHelpPanel() {
 
         Debug.Log("Help Panel");
+        
+        StopAllCoroutines();
 
         showingSelection = showingInformation = showingAbout = showingCitadel = false;
 
@@ -319,6 +337,7 @@ public class CanvasController : MonoBehaviour {
         helpButton.SetActive(false);
 
         selectedProvinceTextObject.text = "";
+        statusText.text = "";
 
         helpCG.DOFade(1, 0);
         helpCG.blocksRaycasts = true;
@@ -346,12 +365,15 @@ public class CanvasController : MonoBehaviour {
 
     public void DisplayAboutPanel() {
 
+        StopAllCoroutines();
+
         canUpdate = false;
 
         HideSelectionPanel();
         HideInformationPanel();
 
         selectedProvinceTextObject.text = "";
+        statusText.text = "";
         aboutText.text = currentProvince.gameObject.GetComponent<ProvinceController>().aboutText.text;
 
         aboutCG.DOFade(1, 0);
@@ -370,8 +392,7 @@ public class CanvasController : MonoBehaviour {
 
         if (selectedProvinceGameObject) {
 
-            StopAllCoroutines();
-            StartCoroutine(AnimateText(currentProvince.name));
+            ShowProvinceInformation(currentProvince);
 
         }
 
@@ -386,71 +407,103 @@ public class CanvasController : MonoBehaviour {
         HideSelectionPanel();
         HideInformationPanel();
 
-        productionText.text = "Produce " + currentProvince.production.ToString().ToLower() + " for the next season";
-        inquiryText.text = "Make an inquiry of " + currentProvince.need.ToString().ToLower() + "";
-        
-        statusImage.raycastTarget = true;
-        string stringStatus = "";
+        EnableCitadelOption(productionButton);
+        EnableCitadelOption(inquiryButton);
+        EnableCitadelOption(statusButton);
 
-        switch (currentProvince.status) {
-
-            case Status.Happy:
-                statusImage.raycastTarget = false;
-                stringStatus = "Happiness can be found everywhere!";
-                break;
-            case Status.Normal:
-                stringStatus = "Minor issues could be resolved";
-                break;
-            case Status.Sad:
-                stringStatus = "Sadness spreads due to recent events";
-                break;
-            case Status.Angry:
-                stringStatus = "Anger curses your streets, actions required!";
-                break;
-
-        }
-
-        statusText.text = stringStatus;
+        productionButtonText.text = "Produce " + currentProvince.production.ToString().ToLower() + " for the next season";
 
         switch (currentProvince.production) {
 
             case Trade.Crops:
-                productionImage.sprite = cropsImg;
+                productionButton.sprite = cropsImg;
                 break;
             case Trade.Cattle:
-                productionImage.sprite = cattleImg;
+                productionButton.sprite = cattleImg;
                 break;
             case Trade.Pottery:
-                productionImage.sprite = potteryImg;
+                productionButton.sprite = potteryImg;
                 break;
             case Trade.Seafood:
-                productionImage.sprite = seafoodImg;
+                productionButton.sprite = seafoodImg;
                 break;
             case Trade.Coffee:
-                productionImage.sprite = coffeeImg;
+                productionButton.sprite = coffeeImg;
                 break;
+
+        }
+
+        inquiryButton.raycastTarget = true;
+
+        if (!tc.FoundProvincesThatProduceNeed(currentProvince.need)) {
+
+            DisableCitadelOption(inquiryButton);
+            inquiryButtonText.text = "Provinces that produce " + currentProvince.need.ToString().ToLower() + " are busy";
+
+        } else {
+
+            inquiryButtonText.text = "Make an inquiry of " + currentProvince.need.ToString().ToLower();
 
         }
 
         switch (currentProvince.need) {
 
             case Trade.Crops:
-                needImage.sprite = cropsImg;
+                inquiryButton.sprite = cropsImg;
                 break;
             case Trade.Cattle:
-                needImage.sprite = cattleImg;
+                inquiryButton.sprite = cattleImg;
                 break;
             case Trade.Pottery:
-                needImage.sprite = potteryImg;
+                inquiryButton.sprite = potteryImg;
                 break;
             case Trade.Seafood:
-                needImage.sprite = seafoodImg;
+                inquiryButton.sprite = seafoodImg;
                 break;
             case Trade.Coffee:
-                needImage.sprite = coffeeImg;
+                inquiryButton.sprite = coffeeImg;
                 break;
 
         }
+
+        statusButton.raycastTarget = true;
+
+        string stringStatus = "";
+
+        switch (currentProvince.status) {
+
+            case Status.Happy:
+                {
+                    DisableCitadelOption(statusButton);
+                    stringStatus = "The town is already celebrating on their own";
+                }
+                break;
+            case Status.Normal:
+                {
+                    stringStatus = "Minor issues could be resolved";
+                }
+                break;
+            case Status.Sad:
+                {
+                    DisableCitadelOption(productionButton);
+                    productionButtonText.text = currentProvince.production.ToString() + " producers are not motivated to work";
+                    stringStatus = "Organize a festival to cheer up the vibes";
+                }
+                break;
+            case Status.Angry:
+                {
+                    DisableCitadelOption(productionButton);
+                    DisableCitadelOption(inquiryButton);
+
+                    stringStatus = "Plan diplomatic solutions to avoid revolts";
+                    productionButtonText.text = currentProvince.production.ToString() + " producers are striking";
+                    inquiryButtonText.text = "The major is not in a position to arrange trades";
+                }
+                break;
+
+        }
+
+        statusButtonText.text = stringStatus;
 
         citadelCG.DOFade(1, 0.5f);
         citadelCG.blocksRaycasts = true;
@@ -510,16 +563,25 @@ public class CanvasController : MonoBehaviour {
 
     }
 
-    private IEnumerator AnimateText(string _province) {
+    private IEnumerator AnimateText(string source, Text destination, int size) {
 
-        selectedProvinceTextObject.fontSize = 80;
-        selectedProvinceTextObject.text = "";
+        destination.fontSize = size;
+        destination.text = "";
 
-        for (int i = 0; i < _province.Length; i++) {
+        if (destination == statusText) {
 
-            selectedProvinceTextObject.text += _province[i];
-            yield return new WaitForSeconds(typeDelay);
+            yield return new WaitForSeconds(0.2f);
+            destination.DOFade(0, 0.3f).From();
+            destination.text = source;
 
+        } else {
+
+            for (int i = 0; i < source.Length; i++) {
+
+                destination.text += source[i];
+                yield return new WaitForSeconds(typeDelay);
+
+            }
         }
 
     }
@@ -545,12 +607,51 @@ public class CanvasController : MonoBehaviour {
         showingAbout = false;
 
         if (citadelCG.alpha == 0 && showingCitadel) {
+            
             Debug.Log("Showing Citadel");
             DisplayCitadelPanel();
-            StartCoroutine(AnimateText(currentProvince.name));
+            
+            ShowProvinceInformation(currentProvince);
+            
         }
         showingCitadel = false;
 
+    }
+
+    public void EnableCitadelOption(Image button) {
+
+        button.raycastTarget = true;
+        button.DOFade(1, 0);
+
+    }
+
+    public void DisableCitadelOption(Image button) {
+
+        button.raycastTarget = false;
+        button.DOFade(0.5f, 0);
+
+    }
+    
+    public void ShowProvinceInformation(Province p) {
+        
+        StopAllCoroutines();
+        StartCoroutine(AnimateText(p.name, selectedProvinceTextObject, 80));
+
+        switch (p.status) {
+            case Status.Happy:
+                StartCoroutine(AnimateText("Citizens are happy", statusText, 40));
+                break;
+            case Status.Normal:
+                StartCoroutine(AnimateText("Citizens are bored", statusText, 40));
+                break;
+            case Status.Sad:
+                StartCoroutine(AnimateText("Citizens are sad", statusText, 40));
+                break;
+            case Status.Angry:
+                StartCoroutine(AnimateText("Citizens are angry", statusText, 40));
+                break;
+        }
+        
     }
 
 }

@@ -10,7 +10,7 @@ public class Province {
 	public float monthlyIncome;
 	public Trade production;
 	public Trade need;
-	[HideInInspector] public Status status = Status.Happy;
-	[HideInInspector] public int happiness = 0;
+	public Status status = Status.Happy;
+	public int happiness = 0;
 	
 }

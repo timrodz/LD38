@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
 
     private CanvasController cc;
+    private TradeRouteController tc;
     private ProvinceController pc;
 
     public int turn = 0;
@@ -22,6 +23,7 @@ public class GameManager : MonoBehaviour {
     void Awake() {
         
         cc = FindObjectOfType<CanvasController>();
+        tc = FindObjectOfType<TradeRouteController>();
         pc = FindObjectOfType<ProvinceController>();
         
     }
@@ -39,6 +41,21 @@ public class GameManager : MonoBehaviour {
             provincesList.Add(provinceArray[i]);
             
         }
+        
+        int randomIndex = Random.Range(0, provincesList.Count);
+        
+        provincesList[randomIndex].province.status = Status.Sad;
+        provincesList.Remove(provincesList[randomIndex]);
+        
+        // randomIndex = Random.Range(0, provincesList.Count);
+        
+        // provincesList[randomIndex].province.status = Status.Sad;
+        // provincesList.Remove(provincesList[randomIndex]);
+        
+        randomIndex = Random.Range(0, provincesList.Count);
+        
+        provincesList[Random.Range(0, provincesList.Count)].province.status = Status.Angry;
+        provincesList.Remove(provincesList[randomIndex]);
 
     }
 
@@ -48,7 +65,7 @@ public class GameManager : MonoBehaviour {
 
         Debug.Log("Producing resources");
 
-        string text = province.name + " will produce " + province.production.ToString().ToLower() + "\n";
+        string text = "- " + province.name + " will produce " + province.production.ToString().ToLower() + "\n";
 
         cc.summary.text += text;
 
@@ -61,8 +78,14 @@ public class GameManager : MonoBehaviour {
         cc.ResetEventSystem();
 
         Debug.Log("Inquiring resources");
+        
+        TradeRoute selectedObjectTradeRoute = cc.selectedProvinceGameObject.GetComponentInChildren<TradeRoute>();
 
-        string text = province.name + " will inquire " + province.need.ToString().ToLower() + "\n";
+        Debug.Log("Object: " + selectedObjectTradeRoute.transform.name);
+        
+        Province closestProvince = tc.CalculateShortestTradeRoute(selectedObjectTradeRoute);
+
+        string text = "- " + province.name + " will buy " + province.need.ToString().ToLower() + " from " + closestProvince.name + "\n";
 
         cc.summary.text += text;
 
@@ -81,7 +104,7 @@ public class GameManager : MonoBehaviour {
 
         Debug.Log("Resolving mood");
 
-        string text = province.name + " will call for diplomatic actions\n";
+        string text = "- " + province.name + " will call for diplomatic actions\n";
 
         cc.summary.text += text;
 
@@ -96,8 +119,9 @@ public class GameManager : MonoBehaviour {
             p.Highlight(false, 0.2f);
 
         }
-
+        
         cc.summary.text = "";
+        cc.canUpdate = true;
 
         interactedProvinceList.Clear();
 
@@ -106,6 +130,8 @@ public class GameManager : MonoBehaviour {
     }
 
     public void ReduceProvinces() {
+        
+        Debug.Log(">>> Province " + province.name + " called action");
 
         if (cc.firstMove) {
             cc.firstMove = false;
@@ -117,14 +143,21 @@ public class GameManager : MonoBehaviour {
         
         interactedProvinceList.Add(pc);
         
+        tc.RemoveTradeRoute(pc.GetComponentInChildren<TradeRoute>());
+        
         provincesLeftForInteraction--;
         
         cc.HideCitadelPanel();
         cc.ResetSelectedProvince();
+        
+        tc.ShowDiscontentTradeRoutes();
 
         if (provincesLeftForInteraction <= 0) {
-
-            cc.provincesLeft.text = "Wait for next turn";
+            
+            cc.canUpdate = false;
+            cc.provincesLeft.text = "You've made your decisions, now click on the turn button";
+            cc.selectedProvinceTextObject.text = "";
+            cc.statusText.text = "";
 
         }
 
@@ -134,6 +167,12 @@ public class GameManager : MonoBehaviour {
 
         this.province = p;
 
+    }
+    
+    public void ExitTutorialScreen() {
+        
+        tc.ShowDiscontentTradeRoutes();
+        
     }
 
 }

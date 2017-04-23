@@ -69,7 +69,6 @@ public class ProvinceController : MonoBehaviour {
         if (cc.hasSelectedProvince || !cc.canUpdate || isExecutingAction)
             return;
 
-        Debug.Log(">> Hovering over " + province.name);
         Highlight(true, 0.2f);
 
         cc.SetCurrentSelectedProvince(province, false);
@@ -84,7 +83,6 @@ public class ProvinceController : MonoBehaviour {
         if (cc.hasSelectedProvince || !cc.canUpdate || isExecutingAction)
             return;
 
-        Debug.Log("<< Finish hovering " + province.name);
         Highlight(false, 0.2f);
 
         cc.ResetSelectedProvince();
