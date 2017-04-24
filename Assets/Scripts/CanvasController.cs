@@ -154,10 +154,10 @@ public class CanvasController : MonoBehaviour {
 
         StopAllCoroutines();
 
-        HideSelectionPanel();
-        HideInformationPanel();
-
         if (hasSelectedProvince) {
+
+            HideSelectionPanel();
+            HideInformationPanel();
 
             if (selectedProvinceGameObject) {
 
@@ -191,7 +191,7 @@ public class CanvasController : MonoBehaviour {
 
         selectedProvinceTextObject.fontSize = 60;
         selectedProvinceTextObject.text = originalText;
-        
+
         statusText.text = "";
 
     }
@@ -204,6 +204,8 @@ public class CanvasController : MonoBehaviour {
         canUpdate = true;
 
         ShowProvinceInformation(currentProvince);
+
+        tc.ShowTradeRoutes();
 
         ResetEventSystem();
 
@@ -219,7 +221,7 @@ public class CanvasController : MonoBehaviour {
         StopAllCoroutines();
 
         selectedProvinceTextObject.text = currentProvince.name;
-        
+
         switch (currentProvince.status) {
             case Status.Happy:
                 statusText.text = "Citizens are happy";
@@ -240,6 +242,24 @@ public class CanvasController : MonoBehaviour {
     }
 
     public void HideSelectionPanel() {
+
+        if (!showingCitadel) {
+
+            tc.HideTradeRoutes();
+
+            if (firstMove) {
+
+                tc.ShowDiscontentTradeRoutes();
+
+            } else {
+
+                tc.ShowTradeRoutes();
+
+            }
+
+        } else {
+            showingCitadel = false;
+        }
 
         selectionCG.DOFade(0, 0.1f);
         selectionCG.blocksRaycasts = false;
@@ -281,7 +301,7 @@ public class CanvasController : MonoBehaviour {
                 break;
 
         }
-        
+
         switch (currentProvince.inquiry) {
 
             case Trade.Crops:
@@ -306,7 +326,7 @@ public class CanvasController : MonoBehaviour {
                 break;
 
         }
-        
+
         informationCG.DOFade(1, 0.5f);
 
         ResetEventSystem();
@@ -336,7 +356,7 @@ public class CanvasController : MonoBehaviour {
     public void DisplayHelpPanel() {
 
         Debug.Log("Help Panel");
-        
+
         StopAllCoroutines();
 
         showingSelection = showingInformation = showingAbout = showingCitadel = false;
@@ -373,6 +393,8 @@ public class CanvasController : MonoBehaviour {
 
         }
 
+        tc.HideTradeRoutes();
+
         canUpdate = false;
         helpButton.SetActive(false);
 
@@ -383,18 +405,31 @@ public class CanvasController : MonoBehaviour {
         helpCG.blocksRaycasts = true;
 
     }
-    
+
     public void HideHelpPanel() {
 
         canUpdate = true;
         helpButton.SetActive(true);
 
         if (!selectedProvinceGameObject) {
+
             selectedProvinceTextObject.fontSize = 60;
             selectedProvinceTextObject.text = originalText;
+
+            if (firstMove) {
+
+                tc.ShowDiscontentTradeRoutes();
+
+            } else {
+
+                tc.ShowTradeRoutes();
+
+            }
+
         } else {
 
             ResetPanels();
+            tc.ShowTradeRoutes();
 
         }
 
@@ -412,6 +447,8 @@ public class CanvasController : MonoBehaviour {
         HideSelectionPanel();
         HideInformationPanel();
 
+        tc.HideTradeRoutes();
+
         selectedProvinceTextObject.text = "";
         statusText.text = "";
         aboutText.text = currentProvince.gameObject.GetComponent<ProvinceController>().aboutText.text;
@@ -424,8 +461,6 @@ public class CanvasController : MonoBehaviour {
     public void HideAboutPanel() {
 
         canUpdate = true;
-
-        selectionCG.blocksRaycasts = true;
 
         aboutCG.DOFade(0, 0);
         aboutCG.blocksRaycasts = false;
@@ -444,8 +479,10 @@ public class CanvasController : MonoBehaviour {
 
         canUpdate = false;
 
-        HideSelectionPanel();
-        HideInformationPanel();
+        showingCitadel = true;
+
+        // HideSelectionPanel();
+        // HideInformationPanel();
 
         EnableCitadelOption(productionButton);
         EnableCitadelOption(inquiryButton);
@@ -495,7 +532,7 @@ public class CanvasController : MonoBehaviour {
                     DisableCitadelOption(productionButton);
                     DisableCitadelOption(inquiryButton);
 
-                    stringStatus = "Plan diplomatic solutions to avoid revolts";
+                    stringStatus = "Scheme a subtle solution to avoid a coup";
                     productionButtonText.text = currentProvince.production.ToString() + " producers are striking";
                     inquiryButtonText.text = "The major is not in a position to arrange trades";
                 }
@@ -513,6 +550,8 @@ public class CanvasController : MonoBehaviour {
     public void HideCitadelPanel() {
 
         canUpdate = true;
+
+        tc.ShowTradeRoutes();
 
         citadelCG.DOFade(0, 0);
         citadelCG.blocksRaycasts = false;
@@ -591,12 +630,12 @@ public class CanvasController : MonoBehaviour {
         showingAbout = false;
 
         if (citadelCG.alpha == 0 && showingCitadel) {
-            
+
             Debug.Log("Showing Citadel");
             DisplayCitadelPanel();
-            
+
             ShowProvinceInformation(currentProvince);
-            
+
         }
         showingCitadel = false;
 
@@ -615,9 +654,9 @@ public class CanvasController : MonoBehaviour {
         button.DOFade(0.5f, 0);
 
     }
-    
+
     public void ShowProvinceInformation(Province p) {
-        
+
         StopAllCoroutines();
         StartCoroutine(AnimateText(p.name, selectedProvinceTextObject, 80));
 
@@ -635,7 +674,7 @@ public class CanvasController : MonoBehaviour {
                 StartCoroutine(AnimateText("Citizens are angry", statusText, 40));
                 break;
         }
-        
+
     }
 
 }

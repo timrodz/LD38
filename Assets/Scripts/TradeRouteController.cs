@@ -78,7 +78,7 @@ public class TradeRouteController : MonoBehaviour {
 
         // origin.Connect(shortestPath);
 
-        tradeRoutes.Remove(shortestPath);
+        // tradeRoutes.Remove(shortestPath);
 
         return (shortestPath.GetComponentInParent<ProvinceController>().province);
 
@@ -120,11 +120,15 @@ public class TradeRouteController : MonoBehaviour {
     }
 
     public void ShowDiscontentTradeRoutes() {
+        
+        HideTradeRoutes();
 
         foreach(TradeRoute t in tradeRoutes) {
 
             if (t.province.status != Status.Happy && t.province.status != Status.Normal) {
-
+                
+                Debug.Log(t.province.name);
+                
                 switch (t.province.status) {
 
                     case Status.Sad:

@@ -13,3 +13,10 @@ public enum Trade {
 	Coffee
 	
 }
+
+public enum Action {
+	Nothing,
+	Production,
+	Inquiry,
+	Diplomacy
+}

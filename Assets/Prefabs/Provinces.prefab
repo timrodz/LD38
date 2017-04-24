@@ -2025,6 +2025,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad0e70051e455754ca75a7696db2674b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sadSprite: {fileID: 21300000, guid: 85e606c31e6dd7843bc51e51db66c410, type: 3}
+  angrySprite: {fileID: 21300000, guid: 85e606c31e6dd7843bc51e51db66c410, type: 3}
   bocasDelToro: {fileID: 114221976017055084}
   NgabeBugle: {fileID: 114271672446892108}
   Chiriqui: {fileID: 114267252527237756}
@@ -2056,9 +2058,14 @@ MonoBehaviour:
     population: 0
     monthlyIncome: 0
     production: 0
-    need: 0
+    inquiry: 0
     status: 0
     happiness: 0
+    tradeRoute: {fileID: 0}
+    action: 0
+  spriteRenderer: {fileID: 0}
+  inquirySprite: {fileID: 0}
+  originalSprite: {fileID: 0}
 --- !u!114 &114107783832435610
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2077,9 +2084,14 @@ MonoBehaviour:
     population: 0
     monthlyIncome: 0
     production: 0
-    need: 0
+    inquiry: 0
     status: 0
     happiness: 0
+    tradeRoute: {fileID: 0}
+    action: 0
+  spriteRenderer: {fileID: 0}
+  inquirySprite: {fileID: 0}
+  originalSprite: {fileID: 0}
 --- !u!114 &114121233988033808
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2138,10 +2150,13 @@ MonoBehaviour:
     population: 25000
     monthlyIncome: 7750
     production: 2
-    need: 0
+    inquiry: 0
     status: 0
     happiness: 0
+    tradeRoute: {fileID: 0}
+    action: 0
   aboutText: {fileID: 0}
+  isExecutingAction: 0
 --- !u!114 &114193441458502826
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2160,10 +2175,13 @@ MonoBehaviour:
     population: 20000
     monthlyIncome: 7000
     production: 3
-    need: 0
+    inquiry: 0
     status: 0
     happiness: 0
+    tradeRoute: {fileID: 0}
+    action: 0
   aboutText: {fileID: 114208624262355866}
+  isExecutingAction: 0
 --- !u!114 &114207867176923760
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2182,10 +2200,13 @@ MonoBehaviour:
     population: 45000
     monthlyIncome: 9000
     production: 4
-    need: 0
+    inquiry: 0
     status: 0
     happiness: 0
+    tradeRoute: {fileID: 0}
+    action: 0
   aboutText: {fileID: 114121233988033808}
+  isExecutingAction: 0
 --- !u!114 &114208624262355866
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2245,9 +2266,14 @@ MonoBehaviour:
     population: 0
     monthlyIncome: 0
     production: 0
-    need: 0
+    inquiry: 0
     status: 0
     happiness: 0
+    tradeRoute: {fileID: 0}
+    action: 0
+  spriteRenderer: {fileID: 0}
+  inquirySprite: {fileID: 0}
+  originalSprite: {fileID: 0}
 --- !u!114 &114262786608233120
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2307,9 +2333,14 @@ MonoBehaviour:
     population: 0
     monthlyIncome: 0
     production: 0
-    need: 0
+    inquiry: 0
     status: 0
     happiness: 0
+    tradeRoute: {fileID: 0}
+    action: 0
+  spriteRenderer: {fileID: 0}
+  inquirySprite: {fileID: 0}
+  originalSprite: {fileID: 0}
 --- !u!114 &114271672446892108
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2328,9 +2359,14 @@ MonoBehaviour:
     population: 0
     monthlyIncome: 0
     production: 0
-    need: 0
+    inquiry: 0
     status: 0
     happiness: 0
+    tradeRoute: {fileID: 0}
+    action: 0
+  spriteRenderer: {fileID: 0}
+  inquirySprite: {fileID: 0}
+  originalSprite: {fileID: 0}
 --- !u!114 &114307243760772966
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2392,9 +2428,14 @@ MonoBehaviour:
     population: 0
     monthlyIncome: 0
     production: 0
-    need: 0
+    inquiry: 0
     status: 0
     happiness: 0
+    tradeRoute: {fileID: 0}
+    action: 0
+  spriteRenderer: {fileID: 0}
+  inquirySprite: {fileID: 0}
+  originalSprite: {fileID: 0}
 --- !u!114 &114326601765168250
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2413,10 +2454,13 @@ MonoBehaviour:
     population: 28000
     monthlyIncome: 5000
     production: 3
-    need: 0
+    inquiry: 0
     status: 0
     happiness: 0
+    tradeRoute: {fileID: 0}
+    action: 0
   aboutText: {fileID: 0}
+  isExecutingAction: 0
 --- !u!114 &114391887343418850
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2474,10 +2518,13 @@ MonoBehaviour:
     population: 26000
     monthlyIncome: 7000
     production: 0
-    need: 0
+    inquiry: 4
     status: 0
     happiness: 0
+    tradeRoute: {fileID: 0}
+    action: 0
   aboutText: {fileID: 0}
+  isExecutingAction: 0
 --- !u!114 &114408753342006284
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2496,10 +2543,13 @@ MonoBehaviour:
     population: 9500
     monthlyIncome: 9250
     production: 1
-    need: 0
+    inquiry: 0
     status: 0
     happiness: 0
+    tradeRoute: {fileID: 0}
+    action: 0
   aboutText: {fileID: 0}
+  isExecutingAction: 0
 --- !u!114 &114430216412700306
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2598,9 +2648,14 @@ MonoBehaviour:
     population: 0
     monthlyIncome: 0
     production: 0
-    need: 0
+    inquiry: 0
     status: 0
     happiness: 0
+    tradeRoute: {fileID: 0}
+    action: 0
+  spriteRenderer: {fileID: 0}
+  inquirySprite: {fileID: 0}
+  originalSprite: {fileID: 0}
 --- !u!114 &114705301374215906
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2619,10 +2674,13 @@ MonoBehaviour:
     population: 1100
     monthlyIncome: 4000
     production: 2
-    need: 0
+    inquiry: 0
     status: 0
     happiness: 0
+    tradeRoute: {fileID: 0}
+    action: 0
   aboutText: {fileID: 0}
+  isExecutingAction: 0
 --- !u!114 &114737847350201884
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2641,9 +2699,14 @@ MonoBehaviour:
     population: 0
     monthlyIncome: 0
     production: 0
-    need: 0
+    inquiry: 0
     status: 0
     happiness: 0
+    tradeRoute: {fileID: 0}
+    action: 0
+  spriteRenderer: {fileID: 0}
+  inquirySprite: {fileID: 0}
+  originalSprite: {fileID: 0}
 --- !u!114 &114785538529682946
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2662,10 +2725,13 @@ MonoBehaviour:
     population: 155000
     monthlyIncome: 10000
     production: 1
-    need: 0
+    inquiry: 0
     status: 0
     happiness: 0
+    tradeRoute: {fileID: 0}
+    action: 0
   aboutText: {fileID: 0}
+  isExecutingAction: 0
 --- !u!114 &114786030277618870
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2804,9 +2870,14 @@ MonoBehaviour:
     population: 0
     monthlyIncome: 0
     production: 0
-    need: 0
+    inquiry: 0
     status: 0
     happiness: 0
+    tradeRoute: {fileID: 0}
+    action: 0
+  spriteRenderer: {fileID: 0}
+  inquirySprite: {fileID: 0}
+  originalSprite: {fileID: 0}
 --- !u!114 &114845269165793690
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2825,9 +2896,14 @@ MonoBehaviour:
     population: 0
     monthlyIncome: 0
     production: 0
-    need: 0
+    inquiry: 0
     status: 0
     happiness: 0
+    tradeRoute: {fileID: 0}
+    action: 0
+  spriteRenderer: {fileID: 0}
+  inquirySprite: {fileID: 0}
+  originalSprite: {fileID: 0}
 --- !u!114 &114861275146330978
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2846,9 +2922,14 @@ MonoBehaviour:
     population: 0
     monthlyIncome: 0
     production: 0
-    need: 0
+    inquiry: 0
     status: 0
     happiness: 0
+    tradeRoute: {fileID: 0}
+    action: 0
+  spriteRenderer: {fileID: 0}
+  inquirySprite: {fileID: 0}
+  originalSprite: {fileID: 0}
 --- !u!114 &114882112506434620
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2867,10 +2948,13 @@ MonoBehaviour:
     population: 5500
     monthlyIncome: 6500
     production: 4
-    need: 0
+    inquiry: 0
     status: 0
     happiness: 0
+    tradeRoute: {fileID: 0}
+    action: 0
   aboutText: {fileID: 0}
+  isExecutingAction: 0
 --- !u!114 &114892718861484852
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2889,9 +2973,14 @@ MonoBehaviour:
     population: 0
     monthlyIncome: 0
     production: 0
-    need: 0
+    inquiry: 0
     status: 0
     happiness: 0
+    tradeRoute: {fileID: 0}
+    action: 0
+  spriteRenderer: {fileID: 0}
+  inquirySprite: {fileID: 0}
+  originalSprite: {fileID: 0}
 --- !u!114 &114906904318924480
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2910,10 +2999,13 @@ MonoBehaviour:
     population: 10000
     monthlyIncome: 9500
     production: 0
-    need: 1
+    inquiry: 2
     status: 0
     happiness: 0
+    tradeRoute: {fileID: 0}
+    action: 0
   aboutText: {fileID: 0}
+  isExecutingAction: 0
 --- !u!114 &114947501593998462
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2973,10 +3065,13 @@ MonoBehaviour:
     population: 15000
     monthlyIncome: 12250
     production: 3
-    need: 0
+    inquiry: 0
     status: 0
     happiness: 0
+    tradeRoute: {fileID: 0}
+    action: 0
   aboutText: {fileID: 114824417885116606}
+  isExecutingAction: 0
 --- !u!114 &114983760942911692
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3034,10 +3129,13 @@ MonoBehaviour:
     population: 4350
     monthlyIncome: 10000
     production: 3
-    need: 0
+    inquiry: 0
     status: 0
     happiness: 0
+    tradeRoute: {fileID: 0}
+    action: 0
   aboutText: {fileID: 0}
+  isExecutingAction: 0
 --- !u!120 &120016531477606638
 LineRenderer:
   m_ObjectHideFlags: 1
@@ -3071,7 +3169,7 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 1}
+  - {x: 0, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 2
     widthMultiplier: 1
@@ -3169,7 +3267,7 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 1}
+  - {x: 0, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 2
     widthMultiplier: 1
@@ -3267,7 +3365,7 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 1}
+  - {x: 0, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 2
     widthMultiplier: 1
@@ -3331,7 +3429,7 @@ LineRenderer:
     numCapVertices: 0
     alignment: 0
     textureMode: 0
-  m_UseWorldSpace: 1
+  m_UseWorldSpace: 0
 --- !u!120 &120379141141604770
 LineRenderer:
   m_ObjectHideFlags: 1
@@ -3365,7 +3463,7 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 1}
+  - {x: 0, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 2
     widthMultiplier: 1
@@ -3429,7 +3527,7 @@ LineRenderer:
     numCapVertices: 0
     alignment: 0
     textureMode: 0
-  m_UseWorldSpace: 1
+  m_UseWorldSpace: 0
 --- !u!120 &120411297212360298
 LineRenderer:
   m_ObjectHideFlags: 1
@@ -3463,7 +3561,7 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 1}
+  - {x: 0, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 2
     widthMultiplier: 1
@@ -3527,7 +3625,7 @@ LineRenderer:
     numCapVertices: 0
     alignment: 0
     textureMode: 0
-  m_UseWorldSpace: 1
+  m_UseWorldSpace: 0
 --- !u!120 &120442447268838824
 LineRenderer:
   m_ObjectHideFlags: 1
@@ -3561,7 +3659,7 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 1}
+  - {x: 0, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 2
     widthMultiplier: 1
@@ -3635,7 +3733,7 @@ LineRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_MotionVectors: 0
+  m_MotionVectors: 2
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
@@ -3659,7 +3757,7 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 1}
+  - {x: 0, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 2
     widthMultiplier: 1
@@ -3757,7 +3855,7 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 1}
+  - {x: 0, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 2
     widthMultiplier: 1
@@ -3855,7 +3953,7 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 1}
+  - {x: 0, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 2
     widthMultiplier: 1
@@ -3953,7 +4051,7 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 1}
+  - {x: 0, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 2
     widthMultiplier: 1
@@ -4017,7 +4115,7 @@ LineRenderer:
     numCapVertices: 0
     alignment: 0
     textureMode: 0
-  m_UseWorldSpace: 1
+  m_UseWorldSpace: 0
 --- !u!120 &120825816170271144
 LineRenderer:
   m_ObjectHideFlags: 1
@@ -4051,7 +4149,7 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 1}
+  - {x: 0, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 2
     widthMultiplier: 1
@@ -4115,7 +4213,7 @@ LineRenderer:
     numCapVertices: 0
     alignment: 0
     textureMode: 0
-  m_UseWorldSpace: 1
+  m_UseWorldSpace: 0
 --- !u!120 &120840624173425578
 LineRenderer:
   m_ObjectHideFlags: 1
@@ -4149,7 +4247,7 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 1}
+  - {x: 0, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 2
     widthMultiplier: 1
@@ -4213,7 +4311,7 @@ LineRenderer:
     numCapVertices: 0
     alignment: 0
     textureMode: 0
-  m_UseWorldSpace: 1
+  m_UseWorldSpace: 0
 --- !u!212 &212049106189131162
 SpriteRenderer:
   m_ObjectHideFlags: 1

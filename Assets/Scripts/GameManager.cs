@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour {
     /// any of the Update methods is called the first time.
     /// </summary>
     void Start() {
-        
+
         ProvinceController[] provinceArray = FindObjectsOfType<ProvinceController>();
 
         for (int i = 0; i < provinceArray.Length; i++) {
@@ -41,27 +41,66 @@ public class GameManager : MonoBehaviour {
             provincesList.Add(provinceArray[i]);
 
         }
-
-        DetermineProvinceFate();
         
         int randomIndex = Random.Range(0, provincesList.Count);
-        
-        provincesList[randomIndex].province.status = Status.Sad;
 
+        provincesList[randomIndex].province.SetStatus(Status.Angry);
+        
+        DetermineProvinceFate();
+        
     }
 
     public void DetermineProvinceFate() {
-        
-        foreach (ProvinceController p in provincesList) {
-            
+
+        foreach(ProvinceController p in provincesList) {
+
             p.isExecutingAction = false;
-            
+
+            // Determine the new moods
+            switch (p.province.status) {
+
+                case Status.Happy:
+                    {
+                        if (Random.Range(0, 2) == 0) {
+
+                            p.province.SetStatus(Status.Normal);
+                            Debug.Log(p.province.name + " is now in a normal mood");
+
+                        }
+                    }
+                    break;
+                case Status.Normal:
+                    if (Random.Range(0, 3) == 0) {
+
+                        p.province.SetStatus(Status.Sad);
+                        Debug.Log(p.province.name + " is now in a sad mood");
+
+                    }
+                    break;
+                case Status.Sad:
+                    {
+                        if (Random.Range(0, 1) == 0) {
+
+                            p.province.SetStatus(Status.Angry);
+
+                        }
+
+                    }
+                    break;
+                case Status.Angry:
+                    {
+
+                    }
+                    break;
+
+            }
+
         }
 
     }
-    
+
     public void IncrementTurn() {
-        
+
         cc.nextTurnButton.SetActive(false);
 
         foreach(ProvinceController p in interactedProvinceList) {
@@ -69,20 +108,24 @@ public class GameManager : MonoBehaviour {
             p.Highlight(false, 0.2f);
 
         }
-        
+
         DetermineProvinceFate();
+
+        provincesLeftForInteraction = 3;
 
         cc.summary.text = "";
         cc.canUpdate = true;
+        cc.DisplayGameManagerPanel();
 
         interactedProvinceList.Clear();
 
         tc.ResetTradeRoutes();
-        
+        tc.ShowTradeRoutes();
+
         turn++;
 
     }
-    
+
     public void ReduceProvinceAvailable() {
 
         Debug.Log(">>> Province " + province.name + " called action");
