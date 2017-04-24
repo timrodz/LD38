@@ -41,13 +41,15 @@ public class GameManager : MonoBehaviour {
             provincesList.Add(provinceArray[i]);
 
         }
-        
+
         int randomIndex = Random.Range(0, provincesList.Count);
 
         provincesList[randomIndex].province.SetStatus(Status.Angry);
-        
+
         DetermineProvinceFate();
         
+        cc.summaryPanelText.text = "";
+
     }
 
     public void DetermineProvinceFate() {
@@ -56,46 +58,37 @@ public class GameManager : MonoBehaviour {
 
             p.isExecutingAction = false;
 
-            // Determine the new moods
-            switch (p.province.status) {
+            p.province.Update();
 
-                case Status.Happy:
-                    {
-                        if (Random.Range(0, 2) == 0) {
+            string provinceSummary = "- " + p.province.name;
+            
+            // Update the summary if the item is not in the interacted list
+            if (interactedProvinceList.IndexOf(p) == -1) {
 
-                            p.province.SetStatus(Status.Normal);
-                            Debug.Log(p.province.name + " is now in a normal mood");
+                switch (p.province.action) {
 
-                        }
-                    }
-                    break;
-                case Status.Normal:
-                    if (Random.Range(0, 3) == 0) {
+                    case Action.Nothing:
+                        provinceSummary += " did not arrange any plans for next season";
+                        break;
+                    case Action.Production:
+                        provinceSummary += " will produce " + p.province.production.ToString().ToLower() + " for the upcoming season";
+                        break;
+                    case Action.Inquiry:
+                        provinceSummary += " will inquire " + p.province.production.ToString().ToLower() + " for the upcoming season";
+                        break;
+                    case Action.Diplomacy:
+                        provinceSummary += " will produce " + p.province.production.ToString().ToLower() + " for the upcoming season";
+                        break;
 
-                        p.province.SetStatus(Status.Sad);
-                        Debug.Log(p.province.name + " is now in a sad mood");
+                }
 
-                    }
-                    break;
-                case Status.Sad:
-                    {
-                        if (Random.Range(0, 1) == 0) {
-
-                            p.province.SetStatus(Status.Angry);
-
-                        }
-
-                    }
-                    break;
-                case Status.Angry:
-                    {
-
-                    }
-                    break;
+                cc.summaryPanelText.text += provinceSummary + "\n\n";
 
             }
 
         }
+        
+        tc.UpdateSprites();
 
     }
 
@@ -113,17 +106,27 @@ public class GameManager : MonoBehaviour {
 
         provincesLeftForInteraction = 3;
 
-        cc.summary.text = "";
-        cc.canUpdate = true;
-        cc.DisplayGameManagerPanel();
+        cc.gameManagerSummaryText.text = "";
+        
+        cc.DisplaySummaryPanel();
 
         interactedProvinceList.Clear();
 
-        tc.ResetTradeRoutes();
-        tc.ShowTradeRoutes();
-
         turn++;
 
+    }
+    
+    public void ResumeGame() {
+        
+        cc.DisplayGameManagerPanel();
+        
+        cc.canUpdate = true;
+        
+        tc.ResetTradeRoutes();
+        tc.ShowTradeRoutes();
+        
+        cc.summaryPanelText.text = "";
+        
     }
 
     public void ReduceProvinceAvailable() {
@@ -147,10 +150,8 @@ public class GameManager : MonoBehaviour {
         cc.HideCitadelPanel();
         cc.ResetSelectedProvince();
 
-        tc.ShowDiscontentTradeRoutes();
-
         if (provincesLeftForInteraction <= 0) {
-
+            
             cc.canUpdate = false;
             cc.provincesLeft.text = "Your choices will have outcomes on the next turn";
             cc.selectedProvinceTextObject.text = "";
@@ -175,9 +176,33 @@ public class GameManager : MonoBehaviour {
 
         Debug.Log("Producing resources");
 
-        string text = "- " + province.name + " will produce " + province.production.ToString().ToLower() + "\n";
+        string text = "- " + province.name;
+        
+        switch (province.production) {  
+                
+            case Trade.Crops:
+            text += " will cultivate and harvest ";
+            break;
+            case Trade.Cattle:
+            text += " will raise and develop ";
+            break;
+            case Trade.Pottery:
+            text += " will craft fine ";
+            break;
+            case Trade.Seafood:
+            text += " will fish for available ";
+            break;
+            case Trade.Coffee:
+            text += " will produce ";
+            break;
+            
+        }
+        
+        text += province.production.ToString().ToLower() + "\n";
 
-        cc.summary.text += text;
+        cc.summaryPanelText.text += text + "\n";
+
+        cc.gameManagerSummaryText.text += text;
 
         ReduceProvinceAvailable();
 
@@ -195,9 +220,11 @@ public class GameManager : MonoBehaviour {
 
         Province closestProvince = tc.CalculateShortestTradeRoute(selectedObjectTradeRoute);
 
-        string text = "- " + province.name + " will buy " + province.inquiry.ToString().ToLower() + " from " + closestProvince.name + "\n";
+        string text = "- " + province.name + " will acquire " + province.inquiry.ToString().ToLower() + " from " + closestProvince.name + "\n";
 
-        cc.summary.text += text;
+        cc.summaryPanelText.text += text + "\n";
+
+        cc.gameManagerSummaryText.text += text;
 
         ReduceProvinceAvailable();
 
@@ -214,9 +241,11 @@ public class GameManager : MonoBehaviour {
 
         Debug.Log("Resolving mood");
 
-        string text = "- " + province.name + " will call for diplomatic actions\n";
+        string text = "- " + province.name + " will " + cc.statusButtonText.text.ToLower() + "\n";
 
-        cc.summary.text += text;
+        cc.summaryPanelText.text += text + "\n";
+
+        cc.gameManagerSummaryText.text += text;
 
         ReduceProvinceAvailable();
 

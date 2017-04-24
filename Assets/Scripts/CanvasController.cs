@@ -61,8 +61,13 @@ public class CanvasController : MonoBehaviour {
     public GameObject gameManagerPanel;
     private CanvasGroup gameManagerCG;
     public Text provincesLeft;
-    public Text summary;
+    public Text gameManagerSummaryText;
     public GameObject nextTurnButton;
+
+    [HeaderAttribute("Summary Panel")]
+    public GameObject summaryPanel;
+    private CanvasGroup summaryCG;
+    public Text summaryPanelText;
 
     [HeaderAttribute("Production Images")]
     public Sprite cropsImg;
@@ -89,6 +94,7 @@ public class CanvasController : MonoBehaviour {
         aboutCG = aboutPanel.GetComponent<CanvasGroup>();
         citadelCG = citadelPanel.GetComponent<CanvasGroup>();
         gameManagerCG = gameManagerPanel.GetComponent<CanvasGroup>();
+        summaryCG = summaryPanel.GetComponent<CanvasGroup>();
 
         gm = FindObjectOfType<GameManager>();
         tc = FindObjectOfType<TradeRouteController>();
@@ -108,12 +114,14 @@ public class CanvasController : MonoBehaviour {
         citadelPanel.SetActive(true);
         gameManagerPanel.SetActive(true);
         nextTurnButton.SetActive(false);
+        summaryPanel.SetActive(true);
 
         HideSelectionPanel();
         HideInformationPanel();
         HideAboutPanel();
         HideCitadelPanel();
         HideGameManagerPanel();
+        HideSummaryPanel();
 
         helpButton.SetActive(false);
 
@@ -172,11 +180,10 @@ public class CanvasController : MonoBehaviour {
                 selectedProvinceGameObject = null;
 
                 provinceHolder.DOMoveY(provinceHolder.position.y + 0.5f, 0.5f).SetEase(Ease.OutSine);
-                // tc.HideTradeRoutes();
 
                 if (!firstMove) {
-                    Debug.Log("Displaying Citadel");
                     DisplayGameManagerPanel();
+                    tc.ShowTradeRoutes();
                 }
 
             }
@@ -224,16 +231,16 @@ public class CanvasController : MonoBehaviour {
 
         switch (currentProvince.status) {
             case Status.Happy:
-                statusText.text = "Citizens are happy";
+                statusText.text = "citizens are happy";
                 break;
             case Status.Normal:
-                statusText.text = "Citizens are bored";
+                statusText.text = "citizens are bored";
                 break;
             case Status.Sad:
-                statusText.text = "Citizens are sad";
+                statusText.text = "citizens are sad";
                 break;
             case Status.Angry:
-                statusText.text = "Citizens are angry";
+                statusText.text = "citizens are angry";
                 break;
         }
 
@@ -571,6 +578,22 @@ public class CanvasController : MonoBehaviour {
         gameManagerCG.DOFade(0, 0);
 
     }
+    
+    public void DisplaySummaryPanel() {
+
+        summaryCG.DOFade(1, 0.5f);
+        summaryCG.blocksRaycasts = true;
+
+        // foreach (Province p in)
+
+    }
+
+    public void HideSummaryPanel() {
+
+        summaryCG.DOFade(0, 0);
+        summaryCG.blocksRaycasts = false;
+
+    }
 
     // ------------------------------------------------------------------------------------------
 
@@ -662,16 +685,16 @@ public class CanvasController : MonoBehaviour {
 
         switch (p.status) {
             case Status.Happy:
-                StartCoroutine(AnimateText("Citizens are happy", statusText, 40));
+                StartCoroutine(AnimateText("citizens are happy", statusText, 40));
                 break;
             case Status.Normal:
-                StartCoroutine(AnimateText("Citizens are bored", statusText, 40));
+                StartCoroutine(AnimateText("citizens are bored", statusText, 40));
                 break;
             case Status.Sad:
-                StartCoroutine(AnimateText("Citizens are sad", statusText, 40));
+                StartCoroutine(AnimateText("citizens are sad", statusText, 40));
                 break;
             case Status.Angry:
-                StartCoroutine(AnimateText("Citizens are angry", statusText, 40));
+                StartCoroutine(AnimateText("citizens are angry", statusText, 40));
                 break;
         }
 

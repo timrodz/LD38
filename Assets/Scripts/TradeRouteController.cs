@@ -27,6 +27,8 @@ public class TradeRouteController : MonoBehaviour {
     private List<TradeRoute> needList = new List<TradeRoute>();
     private List<TradeRoute> productionList = new List<TradeRoute>();
 
+    private bool firstTimeShowingDiscontentTradeRoutes = true;
+
     // Use this for initialization
     void Start() {
 
@@ -87,60 +89,36 @@ public class TradeRouteController : MonoBehaviour {
     public void ShowTradeRoutes() {
 
         foreach(TradeRoute t in tradeRoutes) {
-            
-            switch (t.province.status) {
 
-                case Status.Happy:
-                    {
-                        t.ResetSprite();
-                    }
-                    break;
-                case Status.Normal:
-                    {
-                        t.ResetSprite();
-                    }
-                    break;
-                case Status.Sad:
-                    {
-                        Debug.Log("Sad");
-                        t.SetSprite(sadSprite);
-                    }
-                    break;
-                case Status.Angry:
-                    {
-                        Debug.Log("Angry");
-                        t.SetSprite(angrySprite);
-                    }
-                    break;
-
-            }
             t.transform.DOScale(1, 0.5f);
+
         }
 
     }
 
     public void ShowDiscontentTradeRoutes() {
-        
+
         HideTradeRoutes();
 
         foreach(TradeRoute t in tradeRoutes) {
 
             if (t.province.status != Status.Happy && t.province.status != Status.Normal) {
-                
-                Debug.Log(t.province.name);
-                
-                switch (t.province.status) {
 
-                    case Status.Sad:
-                        t.SetSprite(sadSprite);
-                        break;
-                    case Status.Angry:
-                        t.SetSprite(angrySprite);
-                        break;
+                if (firstTimeShowingDiscontentTradeRoutes) {
+                    
+                    Vector3 pos = t.transform.position;
+                    t.transform.position = Vector3.zero;
+                    t.transform.DOScale(2, 0.5f);
+                    t.transform.DOMove(pos, 1).SetDelay(1);
+                    t.transform.DOScale(1, 1).SetDelay(1);
+                    firstTimeShowingDiscontentTradeRoutes = false;
 
+                } else {
+                    
+                    t.transform.DOScale(2, 0.5f);
+                    t.transform.DOScale(1, 0.5f).SetDelay(0.5f);
+                    
                 }
-
-                t.transform.DOScale(1, 0.5f);
 
             }
 
@@ -179,6 +157,29 @@ public class TradeRouteController : MonoBehaviour {
 
         foreach(TradeRoute t in tradeRoutes) {
             t.transform.localScale = Vector3.zero;
+        }
+
+    }
+
+    public void UpdateSprites() {
+
+        foreach(TradeRoute t in tradeRoutes) {
+            switch (t.province.status) {
+
+                case Status.Happy:
+                    t.ResetSprite();
+                    break;
+                case Status.Normal:
+                    t.ResetSprite();
+                    break;
+                case Status.Sad:
+                    t.SetSprite(sadSprite);
+                    break;
+                case Status.Angry:
+                    t.SetSprite(angrySprite);
+                    break;
+
+            }
         }
 
     }
