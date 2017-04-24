@@ -265,9 +265,9 @@ public class CanvasController : MonoBehaviour {
             }
 
         } else {
-            
+
             showingCitadel = false;
-            
+
         }
 
         selectionCG.DOFade(0, 0.1f);
@@ -284,7 +284,7 @@ public class CanvasController : MonoBehaviour {
 
         Population.text = "Population: " + currentProvince.population.ToString() + " habitants";
 
-        Income.text = "Resources for sale: " + currentProvince.income.ToString();
+        Income.text = "Resources for sale: " + currentProvince.stocks.ToString();
 
         switch (currentProvince.production) {
 
@@ -498,10 +498,18 @@ public class CanvasController : MonoBehaviour {
 
         inquiryButton.raycastTarget = true;
 
-        if (!tc.FoundProvincesThatProduceNeed(currentProvince.inquiry)) {
+        int provincesThatProduceNeed = 0;
+        bool foundProvincesThatProduceNeed = tc.FoundProvincesThatProduceNeed(currentProvince.inquiry, out provincesThatProduceNeed);
+
+        if (!foundProvincesThatProduceNeed) {
 
             DisableCitadelOption(inquiryButton);
-            inquiryButtonText.text = "Provinces that produce " + currentProvince.inquiry.ToString().ToLower() + " are busy";
+
+            if (provincesThatProduceNeed > 0) {
+                inquiryButtonText.text = "Provinces that produce " + currentProvince.inquiry.ToString().ToLower() + " are unavailable";
+            } else {
+                inquiryButtonText.text = "There are no provinces with stocks of " + currentProvince.inquiry.ToString().ToLower();
+            }
 
         } else {
 
@@ -577,7 +585,7 @@ public class CanvasController : MonoBehaviour {
         gameManagerCG.DOFade(0, 0);
 
     }
-    
+
     public void DisplaySummaryPanel() {
 
         summaryCG.DOFade(1, 0.5f);
@@ -595,19 +603,21 @@ public class CanvasController : MonoBehaviour {
     }
 
     // ------------------------------------------------------------------------------------------
-    
+
     public void EnableUpdate(float delay) {
         
+        StopAllCoroutines();
         StartCoroutine(ResetUpdateDelay(delay));
-        
+
     }
-    
+
     private IEnumerator ResetUpdateDelay(float delay) {
-        
+
         canUpdate = false;
         yield return new WaitForSeconds(delay);
+        Debug.Log("-----    Enabling update after " + delay + " seconds");
         canUpdate = true;
-        
+
     }
 
     public void ResetEventSystem() {
@@ -666,12 +676,9 @@ public class CanvasController : MonoBehaviour {
         showingAbout = false;
 
         if (citadelCG.alpha == 0 && showingCitadel) {
-
             Debug.Log("Showing Citadel");
             DisplayCitadelPanel();
-
             ShowProvinceInformation(currentProvince);
-
         }
         showingCitadel = false;
 

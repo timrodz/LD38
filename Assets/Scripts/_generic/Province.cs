@@ -7,7 +7,7 @@ public class Province {
     public string name;
     public string capital;
     public int population;
-    public int income = 0;
+    public int stocks = 0;
     public Trade production;
     public Trade inquiry;
     public Status status = Status.Happy;
@@ -68,14 +68,14 @@ public class Province {
 
     public void ProduceIncome() {
 
-        income++;
+        stocks++;
 
     }
 
     public void SellIncome() {
 
-        if (income > 0)
-            income--;
+        if (stocks > 0)
+            stocks--;
 
     }
 

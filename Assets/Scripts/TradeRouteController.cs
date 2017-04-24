@@ -114,8 +114,8 @@ public class TradeRouteController : MonoBehaviour {
             if (t.province.status != Status.Happy && t.province.status != Status.Normal) {
 
                 if (firstTimeShowingDiscontentTradeRoutes) {
-
-                    cc.EnableUpdate(1);
+                    
+                    cc.EnableUpdate(1.85f);
 
                     Vector3 pos = t.transform.position;
                     t.transform.position = Vector3.zero;
@@ -125,7 +125,8 @@ public class TradeRouteController : MonoBehaviour {
                     firstTimeShowingDiscontentTradeRoutes = false;
 
                 } else {
-
+                    
+                    cc.EnableUpdate(0.5f);
                     t.transform.DOScale(1.2f, 0.5f);
                     t.transform.DOScale(1, 0.5f).SetDelay(0.5f);
 
@@ -195,20 +196,22 @@ public class TradeRouteController : MonoBehaviour {
 
     }
 
-    public bool FoundProvincesThatProduceNeed(Trade trade) {
+    public bool FoundProvincesThatProduceNeed(Trade trade, out int provincesThatProduceNeed) {
 
         productionList.Clear();
 
         foreach(TradeRoute t in tradeRoutes) {
 
-            if (t.province.production == trade) {
+            if (t.province.production == trade && t.province.stocks > 0) {
 
                 productionList.Add(t);
 
             }
 
         }
-
+        
+        provincesThatProduceNeed = productionList.Count;
+        
         return (productionList.Count > 0);
 
     }
