@@ -107,8 +107,6 @@ public class TradeRouteController : MonoBehaviour {
 
     public void ShowDiscontentTradeRoutes() {
 
-        HideTradeRoutes();
-
         foreach(TradeRoute t in tradeRoutes) {
 
             if (t.province.status != Status.Happy && t.province.status != Status.Normal) {

@@ -10,7 +10,8 @@ public class GameManager : MonoBehaviour {
 
     public int turn = 0;
 
-    public int provincesLeftForInteraction = 3;
+    public int provincesPerTurn = 5;
+    [HideInInspector] public int provincesLeft;
 
     private Province province;
 
@@ -53,6 +54,10 @@ public class GameManager : MonoBehaviour {
     }
 
     public void DetermineProvinceFate() {
+        
+        cc.HideGameManagerPanel();
+        
+        provincesLeft = provincesPerTurn;
 
         foreach(ProvinceController p in provincesList) {
 
@@ -95,6 +100,7 @@ public class GameManager : MonoBehaviour {
     public void IncrementTurn() {
 
         cc.nextTurnButton.SetActive(false);
+        cc.HideSummaryPanel();
 
         foreach(ProvinceController p in interactedProvinceList) {
 
@@ -104,7 +110,7 @@ public class GameManager : MonoBehaviour {
 
         DetermineProvinceFate();
 
-        provincesLeftForInteraction = 3;
+        provincesPerTurn = 5;
 
         cc.gameManagerSummaryText.text = "";
         
@@ -145,19 +151,23 @@ public class GameManager : MonoBehaviour {
 
         tc.RemoveTradeRoute(pc.GetComponentInChildren<TradeRoute>());
 
-        provincesLeftForInteraction--;
+        provincesPerTurn--;
 
         cc.HideCitadelPanel();
         cc.ResetSelectedProvince();
-        cc.EnableUpdate(0.5f);
+        cc.canUpdate = false;
 
-        if (provincesLeftForInteraction <= 0) {
+        if (provincesPerTurn <= 0) {
             
             cc.provincesLeft.text = "Your choices will have outcomes on the next turn";
             cc.selectedProvinceTextObject.text = "";
             cc.statusText.text = "";
             cc.nextTurnButton.SetActive(true);
 
+        } else {
+            
+            cc.EnableUpdate(0.5f);
+            
         }
 
     }

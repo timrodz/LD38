@@ -49,13 +49,13 @@ public class CanvasController : MonoBehaviour {
     [HeaderAttribute("Citadel Panel")]
     public GameObject citadelPanel;
     private CanvasGroup citadelCG;
-    private bool showingCitadel = false;
     public Image productionButton;
     public Image inquiryButton;
     public Image statusButton;
     public Text productionButtonText;
     public Text inquiryButtonText;
     public Text statusButtonText;
+    private bool showingCitadel = false;
 
     [HeaderAttribute("Game Manager Panel")]
     public GameObject gameManagerPanel;
@@ -63,6 +63,7 @@ public class CanvasController : MonoBehaviour {
     public Text provincesLeft;
     public Text gameManagerSummaryText;
     public GameObject nextTurnButton;
+    private bool showingGameManager = false;
 
     [HeaderAttribute("Summary Panel")]
     public GameObject summaryPanel;
@@ -134,12 +135,12 @@ public class CanvasController : MonoBehaviour {
 
     public void SetCurrentSelectedProvince(Province p, bool hasSelectedProvince) {
 
-        ShowProvinceInformation(p);
+        currentProvince = p;
+        ShowProvinceInformation();
 
         if (hasSelectedProvince) {
 
             this.hasSelectedProvince = true;
-            currentProvince = p;
             gm.SetProvince(p);
 
             provinceHolder.DOMoveY(provinceHolder.position.y - 0.5f, 0.5f).SetEase(Ease.OutSine);
@@ -179,7 +180,7 @@ public class CanvasController : MonoBehaviour {
 
                 selectedProvinceGameObject = null;
 
-                provinceHolder.DOMoveY(provinceHolder.position.y + 0.5f, 0.5f).SetEase(Ease.OutSine);
+                provinceHolder.DOMoveY(provinceHolder.position.y + 0.5f, 0.5f);
 
                 if (!firstMove) {
                     DisplayGameManagerPanel();
@@ -210,7 +211,7 @@ public class CanvasController : MonoBehaviour {
 
         canUpdate = true;
 
-        ShowProvinceInformation(currentProvince);
+        ShowProvinceInformation();
 
         tc.ShowTradeRoutes();
 
@@ -250,7 +251,7 @@ public class CanvasController : MonoBehaviour {
 
     public void HideSelectionPanel() {
 
-        if (!showingCitadel) {
+        if (!showingCitadel && canUpdate) {
 
             tc.HideTradeRoutes();
 
@@ -366,9 +367,9 @@ public class CanvasController : MonoBehaviour {
 
         Debug.Log("Help Panel");
 
-        StopAllCoroutines();
+        // StopAllCoroutines();
 
-        showingSelection = showingInformation = showingAbout = showingCitadel = false;
+        showingSelection = showingInformation = showingAbout = showingCitadel = showingGameManager = false;
 
         if (selectionCG.alpha == 1 && !showingSelection) {
 
@@ -402,9 +403,16 @@ public class CanvasController : MonoBehaviour {
 
         }
 
+        if (gameManagerCG.alpha == 1 && !showingGameManager) {
+
+            Debug.Log("Game Manager was shown");
+            showingGameManager = true;
+            HideGameManagerPanel();
+
+        }
+
         tc.HideTradeRoutes();
 
-        canUpdate = false;
         helpButton.SetActive(false);
 
         selectedProvinceTextObject.text = "";
@@ -412,6 +420,8 @@ public class CanvasController : MonoBehaviour {
 
         helpCG.DOFade(1, 0);
         helpCG.blocksRaycasts = true;
+
+        canUpdate = false;
 
     }
 
@@ -436,9 +446,12 @@ public class CanvasController : MonoBehaviour {
             }
 
         } else {
-
+            
+            if (!showingAbout) {
+                tc.ShowTradeRoutes();
+            }
+            
             ResetPanels();
-            tc.ShowTradeRoutes();
 
         }
 
@@ -469,16 +482,10 @@ public class CanvasController : MonoBehaviour {
 
     public void HideAboutPanel() {
 
-        canUpdate = true;
+        // canUpdate = true;
 
         aboutCG.DOFade(0, 0);
         aboutCG.blocksRaycasts = false;
-
-        if (selectedProvinceGameObject) {
-
-            ShowProvinceInformation(currentProvince);
-
-        }
 
         ResetEventSystem();
 
@@ -548,7 +555,7 @@ public class CanvasController : MonoBehaviour {
 
                     stringStatus = "Scheme a subtle solution to avoid a coup";
                     productionButtonText.text = currentProvince.production.ToString() + " producers are striking";
-                    inquiryButtonText.text = "The major is not in a position to arrange trades";
+                    inquiryButtonText.text = "The mayor is not in a position to arrange trades";
                 }
                 break;
 
@@ -576,7 +583,7 @@ public class CanvasController : MonoBehaviour {
 
         gameManagerCG.DOFade(1, 0.5f);
 
-        provincesLeft.text = "Provinces left this turn: " + gm.provincesLeftForInteraction.ToString();
+        provincesLeft.text = "Provinces left this turn: " + gm.provincesLeft.ToString();
 
     }
 
@@ -591,8 +598,6 @@ public class CanvasController : MonoBehaviour {
         summaryCG.DOFade(1, 0.5f);
         summaryCG.blocksRaycasts = true;
 
-        // foreach (Province p in)
-
     }
 
     public void HideSummaryPanel() {
@@ -605,7 +610,7 @@ public class CanvasController : MonoBehaviour {
     // ------------------------------------------------------------------------------------------
 
     public void EnableUpdate(float delay) {
-        
+
         StopAllCoroutines();
         StartCoroutine(ResetUpdateDelay(delay));
 
@@ -678,9 +683,15 @@ public class CanvasController : MonoBehaviour {
         if (citadelCG.alpha == 0 && showingCitadel) {
             Debug.Log("Showing Citadel");
             DisplayCitadelPanel();
-            ShowProvinceInformation(currentProvince);
+            ShowProvinceInformation();
         }
         showingCitadel = false;
+
+        if (gameManagerCG.alpha == 0 && showingGameManager) {
+            Debug.Log("Showing game manager");
+            DisplayGameManagerPanel();
+        }
+        showingGameManager = false;
 
     }
 
@@ -698,9 +709,15 @@ public class CanvasController : MonoBehaviour {
 
     }
 
-    public void ShowProvinceInformation(Province p) {
+    public void ShowProvinceInformation() {
+
+        if (currentProvince == null)
+            return;
 
         StopAllCoroutines();
+
+        Province p = currentProvince;
+
         StartCoroutine(AnimateText(p.name, selectedProvinceTextObject, 80));
 
         switch (p.status) {
