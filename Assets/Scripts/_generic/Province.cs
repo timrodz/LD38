@@ -15,6 +15,9 @@ public class Province {
     public TradeRoute tradeRoute;
     public Province closestTradeRoute = null;
     public Action action = Action.Nothing;
+    
+    public int tradeProduced = 0;
+    public int tradeSold = 0;
 
     public void SetStatus(Status status) {
         this.status = status;
@@ -70,6 +73,7 @@ public class Province {
 
         Debug.Log("Producing for " + name);
         stocks++;
+        tradeProduced++;
 
     }
 
@@ -78,6 +82,7 @@ public class Province {
         if (stocks > 0) {
             Debug.Log("Selling stock from " + name);
             stocks--;
+            tradeSold++;
         }
 
     }

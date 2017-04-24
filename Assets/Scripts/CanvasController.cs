@@ -69,6 +69,13 @@ public class CanvasController : MonoBehaviour {
     public GameObject summaryPanel;
     private CanvasGroup summaryCG;
     public Text summaryPanelText;
+    public Text informationText;
+    public Text cropsText;
+    public Text cattleText;
+    public Text potteryText;
+    public Text seafoodText;
+    public Text coffeeText;
+    
 
     [HeaderAttribute("Production Images")]
     public Sprite cropsImg;
@@ -595,6 +602,15 @@ public class CanvasController : MonoBehaviour {
 
         summaryCG.DOFade(1, 0.5f);
         summaryCG.blocksRaycasts = true;
+        
+        cropsText.text = "Produced: " + gm.NumberOfItemsProduced(Trade.Crops).ToString() + "\nSold: " + gm.NumberOfItemsSold(Trade.Crops).ToString();
+        cattleText.text = "Produced: " + gm.NumberOfItemsProduced(Trade.Cattle).ToString() + "\nSold: " + gm.NumberOfItemsSold(Trade.Cattle).ToString();
+        potteryText.text = "Produced: " + gm.NumberOfItemsProduced(Trade.Pottery).ToString() + "\nSold: " + gm.NumberOfItemsSold(Trade.Pottery).ToString();
+        seafoodText.text = "Produced: " + gm.NumberOfItemsProduced(Trade.Seafood).ToString() + "\nSold: " + gm.NumberOfItemsSold(Trade.Seafood).ToString();
+        coffeeText.text = "Produced: " + gm.NumberOfItemsProduced(Trade.Coffee).ToString() + "\nSold: " + gm.NumberOfItemsSold(Trade.Coffee).ToString();
+        
+        informationText.text = "";
+        informationText.text += "Year: " + gm.year + "\nTurn: " + gm.turn;
 
     }
 

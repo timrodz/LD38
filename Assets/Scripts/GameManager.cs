@@ -10,23 +10,24 @@ public class GameManager : MonoBehaviour {
     public SoundManager sm;
 
     public int turn = 0;
+    public int year = 2017;
 
     public int provincesPerTurn = 5;
     [HideInInspector] public int provincesLeft;
 
     private Province province;
 
-    private List<ProvinceController> provincesList = new List<ProvinceController>();
-    private List<ProvinceController> interactedProvinceList = new List<ProvinceController>();
+    private List<ProvinceController> provincesList = new List<ProvinceController> ();
+    private List<ProvinceController> interactedProvinceList = new List<ProvinceController> ();
 
     /// <summary>
     /// Awake is called when the script instance is being loaded.
     /// </summary>
     void Awake() {
 
-        cc = FindObjectOfType<CanvasController>();
-        tc = FindObjectOfType<TradeRouteController>();
-        pc = FindObjectOfType<ProvinceController>();
+        cc = FindObjectOfType<CanvasController> ();
+        tc = FindObjectOfType<TradeRouteController> ();
+        pc = FindObjectOfType<ProvinceController> ();
 
     }
 
@@ -36,7 +37,7 @@ public class GameManager : MonoBehaviour {
     /// </summary>
     void Start() {
 
-        ProvinceController[] provinceArray = FindObjectsOfType<ProvinceController>();
+        ProvinceController[] provinceArray = FindObjectsOfType<ProvinceController> ();
 
         for (int i = 0; i < provinceArray.Length; i++) {
 
@@ -51,7 +52,7 @@ public class GameManager : MonoBehaviour {
         DetermineProvinceFate();
 
         cc.summaryPanelText.text = "";
-        
+
         tc.UpdateSprites();
 
     }
@@ -59,30 +60,30 @@ public class GameManager : MonoBehaviour {
     public void DetermineProvinceFate() {
 
         provincesLeft = provincesPerTurn;
-        
+
         Debug.Log("Interacted province list size: " + interactedProvinceList.Count);
-        
-        foreach (ProvinceController p in interactedProvinceList) {
-            
+
+        foreach(ProvinceController p in interactedProvinceList) {
+
             Debug.Log(">>>> Performing action for " + p.province.name);
-            
+
             switch (p.province.action) {
-                
+
                 case Action.Production:
                     p.province.IncreaseIncome();
-                break;
+                    break;
                 case Action.Inquiry:
                     p.province.closestTradeRoute.SellAvailableStock();
-                break;
+                    break;
                 case Action.Diplomacy:
                     p.province.ResolveStatus();
                     cc.summaryPanelText.text += "- " + p.province.name + "'s citizens now have a " + p.province.status.ToString().ToLower() + " mood!\n\n";
-                break;
-                
+                    break;
+
             }
-            
-            p.province.action = Action.Nothing;
-            
+
+            // p.province.action = Action.Nothing;
+
         }
 
         foreach(ProvinceController p in provincesList) {
@@ -126,13 +127,17 @@ public class GameManager : MonoBehaviour {
     }
 
     public void IncrementTurn() {
-        
+
         turn++;
+        
+        if (turn % 4 == 0) {
+            year++;
+        }
 
         cc.nextTurnButton.SetActive(false);
-        
+
         cc.HideGameManagerPanel();
-        
+
         foreach(ProvinceController p in interactedProvinceList) {
 
             p.Highlight(false, 0.2f);
@@ -146,24 +151,24 @@ public class GameManager : MonoBehaviour {
         cc.gameManagerSummaryText.text = "";
 
         cc.DisplaySummaryPanel();
-        
+
         tc.HideTradeRoutes();
 
     }
 
     public void ResumeGame() {
-        
+
         interactedProvinceList.Clear();
-        
+
         cc.HideSummaryPanel();
 
         cc.DisplayGameManagerPanel();
-        
+
         tc.ResetTradeRoutes();
         tc.ShowTradeRoutes();
 
         cc.summaryPanelText.text = "";
-        
+
         cc.EnableUpdate(0);
 
     }
@@ -178,13 +183,13 @@ public class GameManager : MonoBehaviour {
             cc.firstMove = false;
         }
 
-        ProvinceController pc = province.gameObject.GetComponent<ProvinceController>();
+        ProvinceController pc = province.gameObject.GetComponent<ProvinceController> ();
 
         pc.isExecutingAction = true;
 
         interactedProvinceList.Add(pc);
 
-        tc.RemoveTradeRoute(pc.GetComponentInChildren<TradeRoute>());
+        tc.RemoveTradeRoute(pc.GetComponentInChildren<TradeRoute> ());
 
         cc.HideCitadelPanel();
         cc.ResetSelectedProvince();
@@ -218,7 +223,7 @@ public class GameManager : MonoBehaviour {
         cc.ResetEventSystem();
 
         Debug.Log("Producing resources");
-        
+
         province.action = Action.Production;
 
         string text = "- " + province.name;
@@ -258,17 +263,17 @@ public class GameManager : MonoBehaviour {
         cc.ResetEventSystem();
 
         Debug.Log("Inquiring resources");
-        
+
         province.action = Action.Inquiry;
 
-        TradeRoute selectedObjectTradeRoute = cc.selectedProvinceGameObject.GetComponentInChildren<TradeRoute>();
+        TradeRoute selectedObjectTradeRoute = cc.selectedProvinceGameObject.GetComponentInChildren<TradeRoute> ();
 
         Debug.Log("Object: " + selectedObjectTradeRoute.transform.name);
 
         Province closestProvince = tc.CalculateShortestTradeRoute(selectedObjectTradeRoute);
 
         province.closestTradeRoute = closestProvince;
-        
+
         string text = "- " + province.name + " will acquire " + province.inquiry.ToString().ToLower() + " from " + closestProvince.name + "\n";
 
         cc.summaryPanelText.text += text + "\n";
@@ -289,7 +294,7 @@ public class GameManager : MonoBehaviour {
         }
 
         Debug.Log("Resolving mood");
-        
+
         province.action = Action.Diplomacy;
 
         string text = "- " + province.name + " will " + cc.statusButtonText.text.ToLower() + "\n";
@@ -299,6 +304,50 @@ public class GameManager : MonoBehaviour {
         cc.gameManagerSummaryText.text += text;
 
         ReduceProvinceAvailable();
+
+    }
+
+    public int NumberOfItemsProduced(Trade t) {
+
+        int result = 0;
+
+        foreach(ProvinceController p in provincesList) {
+
+            if (p.province.production == t && p.province.action == Action.Production) {
+                
+                Debug.Log(p.province.name + " produced " + t.ToString());
+                result += p.province.tradeProduced;
+                p.province.tradeProduced = 0;
+                p.province.action = Action.Nothing;
+                
+            }
+
+        }
+        
+        Debug.Log("Produced " + t.ToString() + ": " + result);
+        return result;
+
+    }
+
+    public int NumberOfItemsSold(Trade t) {
+
+        int result = 0;
+
+        foreach(ProvinceController p in provincesList) {
+
+            if (p.province.inquiry == t && p.province.action == Action.Inquiry) {
+                
+                Debug.Log(p.province.name + " sold " + t.ToString());
+                result += p.province.tradeSold;
+                p.province.tradeSold = 0;
+                p.province.action = Action.Nothing;
+
+            }
+
+        }
+        
+        Debug.Log("Sold " + t.ToString() + ": " + result);
+        return result;
 
     }
 
