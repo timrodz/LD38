@@ -68,6 +68,7 @@ public class CanvasController : MonoBehaviour {
     [HeaderAttribute("Summary Panel")]
     public GameObject summaryPanel;
     private CanvasGroup summaryCG;
+    public GameObject summaryPanelButton;
     public Text summaryPanelText;
     public Text informationText;
     public Text cropsText;
@@ -132,6 +133,7 @@ public class CanvasController : MonoBehaviour {
         HideSummaryPanel();
 
         helpButton.SetActive(false);
+        summaryPanelButton.SetActive(false);
 
         DisplayHelpPanel();
 
@@ -242,7 +244,7 @@ public class CanvasController : MonoBehaviour {
                 statusText.text = "citizens are happy";
                 break;
             case Status.Normal:
-                statusText.text = "citizens are bored";
+                statusText.text = "citizens are losing motivation";
                 break;
             case Status.Sad:
                 statusText.text = "citizens are sad";
@@ -739,7 +741,7 @@ public class CanvasController : MonoBehaviour {
                 StartCoroutine(AnimateText("citizens are happy", statusText, 40));
                 break;
             case Status.Normal:
-                StartCoroutine(AnimateText("citizens are bored", statusText, 40));
+                StartCoroutine(AnimateText("citizens are losing motivation", statusText, 40));
                 break;
             case Status.Sad:
                 StartCoroutine(AnimateText("citizens are sad", statusText, 40));

@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour {
 
         int randomIndex = Random.Range(0, provincesList.Count);
 
-        provincesList[randomIndex].province.SetStatus(Status.Angry);
+        provincesList[randomIndex].province.SetStatus(Status.Sad);
 
         DetermineProvinceFate();
 
