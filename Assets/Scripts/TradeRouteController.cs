@@ -106,6 +106,8 @@ public class TradeRouteController : MonoBehaviour {
     }
 
     public void ShowDiscontentTradeRoutes() {
+        
+        HideTradeRoutes();
 
         foreach(TradeRoute t in tradeRoutes) {
 
@@ -168,28 +170,36 @@ public class TradeRouteController : MonoBehaviour {
         foreach(TradeRoute t in tradeRoutes) {
             t.transform.localScale = Vector3.zero;
         }
+        
+        UpdateSprites();
 
     }
 
     public void UpdateSprites() {
 
         foreach(TradeRoute t in tradeRoutes) {
+            
             switch (t.province.status) {
 
                 case Status.Happy:
+                    Debug.Log(t.province.name + ": HAPPY");
                     t.ResetSprite();
                     break;
                 case Status.Normal:
+                Debug.Log(t.province.name + ": NORMAL");
                     t.ResetSprite();
                     break;
                 case Status.Sad:
+                Debug.Log(t.province.name + ": SAD");
                     t.SetSprite(sadSprite);
                     break;
                 case Status.Angry:
+                Debug.Log(t.province.name + ": ANGRY");
                     t.SetSprite(angrySprite);
                     break;
 
             }
+            
         }
 
     }

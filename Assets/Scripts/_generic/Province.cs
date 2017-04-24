@@ -13,13 +13,14 @@ public class Province {
     public Status status = Status.Happy;
     public int happiness = 500;
     public TradeRoute tradeRoute;
+    public Province closestTradeRoute = null;
     public Action action = Action.Nothing;
 
     public void SetStatus(Status status) {
         this.status = status;
     }
 
-    public void Update() {
+    public void UpdateStatus() {
 
         switch (status) {
 
@@ -49,7 +50,7 @@ public class Province {
                     if (Random.Range(0, 2) == 0) {
 
                         SetStatus(Status.Angry);
-                        SellIncome();
+                        SellAvailableStock();
                         Debug.Log(name + " is now in a sad mood");
 
                     }
@@ -57,41 +58,67 @@ public class Province {
                 break;
             case Status.Angry:
                 {
-                    SellIncome();
+                    SellAvailableStock();
                 }
                 break;
 
         }
-        
-        switch (action) {
-            
-            case Action.Nothing:
-            
-            break;
-            case Action.Production:
-            
-            break;
-            case Action.Inquiry:
-            
-            break;
-            case Action.Diplomacy:
-            
-            break;
-            
-        }
 
     }
 
-    public void ProduceIncome() {
-
+    public void IncreaseIncome() {
+        
+        Debug.Log("Producing for " + name);
         stocks++;
 
     }
 
-    public void SellIncome() {
+    public void SellAvailableStock() {
 
-        if (stocks > 0)
+        if (stocks > 0) {
+            Debug.Log("Selling stock from " + name);
             stocks--;
+        }
+
+    }
+
+    public void ResolveStatus() {
+
+        Debug.Log("Resolving mood for " + name);
+
+        switch (status) {
+
+            case Status.Happy:
+                {
+                    Debug.Log("Province is already happy");
+                }
+                break;
+            case Status.Normal:
+                {
+                    SetStatus(Status.Happy);
+                }
+                break;
+            case Status.Sad:
+                {
+                    SetStatus(Status.Normal);
+                }
+                break;
+            case Status.Angry:
+                {
+                    int randomChance = Random.Range(0, 2);
+                    if (randomChance == 0) {
+                        
+                        SetStatus(Status.Sad);
+                    
+                    } else {
+                        
+                        SetStatus(Status.Normal);
+                        
+                    }
+                }
+                break;
+
+        }
 
     }
 

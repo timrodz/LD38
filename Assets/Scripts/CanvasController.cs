@@ -253,8 +253,6 @@ public class CanvasController : MonoBehaviour {
 
         if (!showingCitadel && canUpdate) {
 
-            tc.HideTradeRoutes();
-
             if (firstMove) {
 
                 tc.ShowDiscontentTradeRoutes();
@@ -283,7 +281,7 @@ public class CanvasController : MonoBehaviour {
 
         Capital.text = "Province capital: " + currentProvince.capital;
 
-        Population.text = "Population: " + currentProvince.population.ToString() + " habitants";
+        // Population.text = "Population: " + currentProvince.population.ToString() + " habitants";
 
         Income.text = "Resources for sale: " + currentProvince.stocks.ToString();
 
@@ -366,8 +364,8 @@ public class CanvasController : MonoBehaviour {
     public void DisplayHelpPanel() {
 
         Debug.Log("Help Panel");
-
-        // StopAllCoroutines();
+        
+        canUpdate = false;
 
         showingSelection = showingInformation = showingAbout = showingCitadel = showingGameManager = false;
 
@@ -411,8 +409,6 @@ public class CanvasController : MonoBehaviour {
 
         }
 
-        tc.HideTradeRoutes();
-
         helpButton.SetActive(false);
 
         selectedProvinceTextObject.text = "";
@@ -420,8 +416,10 @@ public class CanvasController : MonoBehaviour {
 
         helpCG.DOFade(1, 0);
         helpCG.blocksRaycasts = true;
-
+        
         canUpdate = false;
+        
+        tc.HideTradeRoutes();
 
     }
 
@@ -538,7 +536,7 @@ public class CanvasController : MonoBehaviour {
                 break;
             case Status.Normal:
                 {
-                    stringStatus = "Minor issues could be resolved";
+                    stringStatus = "Attend to minor issues";
                 }
                 break;
             case Status.Sad:

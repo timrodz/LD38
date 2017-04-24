@@ -51,18 +51,46 @@ public class GameManager : MonoBehaviour {
         DetermineProvinceFate();
 
         cc.summaryPanelText.text = "";
+        
+        tc.UpdateSprites();
 
     }
 
     public void DetermineProvinceFate() {
 
         provincesLeft = provincesPerTurn;
+        
+        Debug.Log("Interacted province list size: " + interactedProvinceList.Count);
+        
+        foreach (ProvinceController p in interactedProvinceList) {
+            
+            Debug.Log(">>>> Performing action for " + p.province.name);
+            
+            switch (p.province.action) {
+                
+                case Action.Production:
+                    p.province.IncreaseIncome();
+                break;
+                case Action.Inquiry:
+                    p.province.closestTradeRoute.SellAvailableStock();
+                break;
+                case Action.Diplomacy:
+                    p.province.ResolveStatus();
+                break;
+                
+            }
+            
+            p.province.action = Action.Nothing;
+            
+        }
+        
+        interactedProvinceList.Clear();
 
         foreach(ProvinceController p in provincesList) {
 
             p.isExecutingAction = false;
 
-            p.province.Update();
+            p.province.UpdateStatus();
 
             string provinceSummary = "";
 
@@ -96,15 +124,11 @@ public class GameManager : MonoBehaviour {
 
         }
 
-        tc.UpdateSprites();
-
     }
 
     public void IncrementTurn() {
         
         turn++;
-
-        interactedProvinceList.Clear();
 
         cc.nextTurnButton.SetActive(false);
         
@@ -131,11 +155,13 @@ public class GameManager : MonoBehaviour {
         cc.HideSummaryPanel();
 
         cc.DisplayGameManagerPanel();
-
+        
         tc.ResetTradeRoutes();
         tc.ShowTradeRoutes();
 
         cc.summaryPanelText.text = "";
+        
+        cc.EnableUpdate(0);
 
     }
 
@@ -189,6 +215,8 @@ public class GameManager : MonoBehaviour {
         cc.ResetEventSystem();
 
         Debug.Log("Producing resources");
+        
+        province.action = Action.Production;
 
         string text = "- " + province.name;
 
@@ -227,6 +255,8 @@ public class GameManager : MonoBehaviour {
         cc.ResetEventSystem();
 
         Debug.Log("Inquiring resources");
+        
+        province.action = Action.Inquiry;
 
         TradeRoute selectedObjectTradeRoute = cc.selectedProvinceGameObject.GetComponentInChildren<TradeRoute>();
 
@@ -234,6 +264,8 @@ public class GameManager : MonoBehaviour {
 
         Province closestProvince = tc.CalculateShortestTradeRoute(selectedObjectTradeRoute);
 
+        province.closestTradeRoute = closestProvince;
+        
         string text = "- " + province.name + " will acquire " + province.inquiry.ToString().ToLower() + " from " + closestProvince.name + "\n";
 
         cc.summaryPanelText.text += text + "\n";
@@ -254,6 +286,8 @@ public class GameManager : MonoBehaviour {
         }
 
         Debug.Log("Resolving mood");
+        
+        province.action = Action.Diplomacy;
 
         string text = "- " + province.name + " will " + cc.statusButtonText.text.ToLower() + "\n";
 

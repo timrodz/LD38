@@ -18,19 +18,10 @@ public class TradeRoute : MonoBehaviour {
     /// Awake is called when the script instance is being loaded.
     /// </summary>
     void Awake() {
-        path = GetComponent<LineRenderer>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        province = GetComponentInParent<ProvinceController>().province;
-    }
-
-    /// <summary>
-    /// Start is called on the frame when a script is enabled just before
-    /// any of the Update methods is called the first time.
-    /// </summary>
-    void Start() {
-
-        originalSprite = spriteRenderer.sprite;
-
+        path = GetComponent<LineRenderer> ();
+        spriteRenderer = GetComponent<SpriteRenderer> ();
+        originalSprite = GetComponent<SpriteRenderer> ().sprite;
+        province = GetComponentInParent<ProvinceController> ().province;
     }
 
     public void Connect(TradeRoute destination) {
@@ -70,15 +61,15 @@ public class TradeRoute : MonoBehaviour {
     }
 
     public void SetSprite(Sprite p) {
-        
+
         spriteRenderer.sprite = p;
 
     }
-    
+
     public void ResetSprite() {
-        
+
         spriteRenderer.sprite = originalSprite;
-        
+
     }
 
 }
