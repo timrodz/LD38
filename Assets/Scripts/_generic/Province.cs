@@ -67,7 +67,7 @@ public class Province {
     }
 
     public void IncreaseIncome() {
-        
+
         Debug.Log("Producing for " + name);
         stocks++;
 
@@ -107,19 +107,29 @@ public class Province {
                 {
                     int randomChance = Random.Range(0, 2);
                     if (randomChance == 0) {
-                        
+
                         SetStatus(Status.Sad);
-                    
+
                     } else {
-                        
+
                         SetStatus(Status.Normal);
-                        
+
                     }
                 }
                 break;
 
         }
 
+    }
+    
+    public void RandomizeInquiry() {
+        
+        do  {
+            
+            inquiry = (Trade) Random.Range(0, 5);
+            
+        } while (inquiry == production);
+        
     }
 
 }

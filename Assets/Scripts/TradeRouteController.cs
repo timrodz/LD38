@@ -169,6 +169,7 @@ public class TradeRouteController : MonoBehaviour {
 
         foreach(TradeRoute t in tradeRoutes) {
             t.transform.localScale = Vector3.zero;
+            t.province.RandomizeInquiry();
         }
         
         UpdateSprites();

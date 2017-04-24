@@ -76,6 +76,7 @@ public class GameManager : MonoBehaviour {
                 break;
                 case Action.Diplomacy:
                     p.province.ResolveStatus();
+                    cc.summaryPanelText.text += "- " + p.province.name + "'s citizens now have a " + p.province.status.ToString().ToLower() + " mood!\n\n";
                 break;
                 
             }
@@ -83,8 +84,6 @@ public class GameManager : MonoBehaviour {
             p.province.action = Action.Nothing;
             
         }
-        
-        interactedProvinceList.Clear();
 
         foreach(ProvinceController p in provincesList) {
 
@@ -147,10 +146,14 @@ public class GameManager : MonoBehaviour {
         cc.gameManagerSummaryText.text = "";
 
         cc.DisplaySummaryPanel();
+        
+        tc.HideTradeRoutes();
 
     }
 
     public void ResumeGame() {
+        
+        interactedProvinceList.Clear();
         
         cc.HideSummaryPanel();
 
@@ -291,7 +294,7 @@ public class GameManager : MonoBehaviour {
 
         string text = "- " + province.name + " will " + cc.statusButtonText.text.ToLower() + "\n";
 
-        cc.summaryPanelText.text += text + "\n";
+        // cc.summaryPanelText.text += text + "\n";
 
         cc.gameManagerSummaryText.text += text;
 
