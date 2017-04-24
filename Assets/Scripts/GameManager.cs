@@ -1,12 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
     private CanvasController cc;
     private TradeRouteController tc;
-    private ProvinceController pc;
     public SoundManager sm;
 
     public int turn = 0;
@@ -20,6 +18,8 @@ public class GameManager : MonoBehaviour {
     private List<ProvinceController> provincesList = new List<ProvinceController> ();
     private List<ProvinceController> interactedProvinceList = new List<ProvinceController> ();
 
+    private bool gameOver;
+
     /// <summary>
     /// Awake is called when the script instance is being loaded.
     /// </summary>
@@ -27,7 +27,6 @@ public class GameManager : MonoBehaviour {
 
         cc = FindObjectOfType<CanvasController> ();
         tc = FindObjectOfType<TradeRouteController> ();
-        pc = FindObjectOfType<ProvinceController> ();
 
     }
 
@@ -43,6 +42,27 @@ public class GameManager : MonoBehaviour {
 
             provincesList.Add(provinceArray[i]);
 
+            int happiness = 0;
+
+            switch (provincesList[i].province.status) {
+
+                case Status.Happy:
+                    happiness = 500;
+                    break;
+                case Status.Normal:
+                    happiness = 350;
+                    break;
+                case Status.Sad:
+                    happiness = 150;
+                    break;
+                case Status.Angry:
+                default:
+                    break;
+
+            }
+
+            provincesList[i].province.happiness = happiness;
+
         }
 
         int randomIndex = Random.Range(0, provincesList.Count);
@@ -54,6 +74,25 @@ public class GameManager : MonoBehaviour {
         cc.summaryPanelText.text = "";
 
         tc.UpdateSprites();
+
+    }
+
+    public bool GameOver() {
+
+        int numOfAngryProvinces = 0;
+        int numOfSadProvinces = 0;
+
+        foreach(ProvinceController p in provincesList) {
+
+            if (p.province.status == Status.Angry) {
+                numOfAngryProvinces++;
+            } else if (p.province.status == Status.Sad) {
+                numOfSadProvinces++;
+            }
+
+        }
+        
+        return (numOfAngryProvinces >= 3 && numOfSadProvinces >= 2);
 
     }
 
@@ -123,13 +162,17 @@ public class GameManager : MonoBehaviour {
             }
 
         }
+        
+        if (GameOver()) {
+            Debug.Log(">>>>>>>>>>>>>>>>>>>>>>>>>>>> Game over");
+        }
 
     }
 
     public void IncrementTurn() {
 
         turn++;
-        
+
         if (turn % 4 == 0) {
             year++;
         }
@@ -314,16 +357,16 @@ public class GameManager : MonoBehaviour {
         foreach(ProvinceController p in provincesList) {
 
             if (p.province.production == t && p.province.action == Action.Production) {
-                
+
                 Debug.Log(p.province.name + " produced " + t.ToString());
                 result += p.province.tradeProduced;
                 p.province.tradeProduced = 0;
                 p.province.action = Action.Nothing;
-                
+
             }
 
         }
-        
+
         Debug.Log("Produced " + t.ToString() + ": " + result);
         return result;
 
@@ -336,7 +379,7 @@ public class GameManager : MonoBehaviour {
         foreach(ProvinceController p in provincesList) {
 
             if (p.province.inquiry == t && p.province.action == Action.Inquiry) {
-                
+
                 Debug.Log(p.province.name + " sold " + t.ToString());
                 result += p.province.tradeSold;
                 p.province.tradeSold = 0;
@@ -345,7 +388,7 @@ public class GameManager : MonoBehaviour {
             }
 
         }
-        
+
         Debug.Log("Sold " + t.ToString() + ": " + result);
         return result;
 

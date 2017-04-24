@@ -15,7 +15,7 @@ public class Province {
     public TradeRoute tradeRoute;
     public Province closestTradeRoute = null;
     public Action action = Action.Nothing;
-    
+
     public int tradeProduced = 0;
     public int tradeSold = 0;
 
@@ -72,8 +72,14 @@ public class Province {
     public void IncreaseIncome() {
 
         Debug.Log("Producing for " + name);
-        stocks++;
-        tradeProduced++;
+
+        if (status == Status.Happy) {
+            stocks += 2;
+            tradeProduced += 2;
+        } else {
+            stocks++;
+            tradeProduced++;
+        }
 
     }
 
@@ -100,11 +106,13 @@ public class Province {
                 break;
             case Status.Normal:
                 {
+                    Debug.Log("Happy");
                     SetStatus(Status.Happy);
                 }
                 break;
             case Status.Sad:
                 {
+                    Debug.Log("Normal");
                     SetStatus(Status.Normal);
                 }
                 break;
@@ -113,10 +121,12 @@ public class Province {
                     int randomChance = Random.Range(0, 2);
                     if (randomChance == 0) {
 
+                        Debug.Log("Sad");
                         SetStatus(Status.Sad);
 
                     } else {
 
+                        Debug.Log("Normal");
                         SetStatus(Status.Normal);
 
                     }
@@ -126,15 +136,15 @@ public class Province {
         }
 
     }
-    
+
     public void RandomizeInquiry() {
-        
-        do  {
-            
+
+        do {
+
             inquiry = (Trade) Random.Range(0, 5);
-            
+
         } while (inquiry == production);
-        
+
     }
 
 }

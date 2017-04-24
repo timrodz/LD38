@@ -43,7 +43,7 @@ public class CanvasController : MonoBehaviour {
     [HeaderAttribute("About Panel")]
     public GameObject aboutPanel;
     private CanvasGroup aboutCG;
-    public TextMeshProUGUI aboutText;
+    public Text aboutText;
     private bool showingAbout = false;
 
     [HeaderAttribute("Citadel Panel")]
