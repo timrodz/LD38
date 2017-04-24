@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour {
     private CanvasController cc;
     private TradeRouteController tc;
     private ProvinceController pc;
+    public SoundManager sm;
 
     public int turn = 0;
 
@@ -48,15 +49,13 @@ public class GameManager : MonoBehaviour {
         provincesList[randomIndex].province.SetStatus(Status.Angry);
 
         DetermineProvinceFate();
-        
+
         cc.summaryPanelText.text = "";
 
     }
 
     public void DetermineProvinceFate() {
-        
-        cc.HideGameManagerPanel();
-        
+
         provincesLeft = provincesPerTurn;
 
         foreach(ProvinceController p in provincesList) {
@@ -65,25 +64,29 @@ public class GameManager : MonoBehaviour {
 
             p.province.Update();
 
-            string provinceSummary = "- " + p.province.name;
-            
+            string provinceSummary = "";
+
             // Update the summary if the item is not in the interacted list
             if (interactedProvinceList.IndexOf(p) == -1) {
 
-                switch (p.province.action) {
+                if (p.province.action == Action.Nothing) {
 
-                    case Action.Nothing:
-                        provinceSummary += " did not arrange any plans for next season";
-                        break;
-                    case Action.Production:
-                        provinceSummary += " will produce " + p.province.production.ToString().ToLower() + " for the upcoming season";
-                        break;
-                    case Action.Inquiry:
-                        provinceSummary += " will inquire " + p.province.production.ToString().ToLower() + " for the upcoming season";
-                        break;
-                    case Action.Diplomacy:
-                        provinceSummary += " will produce " + p.province.production.ToString().ToLower() + " for the upcoming season";
-                        break;
+                    switch (p.province.status) {
+
+                        case Status.Happy:
+                            provinceSummary = "- Happiness and joy spread in " + p.province.name;
+                            break;
+                        case Status.Normal:
+                            provinceSummary = "- Boredom is starting to rule over " + p.province.name + "'s citizens";
+                            break;
+                        case Status.Sad:
+                            provinceSummary = "- A wave of sadness has hit " + p.province.name + " due to recent events";
+                            break;
+                        case Status.Angry:
+                            provinceSummary = "- Citizens of " + p.province.name + " are planning a revolt, stop them!";
+                            break;
+
+                    }
 
                 }
 
@@ -92,16 +95,21 @@ public class GameManager : MonoBehaviour {
             }
 
         }
-        
+
         tc.UpdateSprites();
 
     }
 
     public void IncrementTurn() {
+        
+        turn++;
+
+        interactedProvinceList.Clear();
 
         cc.nextTurnButton.SetActive(false);
-        cc.HideSummaryPanel();
-
+        
+        cc.HideGameManagerPanel();
+        
         foreach(ProvinceController p in interactedProvinceList) {
 
             p.Highlight(false, 0.2f);
@@ -110,34 +118,32 @@ public class GameManager : MonoBehaviour {
 
         DetermineProvinceFate();
 
-        provincesPerTurn = 5;
+        provincesLeft = provincesPerTurn;
 
         cc.gameManagerSummaryText.text = "";
-        
+
         cc.DisplaySummaryPanel();
 
-        interactedProvinceList.Clear();
-
-        turn++;
-
     }
-    
+
     public void ResumeGame() {
         
+        cc.HideSummaryPanel();
+
         cc.DisplayGameManagerPanel();
-        
-        cc.canUpdate = true;
-        
+
         tc.ResetTradeRoutes();
         tc.ShowTradeRoutes();
-        
+
         cc.summaryPanelText.text = "";
-        
+
     }
 
     public void ReduceProvinceAvailable() {
 
         Debug.Log(">>> Province " + province.name + " called action");
+
+        provincesLeft--;
 
         if (cc.firstMove) {
             cc.firstMove = false;
@@ -151,23 +157,21 @@ public class GameManager : MonoBehaviour {
 
         tc.RemoveTradeRoute(pc.GetComponentInChildren<TradeRoute>());
 
-        provincesPerTurn--;
-
         cc.HideCitadelPanel();
         cc.ResetSelectedProvince();
         cc.canUpdate = false;
 
-        if (provincesPerTurn <= 0) {
-            
+        if (provincesLeft <= 0) {
+
             cc.provincesLeft.text = "Your choices will have outcomes on the next turn";
             cc.selectedProvinceTextObject.text = "";
             cc.statusText.text = "";
             cc.nextTurnButton.SetActive(true);
 
         } else {
-            
+
             cc.EnableUpdate(0.5f);
-            
+
         }
 
     }
@@ -187,27 +191,27 @@ public class GameManager : MonoBehaviour {
         Debug.Log("Producing resources");
 
         string text = "- " + province.name;
-        
-        switch (province.production) {  
-                
+
+        switch (province.production) {
+
             case Trade.Crops:
-            text += " will cultivate and harvest ";
-            break;
+                text += " will cultivate and harvest ";
+                break;
             case Trade.Cattle:
-            text += " will raise and develop ";
-            break;
+                text += " will raise and develop ";
+                break;
             case Trade.Pottery:
-            text += " will craft fine ";
-            break;
+                text += " will craft fine ";
+                break;
             case Trade.Seafood:
-            text += " will fish for available ";
-            break;
+                text += " will fish for available ";
+                break;
             case Trade.Coffee:
-            text += " will produce ";
-            break;
-            
+                text += " will produce ";
+                break;
+
         }
-        
+
         text += province.production.ToString().ToLower() + "\n";
 
         cc.summaryPanelText.text += text + "\n";

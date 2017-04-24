@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class CanvasController : MonoBehaviour {
 
-    private GameManager gm;
+    [HideInInspector] public GameManager gm;
 
     private TradeRouteController tc;
 

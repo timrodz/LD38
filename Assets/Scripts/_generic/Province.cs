@@ -25,7 +25,7 @@ public class Province {
 
             case Status.Happy:
                 {
-                    if (Random.Range(0, 2) == 0) {
+                    if (Random.Range(0, 5) == 0) {
 
                         SetStatus(Status.Normal);
                         Debug.Log(name + " is now in a normal mood");
@@ -41,13 +41,12 @@ public class Province {
                         Debug.Log(name + " is now in a sad mood");
 
                     }
-
                 }
                 break;
             case Status.Sad:
                 {
 
-                    if (Random.Range(0, 1) == 0) {
+                    if (Random.Range(0, 2) == 0) {
 
                         SetStatus(Status.Angry);
                         SellIncome();
@@ -62,6 +61,23 @@ public class Province {
                 }
                 break;
 
+        }
+        
+        switch (action) {
+            
+            case Action.Nothing:
+            
+            break;
+            case Action.Production:
+            
+            break;
+            case Action.Inquiry:
+            
+            break;
+            case Action.Diplomacy:
+            
+            break;
+            
         }
 
     }

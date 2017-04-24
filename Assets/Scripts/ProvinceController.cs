@@ -18,6 +18,8 @@ public class ProvinceController : MonoBehaviour {
 
     [HideInInspector] public bool isExecutingAction = false;
 
+    private bool isHighlighted = false;
+
     /// <summary>
     /// Awake is called when the script instance is being loaded.
     /// </summary>
@@ -65,16 +67,17 @@ public class ProvinceController : MonoBehaviour {
     }
 
     /// <summary>
-    /// Called when the mouse enters the GUIElement or Collider.
+    /// Called every frame while the mouse is over the GUIElement or Collider.
     /// </summary>
-    void OnMouseEnter() {
+    void OnMouseOver() {
+
+        if (isHighlighted)
+            return;
 
         if (cc.hasSelectedProvince || !cc.canUpdate || isExecutingAction)
             return;
 
         Highlight(true, 0.2f);
-
-        cc.SetCurrentSelectedProvince(province, false);
 
     }
 
@@ -88,7 +91,7 @@ public class ProvinceController : MonoBehaviour {
 
         Highlight(false, 0.2f);
 
-        cc.ResetSelectedProvince();
+        
 
     }
 
@@ -97,11 +100,23 @@ public class ProvinceController : MonoBehaviour {
         colorFade.Kill();
 
         if (highlight) {
-            // sprite.DOFade(0.5f, duration);
+
+            isHighlighted = true;
+
+            cc.SetCurrentSelectedProvince(province, false);
+
+            cc.gm.sm.Play();
+
             colorFade.Append(sprite.DOFade(0.5f, duration));
+
         } else {
-            // sprite.DOFade(1, duration);
+
+            isHighlighted = false;
+            
+            cc.ResetSelectedProvince();
+            
             colorFade.Append(sprite.DOFade(1, duration));
+
         }
 
     }
