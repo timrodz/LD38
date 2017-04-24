@@ -7,7 +7,7 @@ public class Province {
     public string name;
     public string capital;
     public int population;
-    public float monthlyIncome;
+    public int income = 0;
     public Trade production;
     public Trade inquiry;
     public Status status = Status.Happy;
@@ -25,13 +25,6 @@ public class Province {
 
             case Status.Happy:
                 {
-                    if (action == Action.Production) {
-                        monthlyIncome += (Random.Range(50, 100));
-                    }
-					else if (action == Action.Inquiry) {
-						
-					}
-
                     if (Random.Range(0, 2) == 0) {
 
                         SetStatus(Status.Normal);
@@ -53,22 +46,36 @@ public class Province {
                 break;
             case Status.Sad:
                 {
-                    monthlyIncome -= (Random.Range(150, 300));
 
                     if (Random.Range(0, 1) == 0) {
 
                         SetStatus(Status.Angry);
+                        SellIncome();
+                        Debug.Log(name + " is now in a sad mood");
 
                     }
                 }
                 break;
             case Status.Angry:
                 {
-                    monthlyIncome -= (Random.Range(450, 650));
+                    SellIncome();
                 }
                 break;
 
         }
+
+    }
+
+    public void ProduceIncome() {
+
+        income++;
+
+    }
+
+    public void SellIncome() {
+
+        if (income > 0)
+            income--;
 
     }
 

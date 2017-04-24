@@ -265,7 +265,9 @@ public class CanvasController : MonoBehaviour {
             }
 
         } else {
+            
             showingCitadel = false;
+            
         }
 
         selectionCG.DOFade(0, 0.1f);
@@ -278,11 +280,11 @@ public class CanvasController : MonoBehaviour {
         if (!selectedProvinceGameObject)
             return;
 
-        Capital.text = "Capital: " + currentProvince.capital;
+        Capital.text = "Province capital: " + currentProvince.capital;
 
         Population.text = "Population: " + currentProvince.population.ToString() + " habitants";
 
-        Income.text = "Income: " + currentProvince.monthlyIncome.ToString() + "$ USD";
+        Income.text = "Resources for sale: " + currentProvince.income.ToString();
 
         switch (currentProvince.production) {
 
@@ -488,9 +490,6 @@ public class CanvasController : MonoBehaviour {
 
         showingCitadel = true;
 
-        // HideSelectionPanel();
-        // HideInformationPanel();
-
         EnableCitadelOption(productionButton);
         EnableCitadelOption(inquiryButton);
         EnableCitadelOption(statusButton);
@@ -596,6 +595,20 @@ public class CanvasController : MonoBehaviour {
     }
 
     // ------------------------------------------------------------------------------------------
+    
+    public void EnableUpdate(float delay) {
+        
+        StartCoroutine(ResetUpdateDelay(delay));
+        
+    }
+    
+    private IEnumerator ResetUpdateDelay(float delay) {
+        
+        canUpdate = false;
+        yield return new WaitForSeconds(delay);
+        canUpdate = true;
+        
+    }
 
     public void ResetEventSystem() {
 

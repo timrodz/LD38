@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class TradeRouteController : MonoBehaviour {
 
+    private CanvasController cc;
+
     [HeaderAttribute("Status images")]
     public Sprite sadSprite;
     public Sprite angrySprite;
@@ -28,6 +30,13 @@ public class TradeRouteController : MonoBehaviour {
     private List<TradeRoute> productionList = new List<TradeRoute>();
 
     private bool firstTimeShowingDiscontentTradeRoutes = true;
+
+    /// <summary>
+    /// Awake is called when the script instance is being loaded.
+    /// </summary>
+    void Awake() {
+        cc = FindObjectOfType<CanvasController>();
+    }
 
     // Use this for initialization
     void Start() {
@@ -105,7 +114,9 @@ public class TradeRouteController : MonoBehaviour {
             if (t.province.status != Status.Happy && t.province.status != Status.Normal) {
 
                 if (firstTimeShowingDiscontentTradeRoutes) {
-                    
+
+                    cc.EnableUpdate(1);
+
                     Vector3 pos = t.transform.position;
                     t.transform.position = Vector3.zero;
                     t.transform.DOScale(2, 0.5f);
@@ -114,10 +125,10 @@ public class TradeRouteController : MonoBehaviour {
                     firstTimeShowingDiscontentTradeRoutes = false;
 
                 } else {
-                    
-                    t.transform.DOScale(2, 0.5f);
+
+                    t.transform.DOScale(1.2f, 0.5f);
                     t.transform.DOScale(1, 0.5f).SetDelay(0.5f);
-                    
+
                 }
 
             }
@@ -199,6 +210,12 @@ public class TradeRouteController : MonoBehaviour {
         }
 
         return (productionList.Count > 0);
+
+    }
+
+    public void EnableCanvasControllerUpdate() {
+
+        FindObjectOfType<CanvasController>().canUpdate = true;
 
     }
 

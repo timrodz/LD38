@@ -149,10 +149,10 @@ public class GameManager : MonoBehaviour {
 
         cc.HideCitadelPanel();
         cc.ResetSelectedProvince();
+        cc.EnableUpdate(0.5f);
 
         if (provincesLeftForInteraction <= 0) {
             
-            cc.canUpdate = false;
             cc.provincesLeft.text = "Your choices will have outcomes on the next turn";
             cc.selectedProvinceTextObject.text = "";
             cc.statusText.text = "";
