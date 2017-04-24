@@ -78,6 +78,8 @@ public class ProvinceController : MonoBehaviour {
             return;
 
         Highlight(true, 0.2f);
+        
+        cc.SetCurrentSelectedProvince(province, false);
 
     }
 
@@ -91,7 +93,7 @@ public class ProvinceController : MonoBehaviour {
 
         Highlight(false, 0.2f);
 
-        
+        cc.ResetSelectedProvince();
 
     }
 
@@ -103,8 +105,6 @@ public class ProvinceController : MonoBehaviour {
 
             isHighlighted = true;
 
-            cc.SetCurrentSelectedProvince(province, false);
-
             cc.gm.sm.Play();
 
             colorFade.Append(sprite.DOFade(0.5f, duration));
@@ -112,8 +112,6 @@ public class ProvinceController : MonoBehaviour {
         } else {
 
             isHighlighted = false;
-            
-            cc.ResetSelectedProvince();
             
             colorFade.Append(sprite.DOFade(1, duration));
 
