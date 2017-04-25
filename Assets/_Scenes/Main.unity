@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.28001326, g: 0.33407962, b: 0.69093996, a: 1}
+  m_IndirectSpecularColor: {r: 0.3224434, g: 0.5699864, b: 0.46312094, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -286,13 +286,14 @@ Prefab:
         type: 2}
       propertyPath: m_Text
       value: "You suddenly wake up to realize you're the president of Panam\xE1. It
-        makes no sense, you hate responsibilities.\n\nYour duty as a president is
-        to take care of this beautiful yet small country. To do so you must make decisions
-        that will have an effect on every province's citizens. \n\nWatch out for your
-        citizen's needs, as it affects their happiness, which means less or more problems
-        depending on how they're feeling.\n\nIf at the start of any turn you have
-        at least 3 revolting provinces and 2 hit by depression, your charge will be
-        revoked and the game will end."
+        makes no sense, you hate responsibilities and have no idea where this country
+        is located.\n\nYour duty as a president is to take care of this beautiful
+        yet small country. To do so you must make decisions that will have an effect
+        on every province's citizens. \n\nWatch out for your citizen's needs, as it
+        affects their happiness, which means less or more problems depending on how
+        they're feeling.\n\nIf at the start of any turn you have at least 3 revolting
+        provinces and 2 hit by depression, your charge will be revoked and the game
+        will end."
       objectReference: {fileID: 0}
     - target: {fileID: 114242533249984620, guid: 16da718b21f6c4e1788d229b68df740e,
         type: 2}
@@ -1129,7 +1130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skybox: {fileID: 2100000, guid: 9e916b211ca140a4ea4fc6eaa8d9781c, type: 2}
-  lerp: 0
+  lerp: 1
   topColor1: {r: 0.32536763, g: 0.39698938, b: 0.86764705, a: 1}
   bottomColor1: {r: 0.23183389, g: 0.26628086, b: 0.49264705, a: 1}
   topColor2: {r: 0.36650613, g: 0.86764705, b: 0.32536763, a: 1}
