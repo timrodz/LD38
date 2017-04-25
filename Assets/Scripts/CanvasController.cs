@@ -69,6 +69,8 @@ public class CanvasController : MonoBehaviour {
     public GameObject summaryPanel;
     private CanvasGroup summaryCG;
     public GameObject summaryPanelButton;
+    public GameObject exitButton;
+    public Text summaryTitleText;
     public Text summaryPanelText;
     public Text informationText;
     public Text cropsText;
@@ -76,7 +78,6 @@ public class CanvasController : MonoBehaviour {
     public Text potteryText;
     public Text seafoodText;
     public Text coffeeText;
-    
 
     [HeaderAttribute("Production Images")]
     public Sprite cropsImg;
@@ -88,7 +89,7 @@ public class CanvasController : MonoBehaviour {
     // Others
     private float typeDelay = 0.0175f;
 
-    public bool canUpdate = true;
+    public bool canUpdate = false;
 
     public bool firstMove = true;
 
@@ -97,21 +98,23 @@ public class CanvasController : MonoBehaviour {
     /// </summary>
     void Awake() {
 
-        informationCG = informationPanel.GetComponent<CanvasGroup>();
-        selectionCG = selectionPanel.GetComponent<CanvasGroup>();
-        helpCG = helpPanel.GetComponent<CanvasGroup>();
-        aboutCG = aboutPanel.GetComponent<CanvasGroup>();
-        citadelCG = citadelPanel.GetComponent<CanvasGroup>();
-        gameManagerCG = gameManagerPanel.GetComponent<CanvasGroup>();
-        summaryCG = summaryPanel.GetComponent<CanvasGroup>();
+        informationCG = informationPanel.GetComponent<CanvasGroup> ();
+        selectionCG = selectionPanel.GetComponent<CanvasGroup> ();
+        helpCG = helpPanel.GetComponent<CanvasGroup> ();
+        aboutCG = aboutPanel.GetComponent<CanvasGroup> ();
+        citadelCG = citadelPanel.GetComponent<CanvasGroup> ();
+        gameManagerCG = gameManagerPanel.GetComponent<CanvasGroup> ();
+        summaryCG = summaryPanel.GetComponent<CanvasGroup> ();
 
-        gm = FindObjectOfType<GameManager>();
-        tc = FindObjectOfType<TradeRouteController>();
+        gm = FindObjectOfType<GameManager> ();
+        tc = FindObjectOfType<TradeRouteController> ();
 
     }
 
     // Use this for initialization
     void Start() {
+        
+        canUpdate = false;
 
         selectedProvinceTextObject.gameObject.SetActive(true);
         statusText.gameObject.SetActive(true);
@@ -134,6 +137,7 @@ public class CanvasController : MonoBehaviour {
 
         helpButton.SetActive(false);
         summaryPanelButton.SetActive(false);
+        exitButton.SetActive(false);
 
         DisplayHelpPanel();
 
@@ -181,9 +185,9 @@ public class CanvasController : MonoBehaviour {
 
                 Debug.Log("De-highlighting selected province: " + selectedProvinceGameObject.name);
 
-                if (!selectedProvinceGameObject.GetComponent<ProvinceController>().isExecutingAction) {
+                if (!selectedProvinceGameObject.GetComponent<ProvinceController> ().isExecutingAction) {
 
-                    selectedProvinceGameObject.GetComponent<ProvinceController>().Highlight(false, 0.5f);
+                    selectedProvinceGameObject.GetComponent<ProvinceController> ().Highlight(false, 0.5f);
 
                 }
 
@@ -361,7 +365,7 @@ public class CanvasController : MonoBehaviour {
 
         Debug.Log("Calculating route");
 
-        TradeRoute selectedObjectTradeRoute = selectedProvinceGameObject.GetComponentInChildren<TradeRoute>();
+        TradeRoute selectedObjectTradeRoute = selectedProvinceGameObject.GetComponentInChildren<TradeRoute> ();
 
         Debug.Log("Object: " + selectedObjectTradeRoute.transform.name);
         tc.CalculateShortestTradeRoute(selectedObjectTradeRoute);
@@ -372,8 +376,8 @@ public class CanvasController : MonoBehaviour {
 
     public void DisplayHelpPanel() {
 
-        Debug.Log("Help Panel");
-        
+        Debug.Log(">>>> Displaying Help Panel");
+
         canUpdate = false;
 
         showingSelection = showingInformation = showingAbout = showingCitadel = showingGameManager = false;
@@ -425,14 +429,16 @@ public class CanvasController : MonoBehaviour {
 
         helpCG.DOFade(1, 0);
         helpCG.blocksRaycasts = true;
-        
-        canUpdate = false;
-        
+
         tc.HideTradeRoutes();
+
+        canUpdate = false;
 
     }
 
     public void HideHelpPanel() {
+        
+        Debug.Log("<<<< Hiding Help Panel");
 
         canUpdate = true;
         helpButton.SetActive(true);
@@ -453,11 +459,11 @@ public class CanvasController : MonoBehaviour {
             }
 
         } else {
-            
+
             if (!showingAbout) {
                 tc.ShowTradeRoutes();
             }
-            
+
             ResetPanels();
 
         }
@@ -480,7 +486,7 @@ public class CanvasController : MonoBehaviour {
 
         selectedProvinceTextObject.text = "";
         statusText.text = "";
-        aboutText.text = currentProvince.gameObject.GetComponent<ProvinceController>().aboutText.text;
+        aboutText.text = currentProvince.gameObject.GetComponent<ProvinceController> ().aboutText.text;
 
         aboutCG.DOFade(1, 0);
         aboutCG.blocksRaycasts = true;
@@ -604,13 +610,13 @@ public class CanvasController : MonoBehaviour {
 
         summaryCG.DOFade(1, 0.5f);
         summaryCG.blocksRaycasts = true;
-        
+
         cropsText.text = "Produced: " + gm.NumberOfItemsProduced(Trade.Crops).ToString() + "\nSold: " + gm.NumberOfItemsSold(Trade.Crops).ToString();
         cattleText.text = "Produced: " + gm.NumberOfItemsProduced(Trade.Cattle).ToString() + "\nSold: " + gm.NumberOfItemsSold(Trade.Cattle).ToString();
         potteryText.text = "Produced: " + gm.NumberOfItemsProduced(Trade.Pottery).ToString() + "\nSold: " + gm.NumberOfItemsSold(Trade.Pottery).ToString();
         seafoodText.text = "Produced: " + gm.NumberOfItemsProduced(Trade.Seafood).ToString() + "\nSold: " + gm.NumberOfItemsSold(Trade.Seafood).ToString();
         coffeeText.text = "Produced: " + gm.NumberOfItemsProduced(Trade.Coffee).ToString() + "\nSold: " + gm.NumberOfItemsSold(Trade.Coffee).ToString();
-        
+
         informationText.text = "";
         informationText.text += "Year: " + gm.year + "\nTurn: " + gm.turn;
 

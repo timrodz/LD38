@@ -183,19 +183,15 @@ public class TradeRouteController : MonoBehaviour {
             switch (t.province.status) {
 
                 case Status.Happy:
-                    Debug.Log(t.province.name + ": HAPPY");
                     t.ResetSprite();
                     break;
                 case Status.Normal:
-                Debug.Log(t.province.name + ": NORMAL");
                     t.ResetSprite();
                     break;
                 case Status.Sad:
-                Debug.Log(t.province.name + ": SAD");
                     t.SetSprite(sadSprite);
                     break;
                 case Status.Angry:
-                Debug.Log(t.province.name + ": ANGRY");
                     t.SetSprite(angrySprite);
                     break;
 

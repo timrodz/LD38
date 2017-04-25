@@ -35,6 +35,8 @@ public class GameManager : MonoBehaviour {
     /// any of the Update methods is called the first time.
     /// </summary>
     void Start() {
+        
+        Random.InitState((int)System.DateTime.Now.Ticks);
 
         ProvinceController[] provinceArray = FindObjectsOfType<ProvinceController> ();
 
@@ -69,7 +71,8 @@ public class GameManager : MonoBehaviour {
 
         provincesList[randomIndex].province.SetStatus(Status.Sad);
 
-        DetermineProvinceFate();
+        // DetermineProvinceFate();
+        provincesLeft = provincesPerTurn;
 
         cc.summaryPanelText.text = "";
 
@@ -91,7 +94,7 @@ public class GameManager : MonoBehaviour {
             }
 
         }
-        
+
         return (numOfAngryProvinces >= 3 && numOfSadProvinces >= 2);
 
     }
@@ -99,8 +102,6 @@ public class GameManager : MonoBehaviour {
     public void DetermineProvinceFate() {
 
         provincesLeft = provincesPerTurn;
-
-        Debug.Log("Interacted province list size: " + interactedProvinceList.Count);
 
         foreach(ProvinceController p in interactedProvinceList) {
 
@@ -112,7 +113,7 @@ public class GameManager : MonoBehaviour {
                     p.province.IncreaseIncome();
                     break;
                 case Action.Inquiry:
-                    p.province.closestTradeRoute.SellAvailableStock();
+                    p.province.SellAvailableStock(p.province.closestTradeRoute);
                     break;
                 case Action.Diplomacy:
                     p.province.ResolveStatus();
@@ -155,16 +156,49 @@ public class GameManager : MonoBehaviour {
 
                     }
 
-                }
+                    cc.summaryPanelText.text += provinceSummary + "\n\n";
 
-                cc.summaryPanelText.text += provinceSummary + "\n\n";
+                }
 
             }
 
         }
-        
+
         if (GameOver()) {
-            Debug.Log(">>>>>>>>>>>>>>>>>>>>>>>>>>>> Game over");
+
+            interactedProvinceList.Clear();
+            
+            cc.summaryPanelText.text = "";
+
+            foreach(ProvinceController p in provincesList) {
+
+                string provinceSummary = "";
+
+                switch (p.province.status) {
+
+                    case Status.Happy:
+                        provinceSummary = "- " + p.province.name + " achieved a happy ending!";
+                        break;
+                    case Status.Normal:
+                        provinceSummary = "- " + p.province.name + " lost motivation but managed to stay positive";
+                        break;
+                    case Status.Sad:
+                        provinceSummary = "- " + p.province.name + " was hit by a wave of depression";
+                        break;
+                    case Status.Angry:
+                        provinceSummary = "- " + p.province.name + "'s citizens organized a strike against the government";
+                        break;
+
+                }
+
+                cc.summaryPanelText.text += provinceSummary + "\n\n";
+
+                cc.summaryTitleText.text = "GAME OVER";
+                cc.summaryPanelButton.SetActive(false);
+                cc.exitButton.SetActive(true);
+
+            }
+
         }
 
     }
@@ -196,6 +230,8 @@ public class GameManager : MonoBehaviour {
         cc.DisplaySummaryPanel();
 
         tc.HideTradeRoutes();
+
+        cc.summaryPanelButton.SetActive(true);
 
     }
 
@@ -391,6 +427,12 @@ public class GameManager : MonoBehaviour {
 
         Debug.Log("Sold " + t.ToString() + ": " + result);
         return result;
+
+    }
+
+    public void ExitGame() {
+
+        Application.Quit();
 
     }
 

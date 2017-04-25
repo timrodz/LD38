@@ -25,43 +25,144 @@ public class Province {
 
     public void UpdateStatus() {
 
-        switch (status) {
+        // Very happy
+        if (happiness >= 450) {
+
+            switch (status) {
+                case Status.Normal:
+                    {
+                        SetStatus(Status.Happy);
+                    }
+                    break;
+                case Status.Sad:
+                    {
+                        SetStatus(Status.Happy);
+                    }
+                    break;
+                case Status.Angry:
+                    {
+                        SetStatus(Status.Normal);
+                    }
+                    break;
+
+            }
+
+        }
+        // Content
+        else if (happiness >= 300 && happiness < 450) {
+
+            switch (status) {
+
+                case Status.Happy:
+                    if (Random.Range(0, 2) == 0) {
+                        SetStatus(Status.Normal);
+                    }
+                    break;
+                case Status.Normal:
+                    {
+                        if (Random.Range(0, 3) == 0) {
+
+                            SetStatus(Status.Happy);
+
+                        }
+                    }
+                    break;
+                case Status.Sad:
+                    {
+                        SetStatus(Status.Normal);
+                    }
+                    break;
+                case Status.Angry:
+                    {
+                        SetStatus(Status.Sad);
+                    }
+                    break;
+
+            }
+
+        } else if (happiness >= 150 && happiness < 300) {
+
+            switch (status) {
+
+                case Status.Happy:
+                    {
+                        SetStatus(Status.Normal);
+                    }
+                    break;
+                case Status.Normal:
+                    {
+                        SetStatus(Status.Sad);
+                    }
+                    break;
+                case Status.Sad:
+                    {
+                        if (Random.Range(0, 3) == 0) {
+                            SetStatus(Status.Normal);
+                        }
+                    }
+                    break;
+                case Status.Angry:
+                    {
+                        if (Random.Range(0, 5) == 0) {
+
+                            SetStatus(Status.Sad);
+
+                        }
+                    }
+                    break;
+
+            }
+
+        } else if (happiness < 150) {
+            
+            switch (status) {
 
             case Status.Happy:
                 {
-                    if (Random.Range(0, 5) == 0) {
-
-                        SetStatus(Status.Normal);
-                        Debug.Log(name + " is now in a normal mood");
-
-                    }
+                    SetStatus(Status.Sad);
                 }
                 break;
             case Status.Normal:
                 {
-                    if (Random.Range(0, 3) == 0) {
-
-                        SetStatus(Status.Sad);
-                        Debug.Log(name + " is now in a sad mood");
-
-                    }
+                    SetStatus(Status.Sad);
                 }
                 break;
             case Status.Sad:
                 {
-
-                    if (Random.Range(0, 2) == 0) {
-
-                        SetStatus(Status.Angry);
-                        SellAvailableStock();
-                        Debug.Log(name + " is now in a sad mood");
-
-                    }
+                    SetStatus(Status.Angry);
                 }
                 break;
             case Status.Angry:
                 {
-                    SellAvailableStock();
+
+                }
+                break;
+
+        }
+
+        }
+
+        // Final happiness subtraction
+        switch (status) {
+
+            case Status.Happy:
+                {
+                    happiness += 75;
+                }
+                break;
+            case Status.Normal:
+                {
+                    
+                }
+                break;
+            case Status.Sad:
+                {
+                    happiness -= 50;
+                }
+                break;
+            case Status.Angry:
+                {
+                    happiness -= 100;
                 }
                 break;
 
@@ -76,20 +177,24 @@ public class Province {
         if (status == Status.Happy) {
             stocks += 2;
             tradeProduced += 2;
+            happiness -= 25;
         } else {
             stocks++;
             tradeProduced++;
+            happiness -= 50;
         }
 
     }
 
-    public void SellAvailableStock() {
+    public void SellAvailableStock(Province p) {
 
-        if (stocks > 0) {
-            Debug.Log("Selling stock from " + name);
-            stocks--;
-            tradeSold++;
+        if (p.stocks > 0) {
+            Debug.Log("Selling stock from " + p.name);
+            p.stocks--;
+            p.tradeSold++;
         }
+
+        happiness += 75;
 
     }
 
@@ -108,12 +213,14 @@ public class Province {
                 {
                     Debug.Log("Happy");
                     SetStatus(Status.Happy);
+                    happiness += 25;
                 }
                 break;
             case Status.Sad:
                 {
                     Debug.Log("Normal");
                     SetStatus(Status.Normal);
+                    happiness += 75;
                 }
                 break;
             case Status.Angry:
@@ -123,11 +230,13 @@ public class Province {
 
                         Debug.Log("Sad");
                         SetStatus(Status.Sad);
+                        happiness += 50;
 
                     } else {
 
                         Debug.Log("Normal");
                         SetStatus(Status.Normal);
+                        happiness += 50;
 
                     }
                 }

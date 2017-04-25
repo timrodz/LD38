@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.3504539, g: 0.7237219, b: 0.316054, a: 1}
+  m_IndirectSpecularColor: {r: 0.28001326, g: 0.33407962, b: 0.69093996, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -134,7 +134,7 @@ Prefab:
         type: 2}
       propertyPath: music
       value: 
-      objectReference: {fileID: 1411123621}
+      objectReference: {fileID: 1411123624}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bbb793e0aa43f4fdabe652f07c77ff3e, type: 2}
   m_IsPrefabParent: 0
@@ -235,46 +235,11 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114242533249984620, guid: 16da718b21f6c4e1788d229b68df740e,
+    - target: {fileID: 114779482352492248, guid: 16da718b21f6c4e1788d229b68df740e,
         type: 2}
-      propertyPath: m_havePropertiesChanged
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114242533249984620, guid: 16da718b21f6c4e1788d229b68df740e,
-        type: 2}
-      propertyPath: m_isInputParsingRequired
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114144759724593968, guid: 16da718b21f6c4e1788d229b68df740e,
-        type: 2}
-      propertyPath: m_havePropertiesChanged
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114144759724593968, guid: 16da718b21f6c4e1788d229b68df740e,
-        type: 2}
-      propertyPath: m_isInputParsingRequired
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114385756590831730, guid: 16da718b21f6c4e1788d229b68df740e,
-        type: 2}
-      propertyPath: m_havePropertiesChanged
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114385756590831730, guid: 16da718b21f6c4e1788d229b68df740e,
-        type: 2}
-      propertyPath: m_isInputParsingRequired
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114489462357856840, guid: 16da718b21f6c4e1788d229b68df740e,
-        type: 2}
-      propertyPath: m_havePropertiesChanged
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114489462357856840, guid: 16da718b21f6c4e1788d229b68df740e,
-        type: 2}
-      propertyPath: m_isInputParsingRequired
-      value: 1
-      objectReference: {fileID: 0}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 737541739}
     - target: {fileID: 114239462509674096, guid: 16da718b21f6c4e1788d229b68df740e,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -295,22 +260,12 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 737541739}
-    - target: {fileID: 114051103417807180, guid: 16da718b21f6c4e1788d229b68df740e,
-        type: 2}
-      propertyPath: m_havePropertiesChanged
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114051103417807180, guid: 16da718b21f6c4e1788d229b68df740e,
-        type: 2}
-      propertyPath: m_isInputParsingRequired
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 114670888089290832, guid: 16da718b21f6c4e1788d229b68df740e,
         type: 2}
       propertyPath: provinceHolder
       value: 
       objectReference: {fileID: 378765831}
-    - target: {fileID: 114779482352492248, guid: 16da718b21f6c4e1788d229b68df740e,
+    - target: {fileID: 114385096188150770, guid: 16da718b21f6c4e1788d229b68df740e,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -318,6 +273,66 @@ Prefab:
     - target: {fileID: 1844732894187132, guid: 16da718b21f6c4e1788d229b68df740e, type: 2}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 1561758380562762, guid: 16da718b21f6c4e1788d229b68df740e, type: 2}
+      propertyPath: m_Name
+      value: Game description
+      objectReference: {fileID: 0}
+    - target: {fileID: 1856670895711114, guid: 16da718b21f6c4e1788d229b68df740e, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114378391346591168, guid: 16da718b21f6c4e1788d229b68df740e,
+        type: 2}
+      propertyPath: m_Text
+      value: "You suddenly wake up to realize you're the president of Panam\xE1. It
+        makes no sense, you hate responsibilities.\n\nYour duty as a president is
+        to take care of this beautiful yet small country. To do so you must make decisions
+        that will have an effect on every province's citizens. \n\nWatch out for your
+        citizen's needs, as it affects their happiness, which means less or more problems
+        depending on how they're feeling.\n\nIf at the start of any turn you have
+        at least 3 revolting provinces and 2 hit by depression, your charge will be
+        revoked and the game will end."
+      objectReference: {fileID: 0}
+    - target: {fileID: 114242533249984620, guid: 16da718b21f6c4e1788d229b68df740e,
+        type: 2}
+      propertyPath: m_havePropertiesChanged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114242533249984620, guid: 16da718b21f6c4e1788d229b68df740e,
+        type: 2}
+      propertyPath: m_isInputParsingRequired
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114489462357856840, guid: 16da718b21f6c4e1788d229b68df740e,
+        type: 2}
+      propertyPath: m_havePropertiesChanged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114489462357856840, guid: 16da718b21f6c4e1788d229b68df740e,
+        type: 2}
+      propertyPath: m_isInputParsingRequired
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114144759724593968, guid: 16da718b21f6c4e1788d229b68df740e,
+        type: 2}
+      propertyPath: m_havePropertiesChanged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114144759724593968, guid: 16da718b21f6c4e1788d229b68df740e,
+        type: 2}
+      propertyPath: m_isInputParsingRequired
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114385756590831730, guid: 16da718b21f6c4e1788d229b68df740e,
+        type: 2}
+      propertyPath: m_havePropertiesChanged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114385756590831730, guid: 16da718b21f6c4e1788d229b68df740e,
+        type: 2}
+      propertyPath: m_isInputParsingRequired
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 16da718b21f6c4e1788d229b68df740e, type: 2}
@@ -808,7 +823,7 @@ GameObject:
   m_PrefabParentObject: {fileID: 1301594710561824, guid: bbb793e0aa43f4fdabe652f07c77ff3e,
     type: 2}
   m_PrefabInternal: {fileID: 71711855}
---- !u!82 &1411123621
+--- !u!82 &1411123624
 AudioSource:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -819,9 +834,9 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: b6a365ca3ab844a229e5d950adc91512, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -1114,7 +1129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skybox: {fileID: 2100000, guid: 9e916b211ca140a4ea4fc6eaa8d9781c, type: 2}
-  lerp: 1
+  lerp: 0
   topColor1: {r: 0.32536763, g: 0.39698938, b: 0.86764705, a: 1}
   bottomColor1: {r: 0.23183389, g: 0.26628086, b: 0.49264705, a: 1}
   topColor2: {r: 0.36650613, g: 0.86764705, b: 0.32536763, a: 1}
