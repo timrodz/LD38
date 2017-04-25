@@ -473,6 +473,41 @@ public class CanvasController : MonoBehaviour {
 
     }
 
+    public void ResetPanels() {
+
+        if (selectionCG.alpha == 0 && showingSelection) {
+            Debug.Log("Showing Selection");
+            DisplaySelectionPanel();
+        }
+        showingSelection = false;
+
+        if (informationCG.alpha == 0 && showingInformation) {
+            Debug.Log("Showing Information");
+            DisplayInformationPanel();
+        }
+        showingInformation = false;
+
+        if (aboutCG.alpha == 0 && showingAbout) {
+            Debug.Log("Showing About");
+            DisplayAboutPanel();
+        }
+        showingAbout = false;
+
+        if (citadelCG.alpha == 0 && showingCitadel) {
+            Debug.Log("Showing Citadel");
+            DisplayCitadelPanel();
+            ShowProvinceInformation();
+        }
+        showingCitadel = false;
+
+        if (gameManagerCG.alpha == 0 && showingGameManager) {
+            Debug.Log("Showing game manager");
+            DisplayGameManagerPanel();
+        }
+        showingGameManager = false;
+
+    }
+
     public void DisplayAboutPanel() {
 
         StopAllCoroutines();
@@ -608,6 +643,8 @@ public class CanvasController : MonoBehaviour {
 
     public void DisplaySummaryPanel() {
 
+        helpButton.SetActive(false);
+
         summaryCG.DOFade(1, 0.5f);
         summaryCG.blocksRaycasts = true;
 
@@ -623,7 +660,9 @@ public class CanvasController : MonoBehaviour {
     }
 
     public void HideSummaryPanel() {
-
+        
+        helpButton.SetActive(true);
+        
         summaryCG.DOFade(0, 0);
         summaryCG.blocksRaycasts = false;
 
@@ -679,41 +718,6 @@ public class CanvasController : MonoBehaviour {
 
             }
         }
-
-    }
-
-    public void ResetPanels() {
-
-        if (selectionCG.alpha == 0 && showingSelection) {
-            Debug.Log("Showing Selection");
-            DisplaySelectionPanel();
-        }
-        showingSelection = false;
-
-        if (informationCG.alpha == 0 && showingInformation) {
-            Debug.Log("Showing Information");
-            DisplayInformationPanel();
-        }
-        showingInformation = false;
-
-        if (aboutCG.alpha == 0 && showingAbout) {
-            Debug.Log("Showing About");
-            DisplayAboutPanel();
-        }
-        showingAbout = false;
-
-        if (citadelCG.alpha == 0 && showingCitadel) {
-            Debug.Log("Showing Citadel");
-            DisplayCitadelPanel();
-            ShowProvinceInformation();
-        }
-        showingCitadel = false;
-
-        if (gameManagerCG.alpha == 0 && showingGameManager) {
-            Debug.Log("Showing game manager");
-            DisplayGameManagerPanel();
-        }
-        showingGameManager = false;
 
     }
 
